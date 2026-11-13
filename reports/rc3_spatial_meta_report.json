@@ -1,0 +1,51 @@
+{
+  "dataset_seeds": [
+    2500,
+    2643
+  ],
+  "frozen_rc0_source_sha256": "121ce9aba417fb27b07d7f7f6e52633a8ef29a2c99aefddc12a10428d02ddafb",
+  "inner_base_splits": 4,
+  "nested_outer_splits": 5,
+  "no_rf_actuation": true,
+  "original_features": 693,
+  "qualifies_independent_test": false,
+  "rc2_1_hypothesis_dev": {
+    "far": 0.010912698412698412,
+    "fn": 14,
+    "fp": 11,
+    "neighbor_fp": 1,
+    "point_recall_over_95pct": true,
+    "recall": 0.9513888888888888,
+    "tp": 274,
+    "wilson_far_upper_95": 0.019434784854773582,
+    "wilson_far_upper_below_2pct": true
+  },
+  "rc3_nested_oof_threshold_0_50": {
+    "far": 0.003968253968253968,
+    "fn": 7,
+    "fp": 4,
+    "neighbor_fp": 2,
+    "point_recall_over_95pct": true,
+    "recall": 0.9756944444444444,
+    "tp": 281,
+    "wilson_far_upper_95": 0.010158653794557944,
+    "wilson_far_upper_below_2pct": true
+  },
+  "rc3_nested_oof_threshold_tuned_on_same_dev_set": {
+    "far": 0.010912698412698412,
+    "fn": 2,
+    "fp": 11,
+    "neighbor_fp": 14,
+    "point_recall_over_95pct": true,
+    "recall": 0.9930555555555556,
+    "threshold": 0.21120083844004756,
+    "tp": 286,
+    "wilson_far_upper_95": 0.019434784854773582,
+    "wilson_far_upper_below_2pct": true
+  },
+  "research_only": true,
+  "spatial_features": 15,
+  "status": "RC3_SPATIAL_META_NESTED_GROUPED_DEV_NOT_PROSPECTIVE",
+  "train_groups": 144,
+  "warning": "Nested GroupCV evaluates model fitting without seed overlap, but threshold is selected after viewing nested-OOF outcomes. RC1 crossfit predictions and RC0 replay are reused development data. Threshold, training choices and spatial policy are NOT independently validated. Freeze this candidate and run a new untouched Sionna prospective holdout (e.g. seeds 3000..3143)."
+}

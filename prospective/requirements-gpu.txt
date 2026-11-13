@@ -1,0 +1,5 @@
+# GPU experiment additionally needs NVIDIA PyTorch + Google Colab runtime
+-r ../requirements.txt
+sionna==2.2.0
+google-api-python-client
+google-auth-httplib2
