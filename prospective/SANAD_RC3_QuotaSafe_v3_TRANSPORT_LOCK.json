@@ -1,0 +1,28 @@
+{
+  "code_verified_unchanged": [
+    "stats",
+    "make_features",
+    "meta_features",
+    "predict_unlabeled",
+    "score_one",
+    "summarize",
+    "wilson_upper"
+  ],
+  "completed_seeds_at_last_check": [
+    3000,
+    3047
+  ],
+  "existing_checkpoint_count_verified": 48,
+  "frozen_model_sha256": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+  "github_release_modified": false,
+  "seed_range": [
+    3000,
+    3143
+  ],
+  "source_zip_sha256": "121ce9aba417fb27b07d7f7f6e52633a8ef29a2c99aefddc12a10428d02ddafb",
+  "status": "IO_TRANSPORT_ONLY_NON_SCIENTIFIC_CHANGE",
+  "threshold": 0.5,
+  "v2_runner_sha256": "fad51a79858b7ed7ff11500f82f6828afa6a3c934f204c93a3de35b88114f8b7",
+  "v3_runner_sha256": "4677967f602f20f0b92c6f70d344ceb2503fa138cf7435aa15063cfd7f193a09",
+  "validation": "Python AST comparison and syntax compilation, not a full Google Colab GPU execution"
+}
