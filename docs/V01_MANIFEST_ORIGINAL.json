@@ -1,0 +1,22 @@
+{
+  "release": "SANAD-Adaptive-Core-v0.1-experimental",
+  "frozen_RC3_changed": false,
+  "model_weights_included": false,
+  "evaluation": "synthetic-only local validation; real ESPARGOS pending Colab execution",
+  "file_sha256": {
+    ".gitignore": "e9e1d0269e3d05d4e806d83697027cf94535af8271f697bc7ed5da47773cdef4",
+    "EXPERIMENTAL_STATUS.md": "3369558b9ecfd960abb65dcb8c2547665701b639c910b753d69bcae7b60b2789",
+    "README.md": "1925bc2592b294f96137b066648b7ef7671371d68a454265ff09ff533f97c9b0",
+    "SANAD_Adaptive_ESPARGOS_Colab.ipynb": "e8f8928e906adc5e333f43973b01b5abdf3d8d08f02b3e6f59576f462ea934e1",
+    "experiments/run_espargos_adaptive.py": "c3e3e417158931be4f7d748ed9f375a7266404aa06635637ddd055c4c57856ff",
+    "requirements-dev.txt": "8636f9ab1a075be9f3039e2a6471837259c4f36b625bcaf7a3d9a1edd2419c6d",
+    "requirements-espargos.txt": "7e145afef5d91be1351d875f08a2fa30c57fdb180e0a2980de345bfddeec8c13",
+    "requirements.txt": "99f43573522565d7c480efd1f954892948033915df6a4e685327e995d3396eb6",
+    "sanad_adaptive/__init__.py": "1d456d96c546519ad485eca78323e271cc3f3a780b6fcd1ab7c7dbd891404440",
+    "sanad_adaptive/core.py": "51558c1f9697e20063b0969041d500c5bd3f44f3b652509d8f8bc0e3ed18bce8",
+    "sanad_adaptive/shared_head.py": "498a2c2e42630fea73944e87c2c26ce9faff7257cee6b984acaae59ad5288365",
+    "tests/test_adaptive_core.py": "77d3891408bceebad78023f718aba503c932209bd8b7ed9a3af0750b74867f50",
+    "tests/test_experiment.py": "69ff37aefa9eb17386c164482bfd892d220b948d13e0282555b613838fda9fb4",
+    "tests/test_shared_head.py": "a26292000906794e9f20c5eea89e7e92db9568acfe03ac59027c03c729787d1d"
+  }
+}

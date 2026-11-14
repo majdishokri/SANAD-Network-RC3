@@ -1,7 +1,19 @@
-# Release status / immutability rules
+# SANAD Adaptive v0.2 — EXPERIMENTAL (2026-11-14)
 
-2026-11-14. `SANAD Adaptive Core v0.1` is **EXPERIMENTAL**. This is a *new* implementation, not a configurable form of RC3's frozen two-stage 693+15-feature model. The generic 12-column feature interface is untrained. RC3 remains unchanged at model SHA-256 `0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4` and decision threshold `0.50`.
+This branch adds a **CSI spectral phase-evidence monitor** to the v0.1 covariance-based, dimension-adaptive core. The spectral module accepts any supported number of arrays, elements and subcarriers, provided the receiver elements are **phase synchronized within each array** and recorded against stable element identities. It does not assume 7 arrays, 8 elements, or 117 tones.
 
-Validations performed here: synthetic multi-shape unit tests and end-to-end synthetic covariance fixture. No field CSI measurement outcome claimed. A covariance-only detector cannot in general distinguish calibration drift from arbitrary channel changes without additional assumptions or a known reference. The abstention status is intentional.
+## What was tested
 
-This branch is for experimental research. Train supervised heads only using independent, labeled and appropriately split multi-hardware datasets; never refit the frozen RC3 weights to the Sionna 3000–3143 holdout.
+- Automated unit and synthetic end-to-end tests, including 5° persistent phase-only injection, common packet-phase invariance, gain/phase injection, nonmatching configurations, and frequency-selective channel change abstention.
+- The real ESPARGOS-0001 data **have not yet been executed through v0.2** in this environment. Colab notebook runs the real files and automatically saves outputs to Google Drive.
+- No pretrained universal multi-hardware classifier weights; the optional shared head is still untrained.
+
+## Scientific and validation boundaries
+
+- This is not frozen SANAD Network RC3. That exact detector, fixed threshold 0.50, its Sionna result and GitHub main/frozen branches remain untouched.
+- The 5° synthetic unit test is only a software check on simulated coherent CSI, not an empirical success rate on ESPARGOS.
+- v0.1 ESPARGOS results already examined in development: 0/208 static array-window alarms, 56/664 walking array-window alarms, and 1/32 phase-only trials. They are **development diagnostics**, not a fresh held-out data source for v0.2 qualification.
+- Changes in channel that resemble diagonal antenna phase changes can be mathematically indistinguishable without pilots, an independent calibrated reference or assumptions on channel motion. The spectral gate abstains on large spectral mismatch but does not guarantee zero false alarms or correct calibration localization.
+- A gain fault is evaluated in the v0.1 covariance component; a phase-only fault in the v0.2 spectral component. Fused alerts require both covariance and spectral channel-shift gates to allow a decision.
+- Injections are `D R Dᴴ` and `D S Dᴴ` applied to measured data. They are NOT observed physical hardware faults.
+- No field certification, deployment eligibility or guaranteed detection threshold is claimed. Evaluation recordings are correlated; report descriptive frequencies, not population CIs.

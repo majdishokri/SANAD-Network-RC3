@@ -62,3 +62,42 @@ The pilot downloads the **real** `static_middle` and `walking_nearby` ESPARGOS-0
 ## Science and safety restrictions
 
 No RF control/actuation. No destructive fault generation. Do not retrain or overwrite the frozen SANAD RC3 weights, `main`, or `frozen/rc3-sionna-qualified-2026-11-14`. Any deployment claim requires a prospective, device-stratified hold-out with real hardware metadata and properly labeled faults, independent calibration periods, and confidence intervals clustered by recording session/site.
+
+## v0.2: optional spectral phase path (EXPERIMENTAL)
+
+New: `sanad_adaptive/spectral.py` and `experiments/run_espargos_v02.py`.
+The existing v0.1 `AdaptiveCore` and `Frozen RC3` **are not modified**.
+
+The v0.2 monitor retains per-OFDM-tone cross-element phase structure rather
+than collapsing tones into a single covariance. It estimates a robust
+weighted graph-Laplacian relative phase, checks across-tone residual mismatch
+for a *possible channel change*, and tests persistent phase deviations with
+calibration-only rolling circular means. The code works for varying N,
+M_i and K_i. It requires valid, within-array phase-synchronized CSI and
+known-healthy reference/calibration windows.
+
+Critical: a channel disturbance can also mimic a constant element phase.
+The spectral residual is not an absolute disambiguation test. Ambiguous
+snapshots are marked `CHANNEL_SHIFT_REVIEW` (abstention, not healthy).
+
+Run on published ESPARGOS-0001 recordings:
+
+```bash
+python -m pip install -r requirements-espargos.txt
+PYTHONPATH=. python experiments/run_espargos_v02.py \
+    --download --data-dir ./data --output ./results_v02
+```
+
+Or run `SANAD_Adaptive_ESPARGOS_v02_Drive_Colab.ipynb` from the
+`SANAD_Adaptive/Prototype_v02` Drive folder. The notebook reads the
+ZIP and automatically saves JSON/CSV/PNG/ZIP+SHA-256 under
+`MyDrive/SANAD_Adaptive/Results/ESPARGOS_V02/<UTC timestamp>`.
+
+The comparison has explicit v0.1 covariance and v0.2 spectral+covariance
+columns. All detection frequencies are defined as *at least one incremental
+alert after mathematical injection*, with 32 trials per fault profile on the
+four-8-element ESPARGOS setup. Do not call these field fault recall rates.
+New data from different sessions/devices, separately verified healthy/fault
+labels, and device-stratified prospective hold-outs are needed to qualify.
+
+Check tests: `PYTHONPATH=. python -m pytest -q tests`.
