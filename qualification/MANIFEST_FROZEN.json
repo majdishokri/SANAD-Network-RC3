@@ -1,0 +1,28 @@
+{
+  "acceptance": {
+    "recall_strictly_greater_than_95pct": true,
+    "seed_cluster_far_upper_strictly_below_2pct": true,
+    "wilson_far_upper_strictly_below_2pct": true
+  },
+  "all_training_and_tuning_complete_before_seed_3000": true,
+  "decision_threshold": 0.5,
+  "development_seeds": [
+    2500,
+    2643
+  ],
+  "feature_count": 693,
+  "no_rf_hardware_actuation": true,
+  "primary_metric": "fraction of injected faulty arrays detected in final 40/300 reports",
+  "rc3_candidate_sha256": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+  "required_seeds": 144,
+  "research_only": true,
+  "seed_range": [
+    3000,
+    3143
+  ],
+  "simulation": "NVIDIA Sionna 2.2.0 / 3GPP TR 38.901 UMa / GPU covariance / 300 15-min records",
+  "source_zip_sha256": "121ce9aba417fb27b07d7f7f6e52633a8ef29a2c99aefddc12a10428d02ddafb",
+  "spatial_feature_count": 15,
+  "status": "FROZEN_BEFORE_PROSPECTIVE_EVALUATION",
+  "study": "SANAD_RC3_SPATIAL_META_FROZEN_0p50_GPU_PROSPECTIVE_3000_3143"
+}

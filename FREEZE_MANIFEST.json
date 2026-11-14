@@ -7,8 +7,8 @@
   ],
   "files_sha256": {
     ".gitignore": "6d0ab370e095ff1bb90105f0ea7e1a936adb415cad5d32dde2983fee561de4b6",
-    "README.md": "eb556040534154dc3830504d6dd5936aac98c8d775ddb523e675a0462d4133c5",
-    "docs/FREEZE_POLICY.md": "d13fb6dba3528ecc4f81a440e8c2c379c6c046feadb8f237055c5f222e9c7636",
+    "README.md": "393b193731e207ec8fe44a9f9afd432e49002a26aff03ae9c65a1a74075a8d88",
+    "docs/FREEZE_POLICY.md": "bff987fbc5c42ae1de32a38ae0fca6f634f09e26b0c991f1709420ecc3bfdc86",
     "internal/rc0_runtime/config_frozen.json": "ed3e07f61c69ae9b5ba0d212e14f1bccec9ec93978932d7992cf79afb01ac7a2",
     "internal/rc0_runtime/config_v34_selected.json": "e8d3896b43f9a7c410094f6129bf034503c68779535d4bb3e04eaa67f53c436a",
     "internal/rc0_runtime/config_v35.json": "37050b0349ae0ed372f040dca1678f819492002b380b0e19914cd2272e75f62d",
@@ -38,7 +38,16 @@
     "prospective/LOCK.json": "c72b91e2b4cd38df627ed3d8ebf0c51e3c1f79ad1779d80eb376f9019972f308",
     "prospective/SANAD_RC3_Prospective_3000_3143.ipynb": "ae06602eaa22278fcc0af4477f69fe282d3c8f0411e3da6fd397fd8102ba7571",
     "prospective/SANAD_RC3_Prospective_3000_3143.py": "fad51a79858b7ed7ff11500f82f6828afa6a3c934f204c93a3de35b88114f8b7",
+    "prospective/SANAD_RC3_Prospective_3000_3143_v3_QUOTA_SAFE.ipynb": "40c4299b364c4a2f3101a2ea8077b4893d275b1ba11ed028e365133ba7ae9798",
+    "prospective/SANAD_RC3_Prospective_3000_3143_v3_QUOTA_SAFE.py": "4677967f602f20f0b92c6f70d344ceb2503fa138cf7435aa15063cfd7f193a09",
+    "prospective/SANAD_RC3_QUOTA_SAFE_v3_CHANGELOG.md": "895085ac775d3a693b6c0f9a4db6072c53efe3ff67b0dbdfd29b56809aaa4406",
+    "prospective/SANAD_RC3_QuotaSafe_v3_TRANSPORT_LOCK.json": "7e9a428ec92d380dda2be6faeb13f7cd252216df65ea44901b82b7578e9e575b",
     "prospective/requirements-gpu.txt": "8eba391b42fd6fd96e29f59c8cb7abf4b1bf5a2dffa31c50caef564885939021",
+    "qualification/MANIFEST_FROZEN.json": "c22c6a62151292d120e58df1806bf289fa9750a7594cf83137d7754431b75140",
+    "qualification/QUALIFICATION_LOCK.json": "e2b694b29ef73571eda129e48e5e2af8bd55e65ff93acae20c031fdac819b9f2",
+    "qualification/QUALIFICATION_REPORT.md": "d1792f18d2ba2509f60bd05a8c884d8058005019ee8203cf9f60ba2e68d597bc",
+    "qualification/SUMMARY_FROZEN.json": "cda17210aeb4450b1d0a67eded5c2959fc5e4ed371bb170cf44791f3201cdabd",
+    "qualification/verify_qualification.py": "566cf28d21aeb388593bc9ba9616db41299b6bd637dbaa4fc40de1ac70f940cd",
     "rc3.py": "c5fbae4163a8df5d17546c773b8c015ee79a0d5dc462867e9dab0f17c731f23c",
     "reports/rc3_spatial_meta_report.json": "e44a4fae29576ff61552b5a6a1a66f6da31cf9e16cee9b4c83155cc510ef7514",
     "requirements.txt": "902b5c68a7b24faf62dd76ff31f3f62d7a80d9515ec7c4c09b2f7183c31e7a6f",
@@ -46,15 +55,19 @@
   },
   "frozen_model_sha256": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
   "model_storage": "model/rc3_candidate.joblib.gz",
+  "model_unchanged_since": "b96e016e696c818cb9fcb0e0de408284a49977c2",
   "no_rf_actuation": true,
-  "release": "SANAD-Network-RC3",
-  "release_type": "frozen_research_candidate",
-  "research_only": true,
-  "unused_prospective_seeds": [
+  "prospective_seeds_evaluated": [
     3000,
     3143
   ],
+  "qualified_field_deployment": false,
+  "qualified_result_lock_sha256": "e2b694b29ef73571eda129e48e5e2af8bd55e65ff93acae20c031fdac819b9f2",
+  "qualified_result_source_sha256": "cda17210aeb4450b1d0a67eded5c2959fc5e4ed371bb170cf44791f3201cdabd",
+  "release": "SANAD-Network-RC3",
+  "release_type": "frozen_research_candidate_independently_qualified_in_sionna",
+  "research_only": true,
   "upstream_rc0_model_sha256": "032d2d600600b182b689a14682c8260e9217873dd8a65ab015d15765c98dd96d",
   "upstream_source_zip_sha256": "121ce9aba417fb27b07d7f7f6e52633a8ef29a2c99aefddc12a10428d02ddafb",
-  "validation": "development_nested_grouped_CV_only; prospective not executed"
+  "validation": "2026-11-14 independent prospective Sionna 144/144 seeds; 3/3 pre_registered_simulation_gates_passed"
 }
