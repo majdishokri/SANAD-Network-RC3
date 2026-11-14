@@ -1,7 +1,10 @@
 __pycache__/
-*.py[cod]
+.pytest_cache/
+*.pyc
 .ipynb_checkpoints/
-.env
-.venv/
-*.log
-.DS_Store
+/data/
+/results/
+*.tfrecord
+*.tfrecords
+*.joblib
+*.pkl
