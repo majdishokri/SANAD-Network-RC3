@@ -1,0 +1,25 @@
+{
+  "release": "SANAD-Network-RC3 Frozen Standalone Inference Extraction",
+  "source_repository": "majdishokri/SANAD-Network-RC3",
+  "source_commit": "182e77b485cceb770ee6570ba332205c73823c91",
+  "original_model_uncompressed_sha256": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+  "decision_threshold": 0.5,
+  "frozen_files_sha256": {
+    "rc3.py": "c5fbae4163a8df5d17546c773b8c015ee79a0d5dc462867e9dab0f17c731f23c",
+    "model/rc3_candidate.joblib.gz": "2cd6661607876462bd468e0cfdd720d1b893bc0b7c7f9679c209843b5ffbf12a",
+    "internal/rc0_runtime/frozen_candidate/selected_model.joblib": "032d2d600600b182b689a14682c8260e9217873dd8a65ab015d15765c98dd96d",
+    "internal/rc0_runtime/config_v35.json": "37050b0349ae0ed372f040dca1678f819492002b380b0e19914cd2272e75f62d",
+    "internal/rc0_runtime/inference_v35_gate.py": "4c8393621460042820f8214dff1a293380b3be551470ec1d448a3153aee36afa",
+    "internal/rc0_runtime/feature_engineering.py": "18cccfaa9b27a17934bc2c3a1c22f0b7ed164b2af99c0ad738b33a595357a81e",
+    "internal/rc0_runtime/sanad_v29.py": "bc9858ea4eb4a3ea599ca29396215dc629372f5afd35de8d054c31bd884f96c8",
+    "internal/rc0_runtime/sanad_v33.py": "ffcf7451534219287419d09d2bda50c1e2f8186ccccfdf798dee52c846d0eaf0",
+    "internal/rc0_runtime/sanad_v34.py": "505fc7b77a9f0ae0ff1e1e6b15b7d780fdf8483467ee9a8040e2b201f6421d29",
+    "internal/rc0_runtime/sanad_v35.py": "a772d6dbefa63bba796c671a6d16548110507b95e4ed6a1e81e9c4db45249d38",
+    "internal/rc0_runtime/sanad_hybrid_v33_v35.py": "736f278a199cdabc3eb191ca6311159b11c0a230c618f709bb379d95424150bf",
+    "internal/rc0_runtime/temporal_v35.py": "634fab78099ee47f0a30b756437d423625905e4679c83b2371ed3c38817b0a94",
+    "internal/rc0_runtime/v29_research.py": "7556219c59f54a9ffeefde9f14a51c429541d3a43e8b2270ff293cbd73ede495",
+    "internal/rc0_runtime/qa_integrity.py": "763a50ad51431a100b4539986e6dc44fe228253bf20bccb7b9d57b80353ecbb0"
+  },
+  "test_fixture_sha256": "1bd0130469683f4988f97bfddb9a559b6cae7c673bf24355e263c531c818cb3e",
+  "note": "Source/weights identical to frozen GitHub release. New API wrapper and docs do not affect inference."
+}

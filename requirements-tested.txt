@@ -1,0 +1,5 @@
+# Exact versions used for the 2026-11-14 extraction parity check (Python 3.13.5)
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0
+joblib==1.5.3

@@ -1,4 +1,4 @@
-# Frozen RC3 inference (Python 3.11+); load only checksum-verified bundled models.
-numpy==2.3.5
-scikit-learn==1.8.0
-joblib==1.5.3
+numpy>=1.26,<3
+scipy>=1.11,<2
+scikit-learn>=1.5,<1.9
+joblib>=1.3,<2

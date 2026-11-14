@@ -1,0 +1,37 @@
+{
+  "status": "RC3_FROZEN_STANDALONE_ENGINE_SOURCE_IDENTICAL_REPACKAGING",
+  "source_repository": "majdishokri/SANAD-Network-RC3",
+  "source_commit": "182e77b485cceb770ee6570ba332205c73823c91",
+  "frozen_source_model_files_verified": 14,
+  "sha_model_compressed": "2cd6661607876462bd468e0cfdd720d1b893bc0b7c7f9679c209843b5ffbf12a",
+  "sha_model_uncompressed": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+  "sha_upstream_rc0_model": "032d2d600600b182b689a14682c8260e9217873dd8a65ab015d15765c98dd96d",
+  "locked_decision_threshold": 0.5,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "test_fixture": "s2643.npz (development fixture; not independent prospective validation)",
+  "fixture_healthy_alerts": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "fixture_injected_alerts": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "numerical_parity_tolerance_absolute": 1e-12,
+  "training_performed": false,
+  "model_changed": false,
+  "hardware_control": false,
+  "field_qualified": false,
+  "frozen_main_branch_changed": false
+}
