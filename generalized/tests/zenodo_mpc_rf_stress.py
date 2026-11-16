@@ -46,7 +46,7 @@ def measured_blocks(archive:Path, reports:int=300):
                     or not np.iscomplexobj(a) or not np.isfinite(a).all()):
                     continue
                 amplitude=np.asarray(a[:,3],complex)
-                angle=np.asarray(a[:,1].real,float)
+                angle=np.asarray(a[:,2].real,float)  # arrival-angle column, following tau/AoD/AoA/weight ordering
                 keep=(np.abs(amplitude)>0)&np.isfinite(angle)&(np.abs(angle)<=180)
                 if keep.sum()>=4:
                     real_observations.append((angle[keep],amplitude[keep]))
@@ -119,6 +119,8 @@ def run(archive, output):
         print('RF_TRIAL='+json.dumps(current,sort_keys=True),flush=True)
     stats={
       'source_doi':DOI,'source_md5':ZIP_MD5,
+      'mpc_angle_column_one_based':3,
+      'angle_role':'receive arrival angle (AoA)',
       'station_count':N_ARRAYS,'elements_per_station':N_ELEMENTS,
       'measured_route_segments_used':routes,
       'measured_samples_per_station':300,
