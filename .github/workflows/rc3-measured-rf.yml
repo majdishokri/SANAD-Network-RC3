@@ -1,0 +1,58 @@
+name: Measured-multipath RC3 RF stress tests
+on:
+  push:
+    branches: [feature/rc3-variable-geometry]
+    paths:
+      - .github/workflows/rc3-measured-rf.yml
+      - generalized/tests/zenodo_mpc_rf_stress.py
+      - generalized/runtime/v32_replay.py
+      - generalized/runtime/v35_replay.py
+      - generalized/runtime/qualification.py
+  workflow_dispatch:
+jobs:
+  measured_rf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {stations: 4, elements: 8}
+          - {stations: 7, elements: 8}
+          - {stations: 8, elements: 8}
+          - {stations: 7, elements: 16}
+          - {stations: 7, elements: 32}
+          - {stations: 7, elements: 64}
+    env:
+      SANAD_STATIONS: ${{ matrix.stations }}
+      SANAD_ELEMENTS: ${{ matrix.elements }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt scipy
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/urban_mimo.zip
+          key: measured-zenodo-21213882-md5-a19578d10f2edab687136bee42274bf4
+      - name: Fetch measured multipath data
+        run: |
+          if [ ! -s /tmp/urban_mimo.zip ]; then
+            curl -fLsS --retry 3 --connect-timeout 30 --max-time 600 \
+              'https://zenodo.org/records/21213882/files/4.85GHz%20Dataset.zip?download=1' \
+              -o /tmp/urban_mimo.zip
+          fi
+      - name: Original RC3 full RF pipeline with measured multipath input
+        run: |
+          python generalized/tests/zenodo_mpc_rf_stress.py \
+            /tmp/urban_mimo.zip /tmp/rc3_measured_result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: measured-rf-${{ matrix.stations }}x${{ matrix.elements }}
+          path: /tmp/rc3_measured_result/metrics.json
+          if-no-files-found: ignore
