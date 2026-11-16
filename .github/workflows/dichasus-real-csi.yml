@@ -1,0 +1,45 @@
+name: SANAD RC3 measured DICHASUS CSI benchmark
+on:
+  push:
+    branches: [feature/rc3-variable-geometry]
+    paths:
+      - .github/workflows/dichasus-real-csi.yml
+      - generalized/tests/dichasus_csi_benchmark.py
+  workflow_dispatch:
+jobs:
+  csi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {stations: 4, rows: "four physical sites"}
+          - {stations: 7, rows: "seven physical subarray rows"}
+          - {stations: 8, rows: "eight physical subarray rows"}
+    env:
+      SANAD_STATIONS: ${{ matrix.stations }}
+      SANAD_ELEMENTS: '8'
+      SANAD_RF_TRIALS: '2'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt requests
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/dichasus-ad25-prefix.tfrecords
+          key: dichasus-ad25-180MB-2026-11-16-v1
+      - name: Evaluate frozen RC3 on physical DICHASUS RF channels
+        run: python generalized/tests/dichasus_csi_benchmark.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dichasus-real-csi-${{ matrix.stations }}x8
+          path: /tmp/dichasus_result/summary.json
+          if-no-files-found: ignore
