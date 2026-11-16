@@ -17,15 +17,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {stations: 4, elements: 8}
-          - {stations: 7, elements: 8}
-          - {stations: 8, elements: 8}
-          - {stations: 7, elements: 16}
-          - {stations: 7, elements: 32}
-          - {stations: 7, elements: 64}
+          - {stations: 4, elements: 8, trials: 4}
+          - {stations: 7, elements: 4, trials: 4}
+          - {stations: 7, elements: 8, trials: 8}
+          - {stations: 8, elements: 8, trials: 4}
+          - {stations: 7, elements: 16, trials: 4}
+          - {stations: 7, elements: 32, trials: 4}
+          - {stations: 7, elements: 64, trials: 2}
     env:
       SANAD_STATIONS: ${{ matrix.stations }}
       SANAD_ELEMENTS: ${{ matrix.elements }}
+      SANAD_RF_TRIALS: ${{ matrix.trials }}
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
       MKL_NUM_THREADS: '1'

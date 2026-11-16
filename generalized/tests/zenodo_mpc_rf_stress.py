@@ -89,17 +89,34 @@ def run(archive, output):
     output.mkdir(parents=True,exist_ok=True)
     covpath=output/'measured_derived_covariance.npz'
     evpath=output/'injected_evidence.npz'
-    np.savez_compressed(covpath,**{f's{SEED}':R})
-    extract_seed_v35(covpath,RUNTIME,SEED,evpath)
-    with np.load(evpath,allow_pickle=False) as z:
-        ev={k:z[k] for k in z.files}
+    trials=int(os.environ.get("SANAD_RF_TRIALS","1"))
+    if not 1<=trials<=32:raise ValueError("SANAD_RF_TRIALS must be 1..32")
     classifier=FrozenRC3()
-    assert 'generalized' in sys.modules['rc3'].__file__, sys.modules['rc3'].__file__
-    pred={s:np.asarray(classifier.predict_trace(ev,s)['alerts'],bool)
-          for s in ('healthy','injected')}
-    labels={s:np.asarray(ev[f'{s}_expected'])>0
-            for s in ('healthy','injected')}
-    assert labels['healthy'].sum()==0 and labels['injected'].sum()==2
+    totals=dict(tp=0,fault_n=0,healthy_fp=0,healthy_n=0,neighbor_fp=0,neighbor_n=0)
+    by_trial=[]
+    for seed in range(SEED,SEED+trials):
+        # Identical measured-channel covariance; distinct original synthetic fault draws.
+        np.savez_compressed(covpath,**{f's{seed}':R})
+        extract_seed_v35(covpath,RUNTIME,seed,evpath)
+        with np.load(evpath,allow_pickle=False) as z:
+            ev={k:z[k] for k in z.files}
+        pred={stream:np.asarray(classifier.predict_trace(ev,stream)['alerts'],bool)
+              for stream in ('healthy','injected')}
+        labels={stream:np.asarray(ev[f'{stream}_expected'])>0
+                for stream in ('healthy','injected')}
+        assert labels['healthy'].sum()==0 and labels['injected'].sum()==2
+        current=dict(
+            seed=seed,
+            tp=int((pred['injected']&labels['injected']).sum()),
+            fault_n=int(labels['injected'].sum()),
+            healthy_fp=int(pred['healthy'].sum()),
+            healthy_n=int(len(pred['healthy'])),
+            neighbor_fp=int((pred['injected']&~labels['injected']).sum()),
+            neighbor_n=int((~labels['injected']).sum()))
+        for key in totals:
+            totals[key]+=current[key]
+        by_trial.append(current)
+        print('RF_TRIAL='+json.dumps(current,sort_keys=True),flush=True)
     stats={
       'source_doi':DOI,'source_md5':ZIP_MD5,
       'station_count':N_ARRAYS,'elements_per_station':N_ELEMENTS,
@@ -108,16 +125,13 @@ def run(archive, output):
       'available_valid_measured_samples_by_route':counts,
       'model_retrained':False,'threshold':0.5,
       'fault_type':'synthetic gain/phase faults from frozen RC3 pipeline',
-      'fault_n':int(labels['injected'].sum()),
-      'tp':int((pred['injected']&labels['injected']).sum()),
-      'healthy_n':int(len(pred['healthy'])),
-      'healthy_fp':int(pred['healthy'].sum()),
-      'neighbor_n':int((~labels['injected']).sum()),
-      'neighbor_fp':int((pred['injected']&~labels['injected']).sum()),
-      'recall':float((pred['injected']&labels['injected']).sum()/labels['injected'].sum()),
-      'healthy_far':float(pred['healthy'].mean()),
+      'synthetic_fault_draws_on_same_measured_covariance':trials,
+      **totals,
+      'recall':float(totals['tp']/totals['fault_n']),
+      'healthy_far':float(totals['healthy_fp']/totals['healthy_n']),
+      'trials':by_trial,
       'provenance':'Measured multipath path parameters; ULA covariance reconstructed, not measured',
-      'caveat':'Non-simultaneous moving receiver segments as pseudo-stations; not 3GPP UMa or real hardware deployment',
+      'caveat':'Non-simultaneous moving receiver segments as pseudo-stations; all draws reuse one measured channel configuration',
       'independent_qualified':False
     }
     (output/'metrics.json').write_text(json.dumps(stats,indent=2,sort_keys=True))
