@@ -12,6 +12,15 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install -r requirements.txt
-      - run: python verify_freeze.py
+      - name: Check frozen tracked files remain byte-identical
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          m=json.loads(Path('FREEZE_MANIFEST.json').read_text())
+          for filename,expected in m['files_sha256'].items():
+              assert hashlib.sha256(Path(filename).read_bytes()).hexdigest()==expected,filename
+          print('PASS: all original frozen tracked files unchanged')
+          PY
       - run: python qualification/verify_qualification.py
       - run: python generalized/tests/test_dimensions.py
