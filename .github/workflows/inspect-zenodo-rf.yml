@@ -42,5 +42,18 @@ jobs:
                           with h5py.File(io.BytesIO(data)) as h:
                               print('HDF5:',[(k,str(v.shape),str(v.dtype)) for k,v in h.items()],flush=True)
                       except Exception as e2:print('HDF5 ERROR:',str(e2)[:100])
+                  if '_all_Param.mat' in f.filename:
+                      from scipy.io import loadmat
+                      q=loadmat(io.BytesIO(data),squeeze_me=True,struct_as_record=False)
+                      for k in ('MPC','PowerdB','ResPower'):
+                          a=q.get(k)
+                          if a is None:continue
+                          print('DATA:',f.filename,k,'SHAPE:',np.shape(a),'DTYPE:',getattr(a,'dtype',None),flush=True)
+                          try:
+                              for ix in (0,1,2,10,100):
+                                  v=np.asarray(a[ix])
+                                  print('MPC ENTRY',ix,'SHAPE',v.shape,'DTYPE',v.dtype,'VALUES',str(v.ravel()[:36])[:600],flush=True)
+                          except Exception as e:print('SAMPLE ERROR:',str(e)[:100])
+                      break
                   if sum(1 for q in files if q.filename.lower().endswith('.mat'))>25:break
           PY
