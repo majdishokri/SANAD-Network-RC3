@@ -1,0 +1,98 @@
+name: RMA N310 Measured Calibration Transfer (Research Only)
+on:
+  push:
+    branches: [feature/rc3-variable-geometry]
+    paths:
+      - '.github/workflows/rma-n310-real-calibration-2026-11.yml'
+  workflow_dispatch:
+
+jobs:
+  real_measurements:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Download published 207MB real N310 measurements and score matched angles
+        shell: bash
+        run: |
+          python -m pip -q install numpy
+          curl -fLsS --retry 3 --retry-delay 4 --connect-timeout 25 --max-time 500 'https://zenodo.org/records/23084004/files/Zenodo.zip?download=1' -o /tmp/rma.zip
+          md5sum /tmp/rma.zip
+          python - <<'PY'
+          import zipfile,io,re,json,hashlib,math,os
+          import numpy as np
+          path='/tmp/rma.zip'
+          md5=hashlib.md5(open(path,'rb').read()).hexdigest()
+          expected='67f6d4702013bc290b22c2e9edde719b'
+          if md5!=expected: raise RuntimeError('Original archive MD5 mismatch: '+md5)
+          data={}
+          with zipfile.ZipFile(path) as z:
+              names=z.namelist()
+              print('ZIP_TOTAL_MEMBERS',len(names))
+              print('ZIP_PREVIEW',json.dumps(names[:25]))
+              for member in names:
+                  low=member.lower().replace('\\','/')
+                  base=low.rsplit('/',1)[-1]
+                  m=re.fullmatch(r'samples_([1-4])_(-?[0-9]+)(?:\.bin)?',base)
+                  if not m: continue
+                  if '/non_coherent/test/' in low: kind='nc_test'
+                  elif '/non_coherent/' in low: kind='nc_cal'
+                  elif '/coherent/test/' in low: kind='coh_test'
+                  elif '/coherent/' in low: kind='coh_cal'
+                  else: continue
+                  angle=int(m.group(2)); antenna=int(m.group(1))
+                  if angle<-90 or angle>90 or angle%2: continue
+                  with z.open(member) as f: raw=f.read()
+                  arr=np.frombuffer(raw,dtype='<f4')
+                  if arr.size<4000 or arr.size%2: continue
+                  # I/Q interleaved by complex sample, first 1000 complex values excluded.
+                  x=arr[0::2].astype(np.float64)+1j*arr[1::2].astype(np.float64)
+                  x=x[1000:]
+                  if not np.isfinite(x).all(): continue
+                  power=float(np.mean(np.abs(x)**2))
+                  if power<=0: continue
+                  if (kind,angle,antenna) in data: raise ValueError('Duplicated waveform/angle/port')
+                  data[(kind,angle,antenna)]=math.sqrt(power)
+          print('VALID_REAL_IQ_TRACES',len(data))
+          print('WAVEFORM_COUNTS',json.dumps({g:sum(k[0]==g for k in data) for g in ('nc_cal','nc_test','coh_cal','coh_test')}))
+          results={'status':'MEASURED_N310_CROSS_WAVEFORM_AMPLITUDE_TRANSFER_RESEARCH_ONLY','source':'https://zenodo.org/records/23084004','zenodo_archive_md5':md5,'zip_members':len(names),'real_iq_traces_read':len(data),'fault_labels':False,'geometry':'one four-antenna ULA, not frozen RC3 seven-by-eight','waveform_note':'raw RMS without FIR filtering; per-angle four-antenna normalization','pairs':{}}
+          for ca,te,label in [('nc_cal','nc_test','noncoherent_tone_to_ofdm'),('coh_cal','coh_test','coherent_chirp_to_ofdm')]:
+              entries=[]
+              for angle in range(-90,91,2):
+                  arr=[]
+                  for k in (ca,te):
+                      vals=[data.get((k,angle,i)) for i in (1,2,3,4)]
+                      if any(x is None for x in vals):break
+                      v=np.asarray(vals,float)
+                      arr.append(20*np.log10(v/np.median(v)))
+                  if len(arr)==2:
+                      diff=arr[1]-arr[0]
+                      entries.append({'angle':angle,'per_port_rel_rms_difference_db':diff.round(6).tolist(),
+                         'median_abs_difference_db':float(np.median(np.abs(diff)))})
+              if entries:
+                  diffs=np.array([v['per_port_rel_rms_difference_db'] for v in entries])
+                  results['pairs'][label]={'paired_angles':len(entries),'paired_port_observations':len(entries)*4,
+                    'median_abs_rel_rms_difference_db':float(np.median(np.abs(diffs))),
+                    'p90_abs_rel_rms_difference_db':float(np.percentile(np.abs(diffs),90)),
+                    'fraction_abs_diff_gt_half_db':float(np.mean(np.abs(diffs)>.5)),
+                    'per_port_median_abs_diff_db':np.median(np.abs(diffs),axis=0).round(6).tolist(),
+                    'angles':entries}
+              else:
+                  results['pairs'][label]={'paired_angles':0,'reason':'No exact matched antenna-angle waveforms found'}
+          os.makedirs('out',exist_ok=True)
+          with open('out/rma_real_n310_crosswaveform.json','w') as f:json.dump(results,f,indent=2)
+          print('RMA_MEASURED_RESULT_BEGIN')
+          for label,d in results['pairs'].items():
+              summary={k:v for k,v in d.items() if k!='angles'}
+              print('PAIR',label,json.dumps(summary))
+          print('RMA_MEASURED_RESULT_END')
+          if sum(p.get('paired_angles',0) for p in results['pairs'].values())<1:raise RuntimeError('Dataset format requires investigation; no matched real measurements scored')
+          PY
+      - name: Upload measured-only numeric result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rma-n310-measured-crosswaveform
+          path: out/rma_real_n310_crosswaveform.json
+          if-no-files-found: warn
