@@ -14,11 +14,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {stations: 4, rows: "four physical sites"}
-          - {stations: 7, rows: "seven physical subarray rows"}
-          - {stations: 8, rows: "eight physical subarray rows"}
+          - {dataset: ad25, stations: 4, rows: "four physical sites"}
+          - {dataset: ad25, stations: 7, rows: "seven physical subarray rows"}
+          - {dataset: ad25, stations: 8, rows: "eight physical subarray rows"}
+          - {dataset: ad21, stations: 4, rows: "four physical sites, independent recording"}
+          - {dataset: ad21, stations: 7, rows: "seven subarrays, independent recording"}
     env:
       SANAD_STATIONS: ${{ matrix.stations }}
+      DICHASUS_DATASET: ${{ matrix.dataset }}
       SANAD_ELEMENTS: '8'
       SANAD_RF_TRIALS: '2'
       OPENBLAS_NUM_THREADS: '1'
@@ -33,13 +36,13 @@ jobs:
       - run: python -m pip install -r requirements.txt requests
       - uses: actions/cache@v4
         with:
-          path: /tmp/dichasus-ad25-prefix.tfrecords
-          key: dichasus-ad25-180MB-2026-11-16-v1
+          path: /tmp/dichasus-${{ matrix.dataset }}-prefix.tfrecords
+          key: dichasus-${{ matrix.dataset }}-180MB-2026-11-16-v1
       - name: Evaluate frozen RC3 on physical DICHASUS RF channels
         run: python generalized/tests/dichasus_csi_benchmark.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dichasus-real-csi-${{ matrix.stations }}x8
+          name: dichasus-${{ matrix.dataset }}-${{ matrix.stations }}x8
           path: /tmp/dichasus_result/summary.json
           if-no-files-found: ignore
