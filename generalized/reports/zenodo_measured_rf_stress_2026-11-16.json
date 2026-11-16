@@ -1,0 +1,127 @@
+{
+  "title": "SANAD RC3 measured-multipath-derived RF stress tests",
+  "date_utc": "2026-11-16",
+  "status": "ALL_SEVEN_STRESS_TEST_JOBS_PASSED_EXECUTION",
+  "qualification": "EXPERIMENTAL_MEASUREMENT_DERIVED_SYNTHETIC_FAULT_STRESS_ONLY",
+  "workflow_run_url": "https://github.com/majdishokri/SANAD-Network-RC3/actions/runs/43865370879",
+  "repo_branch": "feature/rc3-variable-geometry",
+  "source_record": "https://zenodo.org/records/21213882",
+  "source_doi": "10.5281/zenodo.21213882",
+  "source_zip_md5": "a19578d10f2edab687136bee42274bf4",
+  "array_design": "ULA, M elements, half-wavelength spacing",
+  "measured_mpc_angle_column_one_based": 3,
+  "input_adapter": "incoherent path-power-weighted spatial covariance from measured AoA and complex path weights plus identity receiver noise",
+  "sampled_antenna_apertures_directly_measured": false,
+  "pseudo_stations_simultaneously_measured": false,
+  "base_station_profiles_from": "disjoint 300-valid-snapshot segments from three drive routes",
+  "raw_measurements_redistributed": false,
+  "original_rc3_logic_changed": false,
+  "original_rc3_weights_changed": false,
+  "model_retrained": false,
+  "original_rc3_decision_threshold": 0.5,
+  "features": {
+    "base": 693,
+    "spatial": 15
+  },
+  "fault_injection": "Original glr_compare.pipeline: two synthetically faulty array stations per draw, gain 0.3–0.8 dB, phase 3–8 degrees, ramp 80 reporting periods, 3% glitches, 5% missing",
+  "trials_same_measured_channel_profile": true,
+  "not_independent_channel_seeds": true,
+  "all_results_field_qualified": false,
+  "results": [
+    {
+      "stations": 4,
+      "elements": 8,
+      "fault_tp": 0,
+      "fault_n": 8,
+      "healthy_fp": 0,
+      "healthy_n": 16,
+      "neighbor_fp": 0,
+      "neighbor_n": 8,
+      "draws": 4
+    },
+    {
+      "stations": 7,
+      "elements": 4,
+      "fault_tp": 4,
+      "fault_n": 8,
+      "healthy_fp": 0,
+      "healthy_n": 28,
+      "neighbor_fp": 0,
+      "neighbor_n": 20,
+      "draws": 4
+    },
+    {
+      "stations": 7,
+      "elements": 8,
+      "fault_tp": 16,
+      "fault_n": 16,
+      "healthy_fp": 0,
+      "healthy_n": 56,
+      "neighbor_fp": 0,
+      "neighbor_n": 40,
+      "draws": 8
+    },
+    {
+      "stations": 8,
+      "elements": 8,
+      "fault_tp": 8,
+      "fault_n": 8,
+      "healthy_fp": 0,
+      "healthy_n": 32,
+      "neighbor_fp": 0,
+      "neighbor_n": 24,
+      "draws": 4
+    },
+    {
+      "stations": 7,
+      "elements": 16,
+      "fault_tp": 8,
+      "fault_n": 8,
+      "healthy_fp": 0,
+      "healthy_n": 28,
+      "neighbor_fp": 0,
+      "neighbor_n": 20,
+      "draws": 4
+    },
+    {
+      "stations": 7,
+      "elements": 32,
+      "fault_tp": 8,
+      "fault_n": 8,
+      "healthy_fp": 0,
+      "healthy_n": 28,
+      "neighbor_fp": 0,
+      "neighbor_n": 20,
+      "draws": 4
+    },
+    {
+      "stations": 7,
+      "elements": 64,
+      "fault_tp": 4,
+      "fault_n": 4,
+      "healthy_fp": 0,
+      "healthy_n": 14,
+      "neighbor_fp": 0,
+      "neighbor_n": 10,
+      "draws": 2
+    }
+  ],
+  "reference_only_original_independent_sionna_7x8": {
+    "date": "2026-11-14",
+    "fault_tp": 274,
+    "fault_n": 288,
+    "healthy_fp": 0,
+    "healthy_n": 1008,
+    "source": "qualification/QUALIFICATION_REPORT.md",
+    "qualification_is_simulation_only": true
+  },
+  "caveats": [
+    "The measured dataset contains 8x8 MIMO channel MPCs, not directly measured multi-station spatial covariance.",
+    "M=16,32,64 are covariance reconstructions extrapolated from measured MPC angles; they are not physically captured 16/32/64-element antenna arrays.",
+    "Each station is a disjoint mobile route segment, not a simultaneously observed independent base station.",
+    "Repeated injected-fault draws reuse the same underlying channel evidence, so the counts do not establish independent confidence bounds.",
+    "Measured drive-route samples are not the fixed 15-minute reporting intervals used in original Sionna trials.",
+    "Four stations violate the original five-reporting-station reference requirement; preserving original logic prevents the reference stage from activating.",
+    "Zero observed false alerts cannot establish a zero field false-alarm rate."
+  ]
+}
