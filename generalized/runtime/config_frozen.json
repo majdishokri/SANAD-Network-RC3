@@ -1,0 +1,15 @@
+{
+  "score_threshold": 0.7687096042171566,
+  "fast_dominance": 1.5,
+  "fast_hits": 8,
+  "fast_window": 12,
+  "strict_dominance": 1.8,
+  "strict_hits": 10,
+  "strict_window": 15,
+  "v11_hits": 5,
+  "v11_window": 8,
+  "v11_identity_hits": 3,
+  "corroboration_hits": 2,
+  "corroboration_window": 12,
+  "identity_agreement": true
+}
