@@ -1,0 +1,44 @@
+name: Probe DICHASUS measured CSI download
+on:
+  push:
+    branches: [feature/rc3-variable-geometry]
+    paths: [.github/workflows/probe-dichasus.yml]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Inspect pinned DaRUS dataset metadata and byte-range support
+        shell: bash
+        run: |
+          python - <<'PY'
+          import requests, json
+          for did in ('DARUS-4062','DARUS-2507','DARUS-2218','DARUS-3831'):
+              url='https://darus.uni-stuttgart.de/api/datasets/:persistentId/'
+              try:
+                  r=requests.get(url,params={'persistentId':'doi:10.18419/'+did},timeout=40)
+                  print('DATASET',did,'STATUS',r.status_code,'URL',r.url,flush=True)
+                  if r.status_code!=200:
+                      print('DATASET_BODY',r.text[:500]);continue
+                  d=r.json()['data']['latestVersion']['files']
+                  viable=[]
+                  for e in d:
+                      f=e['dataFile']; n=f['filename']
+                      if n.endswith('.tfrecords') or n.endswith('spec.json'):
+                          viable.append((n,f.get('filesize',0),f['id'],f.get('md5'),f.get('checksum')))
+                  print('MATCHING_FILES',len(viable),flush=True)
+                  for n,size,fileid,md5,chk in sorted(viable,key=lambda e:e[1])[:18]:
+                      print('FILE',n,'BYTES',size,'ID',fileid,'MD5',md5,'checksum',chk,flush=True)
+                  candidates=sorted((e for e in viable if e[0].endswith('.tfrecords')),key=lambda e:e[1])
+                  if candidates:
+                      n,size,fid,_,_=candidates[0]
+                      u=f'https://darus.uni-stuttgart.de/api/access/datafile/{fid}'
+                      rr=requests.get(u,headers={'Range':'bytes=0-524287'},timeout=50,stream=True)
+                      print('RANGE',did,n,'STATUS',rr.status_code,'CONTENT_LENGTH',rr.headers.get('Content-Length'),'CONTENT_RANGE',rr.headers.get('Content-Range'),'ACCEPT_RANGES',rr.headers.get('Accept-Ranges'),flush=True)
+                      if rr.status_code==206:
+                          dat=next(rr.iter_content(chunk_size=524288))
+                          print('RANGE_FIRST_BYTES',len(dat),dat[:16].hex(),flush=True)
+                      rr.close()
+              except Exception as ex:print('ERROR',did,str(ex),flush=True)
+          PY
