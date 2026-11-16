@@ -18,8 +18,8 @@ RUNTIME=HERE/'runtime'
 sys.path.insert(0,str(RUNTIME))
 sys.path.insert(0,str(HERE))
 from geometry_config import N_ARRAYS,N_ELEMENTS
+from rc3 import FrozenRC3  # import generalized RC3 BEFORE legacy glr_compare prepends '.'
 from v35_replay import extract_seed_v35
-from rc3 import FrozenRC3
 
 DOI="10.5281/zenodo.21213882"
 ZIP_MD5="a19578d10f2edab687136bee42274bf4"
@@ -94,6 +94,7 @@ def run(archive, output):
     with np.load(evpath,allow_pickle=False) as z:
         ev={k:z[k] for k in z.files}
     classifier=FrozenRC3()
+    assert 'generalized' in sys.modules['rc3'].__file__, sys.modules['rc3'].__file__
     pred={s:np.asarray(classifier.predict_trace(ev,s)['alerts'],bool)
           for s in ('healthy','injected')}
     labels={s:np.asarray(ev[f'{s}_expected'])>0
