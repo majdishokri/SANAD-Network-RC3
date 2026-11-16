@@ -1,0 +1,46 @@
+name: Inspect measured Zenodo urban MIMO dataset
+on:
+  push:
+    branches: [feature/rc3-variable-geometry]
+    paths: ['.github/workflows/inspect-zenodo-rf.yml']
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy h5py requests
+      - name: Download measured 8x8 urban 4.85 GHz RF data from Zenodo
+        run: |
+          curl -fLsS --retry 3 --connect-timeout 30 --max-time 600 \
+            'https://zenodo.org/records/21213882/files/4.85GHz%20Dataset.zip?download=1' \
+            -o /tmp/urban_mimo.zip
+          ls -lh /tmp/urban_mimo.zip
+      - name: Inspect archive metadata and signal arrays
+        run: |
+          python - <<'PY'
+          import zipfile,io,os
+          import numpy as np
+          from scipy.io import whosmat,loadmat
+          import h5py
+          z=zipfile.ZipFile('/tmp/urban_mimo.zip')
+          files=[f for f in z.infolist() if not f.is_dir()]
+          print('TOTAL FILES:',len(files),flush=True)
+          for f in files[:120]:print('PATH:',f.filename,'SIZE:',f.file_size,flush=True)
+          for f in files:
+              if f.filename.lower().endswith('.mat') and f.file_size<100_000_000:
+                  data=z.read(f)
+                  try:
+                      print('MAT:',f.filename,whosmat(io.BytesIO(data)),flush=True)
+                  except Exception as e:
+                      print('MATv7.3? ',f.filename,str(e)[:80],flush=True)
+                      try:
+                          with h5py.File(io.BytesIO(data)) as h:
+                              print('HDF5:',[(k,str(v.shape),str(v.dtype)) for k,v in h.items()],flush=True)
+                      except Exception as e2:print('HDF5 ERROR:',str(e2)[:100])
+                  if sum(1 for q in files if q.filename.lower().endswith('.mat'))>25:break
+          PY
