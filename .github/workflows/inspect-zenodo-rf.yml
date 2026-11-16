@@ -14,11 +14,17 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy scipy h5py requests
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/urban_mimo.zip
+          key: measured-zenodo-21213882-md5-a19578d10f2edab687136bee42274bf4
       - name: Download measured 8x8 urban 4.85 GHz RF data from Zenodo
         run: |
-          curl -fLsS --retry 3 --connect-timeout 30 --max-time 600 \
+          if [ ! -s /tmp/urban_mimo.zip ]; then
+            curl -fLsS --retry 3 --connect-timeout 30 --max-time 600 \
             'https://zenodo.org/records/21213882/files/4.85GHz%20Dataset.zip?download=1' \
-            -o /tmp/urban_mimo.zip
+              -o /tmp/urban_mimo.zip
+          fi
           ls -lh /tmp/urban_mimo.zip
       - name: Inspect archive metadata and signal arrays
         run: |
@@ -45,6 +51,23 @@ jobs:
                   if '_all_Param.mat' in f.filename:
                       from scipy.io import loadmat
                       q=loadmat(io.BytesIO(data),squeeze_me=True,struct_as_record=False)
+                      aa=q.get('MPC')
+                      if aa is not None:
+                          indices=[]
+                          for ix, v in enumerate(aa):
+                              try:
+                                  v1=np.asarray(v)
+                                  if np.isfinite(v1.astype(float)).any() and v1.size>1:
+                                      indices.append(ix)
+                              except Exception:
+                                  if hasattr(v,'_fieldnames'):indices.append(ix)
+                              if len(indices)>=3:break
+                          print('VALID MPC SAMPLES:',f.filename,indices,flush=True)
+                          for idx in indices:
+                              v=aa[idx]
+                              print('VALID MPC',idx,'TYPE:',type(v),'SHAPE:',np.shape(v),
+                                    'FIELDS:',getattr(v,'_fieldnames',None),
+                                    'PREVIEW:',str(v)[:700],flush=True)
                       for k in ('MPC','PowerdB','ResPower'):
                           a=q.get(k)
                           if a is None:continue
