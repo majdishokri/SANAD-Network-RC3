@@ -16,7 +16,7 @@ def run(files):
         pred={s:np.asarray(model.predict_trace(trace,s)['alerts'],bool)
               for s in ('healthy','injected')}
         # Labels accessed here, only after both predictions.
-        true={s:np.asarray(trace[f'{s}_expected'])>0 for s in ('healthy','injected')}
+        true={s:np.asarray(trace[f'{s}_expected'])>=0 for s in ('healthy','injected')}
         if any(len(v)!=N_ARRAYS for v in [*pred.values(),*true.values()]):
             raise ValueError(f"Wrong number of base stations in {file}")
         if true['healthy'].any() or true['injected'].sum()!=2:
