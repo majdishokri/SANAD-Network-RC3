@@ -62,7 +62,7 @@ def drop(rng, batch):
     """Users uniformly in a disc covering the 7 cells, >= 35 m from every site."""
     pts = []
     while len(pts) < batch * N_UT:
-        r = max(ISD,np.linalg.norm(BS_XY,axis=1).max()) * 1.3 * np.sqrt(rng.random()); th = 2 * np.pi * rng.random()
+        r = (ISD if N_BS <= 7 else max(ISD,np.linalg.norm(BS_XY,axis=1).max())) * 1.3 * np.sqrt(rng.random()); th = 2 * np.pi * rng.random()
         p = np.array([r * np.cos(th), r * np.sin(th)])
         if np.min(np.linalg.norm(BS_XY - p, axis=1)) >= 35:
             pts.append(p)
