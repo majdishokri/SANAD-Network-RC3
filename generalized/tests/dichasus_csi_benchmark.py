@@ -22,10 +22,16 @@ from geometry_config import N_ARRAYS,N_ELEMENTS
 from v35_replay import extract_seed_v35
 
 DOI="doi:10.18419/DARUS-4062"
-FILE_ID=664466
-FILE_NAME="dichasus-ad25.tfrecords"
-FILE_SIZE=596950014
-DATA_MD5="3e907ad72ae6aab1aa44ef53ba60a3ef"
+DATASETS={
+  "ad25":dict(id=664466,size=596950014,md5="3e907ad72ae6aab1aa44ef53ba60a3ef"),
+  "ad21":dict(id=664462,size=1553015076,md5="c89c49a4a01e8b344b3e33920ee5b04f"),
+}
+DATASET=os.environ.get("DICHASUS_DATASET","ad25")
+if DATASET not in DATASETS:raise ValueError("Unlisted DICHASUS recording")
+FILE_ID=DATASETS[DATASET]['id']
+FILE_NAME=f"dichasus-{DATASET}.tfrecords"
+FILE_SIZE=DATASETS[DATASET]['size']
+DATA_MD5=DATASETS[DATASET]['md5']
 FREQ_HZ=3.440e9
 SAMPLE_INTERVAL_MS=48
 FIRST_BYTES=180_000_000
@@ -145,38 +151,55 @@ def build_measured_covariance(path,selected):
         raise ValueError("Covariance Hermitian check failed")
     return R
 
-def baseline_scores(R):
-    # Conventional antenna power-imbalance Shewhart and EWMA baseline.
-    # Fixed constants: no label-driven or test calibration. Training uses only t<120.
-    x=10*np.log10(np.maximum(np.diagonal(R,axis1=-2,axis2=-1).real,1e-30))
-    x=x-np.median(x,axis=2,keepdims=True)
-    center=np.median(x[:120],axis=0)
-    mad=np.median(np.abs(x[:120]-center),axis=0)
-    scale=np.maximum(1.4826*mad,0.1) # floor in dB
-    z=np.max(np.abs(x-center)/scale,axis=2)
-    return z
+def conventional_baseline(vectors,kind):
+    """Fixed classical reference benchmarks on EXACT glr_compare calibration vectors.
 
-def baseline_predict(R,kind):
-    z=baseline_scores(R)
-    t,n=z.shape
-    output=np.zeros(n,bool)
-    if kind=="SHEWHART":
-        # Same RC3 terminal 40 window: any report exceeding 4 sigma.
-        return np.any(z[260:]>4.0,axis=0)
-    if kind=="EWMA":
-        # EWMA of deviation score, lambda=0.2, alarm threshold 3.
-        smooth=np.zeros_like(z)
-        smooth[0]=z[0]
-        for i in range(1,t):smooth[i]=0.2*z[i]+0.8*smooth[i-1]
-        return np.any(smooth[260:]>3.,axis=0)
-    if kind=="CUSUM":
-        # One-sided CUSUM on excess deviation score: k=1.0, h=10.
-        acc=np.zeros(n)
-        for i in range(120,t):
-            acc=np.maximum(0.,acc+z[i]-1.)
-            if i>=260:output|=(acc>10.)
-        return output
-    raise ValueError(kind)
+    Calibration uses only samples 60..119 before injected faults may start.
+    No thresholds are chosen from labeled test outcomes. Outputs are per-array
+    terminal 40 alarm flags, same scoring window as frozen RC3.
+    """
+    from collections import deque
+    N=len(vectors);M=N_ELEMENTS
+    alerts=np.zeros(N,dtype=bool)
+    for station in range(N):
+        seq=vectors[station]
+        train=np.array([x for x in seq[60:120] if x is not None],dtype=float)
+        if len(train)<30:raise ValueError("Insufficient clean baseline calibration")
+        center=np.median(train,axis=0)
+        residual=train-center
+        unit=np.maximum(1.4826*np.median(np.abs(residual),axis=0),
+                        np.r_[np.full(M,0.05),np.full(M,0.5)])
+        Sigma=np.cov(residual.T)+np.diag(unit**2*0.01)
+        inv=np.linalg.pinv(Sigma,hermitian=True)
+        last12=deque(maxlen=12)
+        ewma=0.;cusum=0.
+        for t in range(120,300):
+            v=seq[t]
+            if v is None:
+                last12.append(False)
+                continue
+            err=np.asarray(v,dtype=float)-center
+            if kind=="GLR-1":
+                whitened=np.linalg.cholesky(inv+1e-10*np.eye(2*M)).T@err
+                scores=whitened[:M]**2+whitened[M:]**2
+                instant=bool(np.max(scores)>13.815510557964274)
+            elif kind=="EWMA":
+                u=err/unit
+                score=float(np.max(np.hypot(u[:M],u[M:])))
+                ewma=0.2*score+0.8*ewma
+                instant=ewma>4.0
+            elif kind=="CUSUM":
+                u=err/unit
+                score=float(np.max(np.hypot(u[:M],u[M:])))
+                cusum=max(0.,cusum+score-2.0)
+                instant=cusum>20.0
+            else:
+                raise ValueError(kind)
+            last12.append(instant)
+            # Identical 8-of-12 persistence for all classical comparators.
+            if t>=260 and sum(last12)>=8:
+                alerts[station]=True
+    return alerts
 
 def run(path,out):
     if N_ARRAYS not in (4,7,8):raise ValueError("Only geometry 4x8/7x8/8x8 specified")
@@ -188,7 +211,7 @@ def run(path,out):
     covpath=out/'source.npz';evpath=out/'evidence.npz'
     trials=int(os.environ.get("SANAD_RF_TRIALS","2"))
     clf=FrozenRC3()
-    methods=('RC3','SHEWHART','EWMA','CUSUM')
+    methods=('RC3','GLR-1','EWMA','CUSUM')
     tally={m:dict(tp=0,nfault=0,control_alert=0,ncontrol=0,neighbor_alert=0,nneighbor=0) for m in methods}
     traces=[]
     for seed in range(SEED_START,SEED_START+trials):
@@ -197,19 +220,26 @@ def run(path,out):
         with np.load(evpath,allow_pickle=False) as z:ev={k:z[k] for k in z.files}
         truth=np.asarray(ev['injected_expected'])>0
         assert truth.sum()==2
-        prediction={
-            'RC3':{s:np.asarray(clf.predict_trace(ev,s)['alerts'],bool) for s in ('healthy','injected')}}
-        # Comparator receives the SAME post-fault covariance as RC3. For exact
-        # comparison, the legacy glr pipeline doesn't export covariance;
-        # reconstruct original D R D^H from the known fault log below.
-        # We intentionally do not score comparator methods here until the
-        # front-end perturbations and missingness are shared exactly.
-        row={'seed':seed,'rc3_tp':int((prediction['RC3']['injected']&truth).sum()),
-             'rc3_control_alerts':int(prediction['RC3']['healthy'].sum()),
-             'rc3_neighbor_alerts':int((prediction['RC3']['injected']&~truth).sum())}
-        ct=tally['RC3'];ct['tp']+=row['rc3_tp'];ct['nfault']+=2
-        ct['control_alert']+=row['rc3_control_alerts'];ct['ncontrol']+=N_ARRAYS
-        ct['neighbor_alert']+=row['rc3_neighbor_alerts'];ct['nneighbor']+=N_ARRAYS-2
+        prediction={'RC3':{stream:np.asarray(clf.predict_trace(ev,stream)['alerts'],bool)
+                            for stream in ('healthy','injected')}}
+        # The original pipeline is deterministic given seed; these exact same
+        # calibration vectors were used in extract_seed_v35 above.
+        from glr_compare import pipeline
+        control_v,control_faults=pipeline(R,900000+seed,with_faults=False)
+        injected_v,actual_faults=pipeline(R,1000000+seed,with_faults=True)
+        assert not control_faults and set(actual_faults)==set(np.flatnonzero(truth))
+        for name in ('GLR-1','EWMA','CUSUM'):
+            prediction[name]={
+                'healthy':conventional_baseline(control_v,name),
+                'injected':conventional_baseline(injected_v,name)}
+        row={'seed':seed}
+        for name in methods:
+            h=prediction[name]['healthy'];q=prediction[name]['injected']
+            n_tp=int((q&truth).sum());n_h=int(h.sum());n_neigh=int((q&~truth).sum())
+            row[name]={'tp':n_tp,'control_alerts':n_h,'neighbor_alerts':n_neigh}
+            ct=tally[name];ct['tp']+=n_tp;ct['nfault']+=2
+            ct['control_alert']+=n_h;ct['ncontrol']+=N_ARRAYS
+            ct['neighbor_alert']+=n_neigh;ct['nneighbor']+=N_ARRAYS-2
         traces.append(row);print("DICHASUS_TRIAL="+json.dumps(row),flush=True)
     result=dict(doi=DOI,file_id=FILE_ID,source_filename=FILE_NAME,
                 source_full_file_md5=DATA_MD5,prefix_bytes=FIRST_BYTES,
@@ -221,13 +251,17 @@ def run(path,out):
                 fault_truth="original RC3 synthetic injections, no verified hardware fault annotations",
                 healthy_truth="unlabeled measured control, not verified fault-free",
                 algorithm_frozen=True,rc3_threshold=0.5,trials=traces,
-                methods={"RC3":tally['RC3']},
-                comparator_status="Baseline functions implemented but not reported because identical fault/missingness traces not yet exported",
+                methods=tally,
+                comparator_status="GLR-1, EWMA, CUSUM use identical RC3 front-end calibration vectors and fault/missingness draws",
+                comparator_prespecified={"GLR-1":"full covariance whitening; chi2(2) 99.9 percentile 13.8155",
+                                       "EWMA":"alpha 0.2; z_max 4.0",
+                                       "CUSUM":"k=2.0; h=20.0",
+                                       "all":"8 of last 12 reports; learning 60..119; score any in reports 260..299; no tuning"},
                 qualified=False)
     (out/'summary.json').write_text(json.dumps(result,indent=2))
     print("DICHASUS_RESULT="+json.dumps(result),flush=True)
     return result
 
 if __name__=='__main__':
-    run(Path(os.environ.get("CSI_PREFIX_PATH","/tmp/dichasus-ad25-prefix.tfrecords")),
+    run(Path(os.environ.get("CSI_PREFIX_PATH",f"/tmp/dichasus-{DATASET}-prefix.tfrecords")),
         Path(os.environ.get("RESULT_DIR","/tmp/dichasus_result")))
