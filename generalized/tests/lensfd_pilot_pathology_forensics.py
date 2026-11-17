@@ -62,10 +62,10 @@ def fetch_publisher(remote,dest,expected,max_bytes):
 def rms_from_iq(pilot,indices):
     if pilot.ndim!=5 or pilot.shape[3]!=80:
         raise ValueError(f"Source IQ shape invalid: {pilot.shape}")
-    s=np.asarray(pilot[:,0,:,indices,:])
+    s=np.take(np.asarray(pilot),indices,axis=3)
     i=s[...,::2].astype(np.float64)
     q=s[...,1::2].astype(np.float64)
-    return np.sqrt(np.mean(i*i+q*q,axis=(0,1,3)))
+    return np.sqrt(np.mean(i*i+q*q,axis=(0,1,2,4)))
 
 def fin_rms(v):
     a=np.asarray(v)
