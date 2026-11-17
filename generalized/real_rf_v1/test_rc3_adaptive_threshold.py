@@ -73,7 +73,7 @@ def test_reject_missing_time_separation_or_too_few_holdout_cases():
     with pytest.raises(UnqualifiedDomainCalibration,match="overlap"):
         evaluate_holdout(d)
     d=fixtures();d["injected_trials"].pop()
-    with pytest.raises(UnqualifiedDomainCalibration,match="Missing prespecified"):
+    with pytest.raises(UnqualifiedDomainCalibration,match="Need >=3"):
         evaluate_holdout(d)
 
 def test_fail_closed_if_reference_alarms_extreme():
