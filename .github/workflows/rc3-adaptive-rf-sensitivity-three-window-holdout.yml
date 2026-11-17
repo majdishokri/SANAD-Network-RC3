@@ -1,0 +1,38 @@
+name: SANAD-RF adaptive sensitivity true heldout on real DICHASUS CSI
+on:
+  push:
+    branches: [feature/rc3-adaptive-real-rf-sensitivity-v1]
+    paths:
+      - .github/workflows/rc3-adaptive-rf-sensitivity-three-window-holdout.yml
+      - generalized/real_rf_v1/rc3_adaptive_threshold.py
+      - generalized/tests/rc3_adaptive_threshold_runner.py
+      - generalized/real_rf_v1/test_rc3_adaptive_threshold.py
+  workflow_dispatch:
+jobs:
+  authentic-measured-CSI-later-window-holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned original frozen RC3 and DICHASUS decoding
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 requests google-crc32c tfrecord protobuf tensorboard pytest
+      - name: Verify calibrated threshold leakage-prevention tests
+        run: python -m pytest -q generalized/real_rf_v1/test_rc3_adaptive_threshold.py
+      - name: Validate original RC3 bit-for-bit 7x8 parity
+        run: python generalized/tests/test_dimensions.py
+      - name: Real CSI original frozen RC3 inference - 3 strictly chronological 300-frame windows and 63 digital tests
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+          PYTHONUNBUFFERED: "1"
+        run: python -m generalized.tests.rc3_adaptive_threshold_runner
+      - name: Upload ONLY numeric derived metrics, keep original CSI on transient runner
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanad-rc3-real-rf-adaptive-3window-heldout-results
+          path: out/adaptive_rc3_heldout
+          if-no-files-found: error
