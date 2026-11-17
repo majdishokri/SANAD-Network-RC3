@@ -1,0 +1,26 @@
+name: Rice LensFD original CSI full-300 raw pilot replay
+on:
+  push:
+    branches: [feature/lensfd-failure-origin-audit]
+    paths:
+      - generalized/tests/lensfd_publisher_csi_replay_probe.py
+      - .github/workflows/lensfd-original-pipeline-300-frame.yml
+  workflow_dispatch:
+jobs:
+  original-300-frame-mat-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Original-compatible scientific dependencies
+        run: python -m pip install "numpy==1.26.4" "scipy==1.12.0" "h5py==3.11.0" "matplotlib==3.8.4"
+      - name: Reprocess 300 original Rice raw pilot frames into CSI and compare with publisher MAT
+        env:
+          MPLBACKEND: Agg
+          SANAD_REPLAY_FRAMES: "300"
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.lensfd_publisher_csi_replay_probe
