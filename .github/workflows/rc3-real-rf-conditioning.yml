@@ -22,3 +22,5 @@ jobs:
           python -m pip install -r requirements.txt pytest
       - name: Execute measured RF adapter unit and guard tests
         run: python -m pytest -q generalized/real_rf_v1/test_conditioning.py
+      - name: Check bit-for-bit frozen 7x8 parity and variable geometry shapes
+        run: python generalized/tests/test_dimensions.py
