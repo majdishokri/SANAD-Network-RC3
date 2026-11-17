@@ -1,0 +1,32 @@
+name: SANAD RC3 independent DICHASUS ad00 OOD heldout fixed 0.90 sensitivity
+on:
+  push:
+    branches: [feature/rc3-adaptive-real-rf-sensitivity-v1]
+    paths:
+      - generalized/tests/dichasus_frozen_rc3_independent_ad00.py
+      - .github/workflows/rc3-rf-sensitivity-independent-ad00.yml
+  workflow_dispatch:
+jobs:
+  independent-full-capture-vs-ad25-domain-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install frozen model and original measured CSI reader
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 requests google-crc32c tfrecord protobuf tensorboard
+      - name: Verify distinct publisher-original ad00 source (no wall, 64dB) with source hash and execute unchanged frozen RC3
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+          PYTHONUNBUFFERED: "1"
+        run: python -m generalized.tests.dichasus_frozen_rc3_independent_ad00 --scenarios small_ramp large_ramp port_loss --out-dir out/ad00_independent_ood
+      - name: Archive numerical performance only
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanad-rc3-ad25-to-ad00-independent-shift-0p90
+          path: out/ad00_independent_ood
+          if-no-files-found: error
