@@ -1,0 +1,24 @@
+name: SANAD independent real DICHASUS CSI native 4-array covariance shadow
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/dichasus_real_csi_covariance_shadow.py
+      - .github/workflows/rc3-dichasus-independent-csi-shadow.yml
+  workflow_dispatch:
+jobs:
+  independent-real-CSI:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install original TFRecord and complex covariance processing libraries
+        run: python -m pip install "numpy==2.3.5" requests google-crc32c tfrecord protobuf tensorboard
+      - name: Verify original ad00/ad25 TFRecords and evaluate true 4 physical array CSI covariance and synthetic transformation controls
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.dichasus_real_csi_covariance_shadow
