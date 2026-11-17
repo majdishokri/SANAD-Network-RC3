@@ -55,3 +55,16 @@ if __name__=="__main__":
                 "path":name,"start":start,"end":end,
                 "lines":[f"{idx+1}: {lines[idx]}" for idx in range(start-1,min(end,len(lines)))]
             }),flush=True)
+
+    for name,ranges in {
+      "code_LensFD/hdf5process.py":[(1,105),(135,160)],
+      "code_LensFD/hdf5_lib.py":[(1,130),(135,220)],
+      "code_LensFD/plot_hdf5.py":[(802,925)],
+    }.items():
+        if name not in z.namelist():continue
+        lines=z.read(name).decode("utf-8","replace").splitlines()
+        for start,end in ranges:
+            print("EXTENDED_CODE_SECTION="+json.dumps({
+                "path":name,"start":start,"end":end,
+                "lines":[f"{idx+1}: {lines[idx]}" for idx in range(start-1,min(end,len(lines)))]
+            }),flush=True)
