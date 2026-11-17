@@ -1,0 +1,31 @@
+name: SANAD original independent measured RF public-source inventory
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/independent_ood_source_inventory.py
+      - .github/workflows/rc3-independent-measured-source-inventory.yml
+  workflow_dispatch:
+jobs:
+  niigata-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install requests scipy numpy h5py
+      - name: Verify exact original 37.8 MB 4.85 GHz Niigata RF archive and enumerate native file formats
+        run: python -m generalized.tests.independent_ood_source_inventory --dataset zenodo
+  dichasus-source-spec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install requests scipy numpy
+      - name: Inspect original Stuttgart DICHASUS 64-element source spec (not the 216GB CSI)
+        run: python -m generalized.tests.independent_ood_source_inventory --dataset dichasus-spec
