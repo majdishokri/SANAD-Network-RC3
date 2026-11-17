@@ -1,0 +1,22 @@
+name: SANAD measured independent 4.85GHz urban propagation domain-shift
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/niigata_measured_lsp_ood_benchmark.py
+      - generalized/tests/independent_ood_source_inventory.py
+      - .github/workflows/rc3-niigata-published-propagation-ood.yml
+  workflow_dispatch:
+jobs:
+  original-measured-RF:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencies for actual original MATLAB and route CSV
+        run: python -m pip install requests numpy scipy
+      - name: Recompute route-level real measured RF statistics, native selection counts and OOD shifts
+        run: python -m generalized.tests.niigata_measured_lsp_ood_benchmark
