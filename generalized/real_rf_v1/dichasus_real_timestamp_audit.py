@@ -159,7 +159,7 @@ def audit_times(times,source_name="test"):
         "needed_to_qualify_elapsed_seconds":300*900,
         "source_physically_distinct_receiver_sites":4,
         "minimum_unchanged_rc3_independent_receiver_sites":5,
-        "true_300_x_15min_window_span_available":duration>=300*900,
+        "total_observed_time_span_ge_75_hours":duration>=300*900,
         "source_hardware_fault_labels_verified":False,
         "RC3_REAL_FIELD_QUALIFICATION":"BLOCKED",
         "blocked_reasons":[
