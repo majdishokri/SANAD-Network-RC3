@@ -89,7 +89,7 @@ def tensor(feature):
         raise ValueError(f"TensorProto content/shape invalid: dtype {t.dtype} shape {shape} len={arr.size}")
     return arr.reshape(shape)
 
-def extract_records(buf):
+def extract_records(buf, *, require_complete=False):
     pos=0;count=0
     while pos+16<=len(buf):
         size=struct.unpack_from("<Q",buf,pos)[0]
@@ -114,14 +114,16 @@ def extract_records(buf):
         t=float(f["time"].float_list.value[0])
         yield count,t,H,snr
         count+=1;pos=nextpos
+    if require_complete and pos!=len(buf):
+        raise ValueError(f'Full publisher original TFRecords not fully consumed: {len(buf)-pos} unparsed bytes')
 
-def evaluate_case(source,metadata,physical):
+def evaluate_case(source,metadata,physical,*,require_complete=False):
     time=[]
     arrays=[np.asarray(a["assignments"],dtype=int).reshape(-1) for a in physical]
     per={a["name"]:[] for a in physical}
     count=0;invalid=0;min_psd_ratio=1.0
     digital_gains=[];digital_phase=[]
-    for n,tm,H,snr in extract_records(source):
+    for n,tm,H,snr in extract_records(source,require_complete=require_complete):
         count+=1;time.append(tm)
         if not np.isfinite(H).all():
             invalid+=int((~np.isfinite(H)).sum())
