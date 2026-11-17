@@ -1,0 +1,24 @@
+name: Rice LensFD original publisher CSI pipeline 24-frame replay
+on:
+  push:
+    branches: [feature/lensfd-failure-origin-audit]
+    paths:
+      - generalized/tests/lensfd_publisher_csi_replay_probe.py
+      - .github/workflows/lensfd-original-pipeline-replay.yml
+  workflow_dispatch:
+jobs:
+  publisher-code-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install original-compatible numerical dependencies
+        run: |
+          python -m pip install "numpy==1.26.4" "scipy==1.12.0" "h5py==3.11.0" "matplotlib==3.8.4"
+      - name: Recompute Rice published CSI using first 24 original pilot frames
+        run: |
+          export MPLBACKEND=Agg
+          python -m generalized.tests.lensfd_publisher_csi_replay_probe
