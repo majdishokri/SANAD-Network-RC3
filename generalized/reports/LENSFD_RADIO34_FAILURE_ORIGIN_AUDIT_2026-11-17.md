@@ -74,3 +74,17 @@ Request from Rice:
 - **SANAD frozen RC3 field inference:** 0. Existing Sionna 95.14% recall and simulated 0/1008 healthy-only alerts remain separate, not established on LensFD.
 
 Until physical port labels/clocked measurements exist, report **REPEATABLE_REAL_MEASURED_CSI_DROPOUT / HARDWARE_FAULT_GROUND_TRUTH_UNVERIFIED**, not \`HARDWARE_FAULT_CONFIRMED\`.
+
+
+## ADDENDUM — stronger causal finding from the original full raw-IQ byte stream
+
+**This section supersedes any earlier interpretation that nonzero raw IQ power implies an operating RF receiver.** On 2026-11-17 we audited the entire original 401-frame raw I/Q source (not just first 24 or 300 frames):
+
+- No-lens port 68 and small-lens port 67 contain **only two signed int16 levels: -16 and 0**, and -16 occupies **99.725%** and **99.731%** of their 1,796,480 stored scalar samples respectively.
+- These two streams agree value-for-value at **99.9944%** of positions, but differ in exact hashes, so they are not identical stored bytes. Adjacent strong-signal ports have 321 and 412 distinct levels.
+- Original publisher pilot alignment clamps to sample zero for **599/600** frame/client combinations on both suspect streams, confirming the observation is **not suitable for calibration inference**.
+- The samples are signed **big-endian int16** as stored; zero/nonzero magnitude is not by itself sufficient evidence of true antenna signal.
+- A separate SANAD input-quality module now emits \`ABSTAIN_NEAR_CONSTANT_QUANTIZED_RAW_RF\` for these two genuine source streams but not for the two adjacent strong-port controls. **7/7 unit tests and live-source CI both PASS**.
+- Nothing in this analysis confirms that \`-16\` is a firmware-documented sentinel or that a particular physical radio failed.
+
+Read the [new reproducible raw-IQ forensic report](./LENSFD_RAW_IQ_DIGITAL_MUTING_GATE_2026-11-17.md) and the [successful source-fed CI run](https://github.com/majdishokri/SANAD-Network-RC3/actions/runs/44033267151). The new evidence sharpens classification to **invalid or muted recorded RF channel**; physical cause is still unverified. Frozen RC3 remains untouched.
