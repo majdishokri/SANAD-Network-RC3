@@ -1,0 +1,31 @@
+name: SANAD frozen actual model fast measured CSI 300 native snapshots
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/dichasus_frozen_rc3_fast_original_prefix.py
+      - .github/workflows/rc3-dichasus-fast-source-prefix-performance.yml
+  workflow_dispatch:
+jobs:
+  fast-rc3-digital-port-loss:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install original unchanged detector and original TensorProto reader deps
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 requests google-crc32c tfrecord protobuf tensorboard
+      - name: Verify measured source prefix digest and original 300 native CRC32C records, infer frozen 7x8 RC3 once per case
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.dichasus_frozen_rc3_fast_original_prefix --scenarios port_loss --out-dir out/frozen_rc3_fast_measured
+      - name: Publish only numerical summary with explicit physical nonqualification
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanad-rc3-fast-original-measured-CSI-digital-port-loss
+          path: out/frozen_rc3_fast_measured
+          if-no-files-found: error
