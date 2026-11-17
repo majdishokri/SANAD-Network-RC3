@@ -93,8 +93,9 @@ completed = aligner.push(Observation(
 - Collect >=75 hours with verified healthy reference sessions and held-out site/session
   splits, preferably from >=7 **independent** simultaneous receiver stations;
   acquire longer repeated seasons/environments for drift and transient controls.
-- Build and externally validate the *measured covariance → original RC3
-  v11/v29/v33/v35 evidence* converter. **Not yet implemented or qualified.**
+- Externally validate the now-implemented *measured covariance → original RC3
+  v11/v29/v33/v35 evidence* bridge on an independently eligible real 75-hour
+  multi-site dataset. **Code-fixture parity is tested; field performance is not qualified.**
 - Freeze adapters/normalization thresholds before evaluation; report TP/FP,
   neighbour FP, device-cluster 95% intervals, true first-alert time,
   localisation, data dropout and latency at the same reporting horizon.
@@ -103,3 +104,60 @@ completed = aligner.push(Observation(
   real streams; do not retrofit 95.14% simulation performance.
 
 **No hardware actuation. No model weights modified. No false time interpolation.**
+
+
+## Raw I/Q source-integrity preflight (Rice LensFD discovery, November 17, 2026)
+
+\`raw_iq_quality.py\` adds a standalone **ABSTAIN** check for invalid or
+digitally muted raw receiver streams. It is not part of the frozen RC3
+classifier and does not decide whether an actual antenna failed.
+
+This check was motivated by **genuinely measured Rice LensFD HDF5** records:
+- No-lens indoor static spot 1: raw port 68 (one-based), all 401 captured
+  frames, **1,796,480 native I/Q integer values**, only \`-16\` and \`0\`,
+  modal fraction 99.725%; exported CSI port 68 is exactly zero.
+- Small-lens indoor static spot 1: raw port 67, all 401 frames, same
+  two integer levels, modal fraction 99.731%; exported CSI port 67 zero.
+- Across recordings, the suspect raw I/Q values match in 99.9944% of
+  positions, although the full raw streams are **not bitwise identical**.
+- Adjacent measured strong-signal ports have 321 and 412 distinct
+  integer values, respectively. Thus neither near-constant stream is
+  adequate for calibrating complex RF phase/gain drift.
+- With the publisher's unchanged 300-frame pilot extractor, both
+  near-constant ports had correlation alignment clipped to start index
+  zero for 599/600 client-frame combinations, confirming unusable
+  pilot-timing evidence.
+- This establishes near-static **recorded digital IQ**, not whether the
+  source is a failed physical radio, disabled ADC, lost samples, or
+  acquisition placeholder.
+
+Application:
+\`\`\`python
+from generalized.real_rf_v1.raw_iq_quality import (
+    analyze_receiver_iq, require_qualified_raw_iq, RFInputNotQualified
+)
+# raw_one_port: native interleaved I,Q signed int16/int32
+quality = analyze_receiver_iq(raw_one_port)
+if quality.status.startswith("ABSTAIN_"):
+    # Quarantine source and physical-port map; do not feed fake covariance.
+    print(quality.as_json())
+else:
+    # Passing this ONE gate does not certify that CSI/clock/geometry is valid.
+    ...
+# Alternatively, require_qualified_raw_iq(raw_one_port) fails closed.
+\`\`\`
+
+The conservative trigger is: >=10,000 original I/Q values; at most two
+distinct signed integer levels; largest level occupies >=99.5% of
+observed values. Signed **int16 or int32 HDF5 storage** is preserved
+exactly and per-port SHA-256 supplied. Threshold is an **input-quality
+policy** and its false-rejection properties have not been field-calibrated.
+Failing this gate means **do not infer RC3 calibration faults from this
+raw stream**, not \`HARDWARE_FAULT_CONFIRMED\`.
+
+Source-level GitHub Actions experiments:
+- https://github.com/majdishokri/SANAD-Network-RC3/actions/runs/44032366490
+- https://github.com/majdishokri/SANAD-Network-RC3/actions/runs/44032734241
+
+When original raw IQ is unavailable, this gate cannot certify or deny
+source integrity. Do not claim a healthy source from its absence.
