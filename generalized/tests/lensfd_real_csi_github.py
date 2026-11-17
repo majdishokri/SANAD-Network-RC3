@@ -83,10 +83,13 @@ def fetch_verified(relative, work, *, max_bytes=16_000_000):
 
 def per_port_rms(channel, axis):
     a=np.asarray(channel)
-    if not np.iscomplexobj(a) or not np.isfinite(a).all():
-        raise ValueError("Require measured finite complex channel, not magnitude-only data")
+    if not np.iscomplexobj(a):
+        raise ValueError("Require measured complex channel, not magnitude-only data")
     x=np.moveaxis(a,axis,0).reshape(a.shape[axis],-1)
-    return np.sqrt(np.mean(np.abs(x)**2,axis=1))
+    valid=np.isfinite(x)
+    power=np.sum(np.where(valid,np.abs(x)**2,0.0),axis=1,dtype=np.float64)
+    # NaN/Inf are MISSING channel coefficients, not samples of zero RF power.
+    return np.sqrt(power/np.maximum(valid.sum(axis=1),1))
 
 def relative_rms_db(rms,index):
     positive=np.asarray(rms)[np.asarray(rms)>0]
@@ -104,9 +107,10 @@ def examine_native_mat(path,meta):
     want_sci=(2,80) if meta["family"]=="a2c-static" else (32,32)
     if a.shape!=want_full or s.shape!=want_sci or not np.iscomplexobj(s):
         raise ValueError(f"Publisher CSI shape/types differ: {a.shape}, {s.shape}")
-    if not np.isfinite(a).all() or not np.isfinite(s).all():
-        raise ValueError(f"Nonfinite publisher CSI {meta['path']}: full={int(np.size(a)-np.isfinite(a).sum())} sci={int(np.size(s)-np.isfinite(s).sum())}")
     row={k:meta[k] for k in meta}
+    row["nonfinite_chan_full"]=int(np.size(a)-np.isfinite(a).sum())
+    row["nonfinite_chan_sci"]=int(np.size(s)-np.isfinite(s).sum())
+    row["quality_note"]="Nonfinite measured CSI elements excluded from per-port RMS denominators; not treated as zero signals."
     row["values_scanned"]=int(a.size+s.size)
     if meta["family"]=="a2c-static":
         port=per_port_rms(a,1)
