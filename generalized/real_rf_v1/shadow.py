@@ -78,6 +78,9 @@ class ShadowHead:
             raise ValueError("Train/calibration acquisition sessions overlap")
         if len(set(g))<2 or len(set(cg))<2:
             raise ValueError("Require >=2 independent acquisition sessions in each split")
+        for session in set(g):
+            if set(labels[g==session]) != {0,1}:
+                raise ValueError("Each training session must contain both measured-healthy controls and digital injections")
         if set(labels)!={0,1} or set(cy)!={0}:
             raise ValueError("Training needs digital injected positives and negatives; calibration strictly healthy")
         if len(cx)<100 or min(np.bincount(labels))<10:
