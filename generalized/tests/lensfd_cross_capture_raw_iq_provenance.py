@@ -12,6 +12,7 @@ from pathlib import Path
 import h5py
 import numpy as np
 from generalized.tests.lensfd_raw_iq_port_origin import TRIALS, retrieve
+from generalized.real_rf_v1.raw_iq_quality import analyze_receiver_iq
 
 EXPECTED={
   "indoor_no_lens_zero_port68":"a793135d1e653ff9bc301e79febbaebf9fc3eb794bf10d561730a5967a73dd43",
@@ -64,6 +65,16 @@ def run():
                         "pearson_corr":float(v0@w0/denom) if denom else None,
                         "fraction_equal_IQ_values":float(np.mean(v==w)),
                         "difference_rms_counts":float(np.sqrt(np.mean(diff*diff)))}
+            input_gates={
+               "no_lens_port68":analyze_receiver_iq(xa).as_json(),
+               "small_lens_port67":analyze_receiver_iq(xb).as_json(),
+               "no_lens_port67":analyze_receiver_iq(xc).as_json(),
+               "small_lens_port68":analyze_receiver_iq(xe).as_json(),
+            }
+            assert input_gates["no_lens_port68"]["status"].startswith("ABSTAIN_")
+            assert input_gates["small_lens_port67"]["status"].startswith("ABSTAIN_")
+            assert input_gates["no_lens_port67"]["status"]=="NOT_FLAGGED_BY_THIS_ONE_GATE"
+            assert input_gates["small_lens_port68"]["status"]=="NOT_FLAGGED_BY_THIS_ONE_GATE"
             comparisons={
                "silent_no68_vs_silent_sm67":compare(xa,xb),
                "strong_no67_vs_strong_sm68":compare(xc,xe),
@@ -91,6 +102,7 @@ def run():
                 "small_lens_port68":e
               },
               "comparisons":comparisons,
+              "real_source_raw_IQ_quality_gate":input_gates,
               "port_wiring_mapping_verified":False,
               "actual_hardware_failures_verified":False,
               "RC3_field_inferences":0,
