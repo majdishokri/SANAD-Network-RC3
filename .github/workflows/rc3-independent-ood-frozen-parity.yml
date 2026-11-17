@@ -1,0 +1,24 @@
+name: SANAD independent OOD branches original frozen 7x8 parity and input guards
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - .github/workflows/rc3-independent-ood-frozen-parity.yml
+      - generalized/real_rf_v1/quality_gated_bridge.py
+      - generalized/real_rf_v1/raw_iq_quality.py
+  workflow_dispatch:
+jobs:
+  frozen-fidelity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install exact original bridge regression prerequisites
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 pytest
+      - name: Confirm original 7x8 frozen RC3 byte-for-byte feature/meta/prediction equivalence, separate from measured OOD
+        run: python generalized/tests/test_dimensions.py
+      - name: Confirm untouched quality preflight and invalid-RF abstention tests
+        run: python -m pytest -q generalized/real_rf_v1/test_quality_gated_bridge.py generalized/real_rf_v1/test_raw_iq_quality.py
