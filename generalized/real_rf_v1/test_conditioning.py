@@ -134,7 +134,7 @@ def test_new_shadow_head_disjoint_sessions_only():
     x1=rng.normal(1,0.2,(130,3))
     x=np.vstack([x0,x1])
     y=np.r_[np.zeros(130,int),np.ones(130,int)]
-    groups=np.array(["training-A"]*130+["training-B"]*130)
+    groups=np.array(["training-A" if i%2==0 else "training-B" for i in range(130)]*2)
     cx=rng.normal(0,0.2,(160,3))
     cy=np.zeros(160,int)
     cg=np.array(["cal-C"]*80+["cal-D"]*80)
