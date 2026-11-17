@@ -1,4 +1,4 @@
-"""Fail-closed input-quality evidence for signed 16-bit raw RF interleaved I/Q.
+"""Fail-closed input-quality evidence for signed integer raw RF interleaved I/Q.
 
 Crucial distinction: these are ANALYZER REJECTION reasons, not verified
 antenna hardware-fault labels. Neither RC3 weights nor threshold are modified.
@@ -8,7 +8,7 @@ NOT adequate to construct phase/gain calibration covariance. The criterion
 is conservative, designed to ABSTAIN, not classify a broken physical radio.
 
 Authorised input contract: one native physical receiver antenna's interleaved
-I,Q int16 stream; samples across >=10000 native I/Q scalars, no rewriting.
+I,Q signed int16/int32 stored stream; samples across >=10000 native I/Q scalars, no rewriting.
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ class RFInputNotQualified(ValueError):
 @dataclass(frozen=True)
 class RawIQQuality:
     total_IQ_values: int
+    source_integer_storage_dtype: str
     distinct_integer_levels: int
     modal_integer_level: int
     modal_fraction: float
@@ -44,8 +45,8 @@ def analyze_receiver_iq(
     modal_fraction_cutoff: float=0.995,
 ) -> RawIQQuality:
     a=np.asarray(iq)
-    if a.dtype!=np.dtype("int16"):
-        raise RFInputNotQualified("Unverified signed native int16 I/Q source")
+    if a.dtype.kind!="i" or a.dtype.itemsize not in (2,4):
+        raise RFInputNotQualified("Unverified signed native int16/int32 I/Q storage")
     if a.ndim<1 or a.shape[-1]<2 or (a.shape[-1]%2)!=0:
         raise RFInputNotQualified("Need intact interleaved receiver I/Q samples")
     if a.size<min_values:
@@ -58,6 +59,7 @@ def analyze_receiver_iq(
     bad=bool(len(vals)<=max_levels and fraction>=modal_fraction_cutoff)
     return RawIQQuality(
        total_IQ_values=int(a.size),
+       source_integer_storage_dtype=str(a.dtype),
        distinct_integer_levels=int(len(vals)),
        modal_integer_level=int(vals[dom]),
        modal_fraction=fraction,
