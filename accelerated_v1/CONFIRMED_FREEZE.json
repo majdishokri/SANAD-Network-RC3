@@ -1,0 +1,70 @@
+{
+  "freeze_id": "SANAD_RC3_ACCELERATED_STATEFUL_CPU_V1_2026-11-17",
+  "status": "CONFIRMED_SIMULATION_BASELINE",
+  "model_semantics": "UNCHANGED_FROZEN_RC3",
+  "qualification_scope": "Research-only Sionna simulation; reused evidence, not independent external validation or field validation",
+  "original_frozen_commit": "182e77b485cceb770ee6570ba332205c73823c91",
+  "original_frozen_branch": "frozen/rc3-sionna-qualified-2026-11-14",
+  "geometry": {
+    "antennas": 7,
+    "features_per_antenna": 8,
+    "report_window": 300
+  },
+  "decision_threshold": 0.5,
+  "artifacts": {
+    "SANAD_RC3_Accelerated_Stateful_CPU_V1.zip": {
+      "sha256": "9fb7ef8644554f7abf049a2d83712c60b42b1dae678882b40694c13bbb826c49",
+      "bytes": 2270956
+    },
+    "fast_latency_and_parity_summary.json": {
+      "sha256": "00c794d1a374f9dece17e8902479ad54dad467f6bc9ccbfb9d44f533a873e140",
+      "bytes": 1955
+    },
+    "fast_per_seed_details.json": {
+      "sha256": "ba62f065adbfda606c8db83d7304316528c185c6f20c25e8d734f49d0a973f50",
+      "bytes": 100749
+    },
+    "SANAD_RC3_Accelerated_Stateful_CPU_V1.ipynb": {
+      "sha256": "854d49854a00fccf515b8ee25865dbe2a4f137af60efc83e81b0f2666437c4f0",
+      "bytes": 88126
+    }
+  },
+  "model_sha256": {
+    "compressed": "2cd6661607876462bd468e0cfdd720d1b893bc0b7c7f9679c209843b5ffbf12a",
+    "uncompressed": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+    "rc0_internal": "032d2d600600b182b689a14682c8260e9217873dd8a65ab015d15765c98dd96d"
+  },
+  "validation": {
+    "source": "fast_latency_and_parity_summary.json (completed Colab replay)",
+    "status": "FULL_PARITY_PASS",
+    "seeds": 144,
+    "seed_range": [
+      3000,
+      3143
+    ],
+    "max_prediction_probability_absolute_difference": 1.1102230246251565e-16,
+    "recall": {
+      "detected": 274,
+      "faults": 288,
+      "percent": 95.13888888888889
+    },
+    "healthy_only_false_alarms": {
+      "false_alarms": 0,
+      "healthy_cases": 1008
+    },
+    "neighbor_false_alarms": {
+      "false_alarms": 13,
+      "neighbor_cases": 720
+    },
+    "cpu_latency_p95_ms": {
+      "full_window_original": 842.40356815,
+      "full_window_optimized": 453.83900735,
+      "ordinary_report": 1.95609575,
+      "terminal_scoring_report": 11.6320158
+    },
+    "cold_start_including_jit_ms": 761.00107,
+    "first_alarm_ttd_hours": null,
+    "ttd_note": "RC3 is terminal-only; this speed optimization does not establish earlier alarm"
+  },
+  "freeze_policy": "Keep this commit SHA as canonical immutable snapshot; do not amend or force-update the reference branch. All future work branches off and does not overwrite this snapshot."
+}

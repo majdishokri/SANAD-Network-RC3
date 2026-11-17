@@ -1,0 +1,64 @@
+{
+  "status": "FULL_PARITY_PASS",
+  "completed_seeds": 144,
+  "seed_range": [
+    3000,
+    3143
+  ],
+  "frozen_threshold": 0.5,
+  "unchanged_model_sha256": "0a90835bb57a56437fc09211902b581bb22377676f91dce68f309c92e3a95bf4",
+  "source_sha256": "121ce9aba417fb27b07d7f7f6e52633a8ef29a2c99aefddc12a10428d02ddafb",
+  "scientific_status": "REUSED_SIMULATED_EVIDENCE_NOT_INDEPENDENT_OR_FIELD_VALIDATION",
+  "engine_includes_original_model": true,
+  "online_first_alarm_ttd_hours": null,
+  "ttd_note": "Terminal-only 300-report RC3. Fast push() does not change the detector's first-alert time.",
+  "15_minute_report_period_is_simulated": true,
+  "cold_engine_startup_including_jit_ms": 761.00107,
+  "original_full_300_report_stream": {
+    "n": 288,
+    "p50_ms": 605.322604,
+    "p95_ms": 842.4035681500001,
+    "p99_ms": 889.01553662,
+    "max_ms": 1067.671294
+  },
+  "fast_full_300_report_stream": {
+    "n": 288,
+    "p50_ms": 268.0114825,
+    "p95_ms": 453.83900735,
+    "p99_ms": 477.13589893999995,
+    "max_ms": 527.588358
+  },
+  "incremental_ordinary_report_update": {
+    "n": 86112,
+    "p50_ms": 1.0989885,
+    "p95_ms": 1.9560957499999998,
+    "p99_ms": 2.3676558899999995,
+    "max_ms": 5.592778
+  },
+  "incremental_final_report_including_scoring": {
+    "n": 288,
+    "p50_ms": 7.449099,
+    "p95_ms": 11.6320158,
+    "p99_ms": 13.997266289999995,
+    "max_ms": 17.73624
+  },
+  "maximum_prediction_probability_abs_error": 1.1102230246251565e-16,
+  "totals": {
+    "tp": 274,
+    "fault_n": 288,
+    "healthy_fp": 0,
+    "healthy_n": 1008,
+    "neighbor_fp": 13,
+    "neighbor_n": 720
+  },
+  "cpu_max_rss_kib": 324904,
+  "versions": {
+    "python": "3.13.18",
+    "numpy": "2.3.5",
+    "sklearn": "1.8.0",
+    "numba": "0.65.1",
+    "joblib": "1.5.3"
+  },
+  "hardware": "CPU only; Sionna evidence replay, no RF front-end IQ/covariance cost measured",
+  "original_prospective_study": "SANAD_RC3_SPATIAL_META_FROZEN_0p50_GPU_PROSPECTIVE_3000_3143"
+}

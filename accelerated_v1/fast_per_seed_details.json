@@ -1,0 +1,3602 @@
+[
+  {
+    "seed": 3000,
+    "evidence_sha256": "e2fb2215d8b3db962b30c203aaf3000bc8d79581663758d2ed7a01a1f2b92136",
+    "stream": {
+      "healthy": {
+        "reference_ms": 589.324061,
+        "optimized_full_ms": 275.869628,
+        "incremental_ingest_p95_ms": 1.2226509999999997,
+        "terminal_report_ms": 7.573138,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 597.002736,
+        "optimized_full_ms": 271.928024,
+        "incremental_ingest_p95_ms": 1.3604671999999998,
+        "terminal_report_ms": 7.786982,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3001,
+    "evidence_sha256": "defb002550bfac6680466ce39433bc6b865e32e2456d26741f0f6070d9eeb827",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.848977,
+        "optimized_full_ms": 261.549222,
+        "incremental_ingest_p95_ms": 1.2169549999999998,
+        "terminal_report_ms": 7.367671,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 620.192494,
+        "optimized_full_ms": 276.85314,
+        "incremental_ingest_p95_ms": 1.3760991,
+        "terminal_report_ms": 7.418315,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3002,
+    "evidence_sha256": "ed5baafe545826ca19914ef9c657bea0a08277abff4d02eaa17b3b4ea5224502",
+    "stream": {
+      "healthy": {
+        "reference_ms": 630.902087,
+        "optimized_full_ms": 427.295943,
+        "incremental_ingest_p95_ms": 2.058765799999999,
+        "terminal_report_ms": 11.224176,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 813.219297,
+        "optimized_full_ms": 464.195005,
+        "incremental_ingest_p95_ms": 3.0797542999999994,
+        "terminal_report_ms": 11.23201,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3003,
+    "evidence_sha256": "de51fef84f5ab737249340dcbcc26df6bd2cb338b06420f1de0b623aa8838d57",
+    "stream": {
+      "healthy": {
+        "reference_ms": 764.542386,
+        "optimized_full_ms": 273.751324,
+        "incremental_ingest_p95_ms": 1.1459183,
+        "terminal_report_ms": 7.353104,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 590.474747,
+        "optimized_full_ms": 287.612152,
+        "incremental_ingest_p95_ms": 1.3946602999999997,
+        "terminal_report_ms": 7.437081,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3004,
+    "evidence_sha256": "eb756e01adb471d3cc8b4fb16682b24c591bc963bd11e06ffeb5d3448c13963f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.314534,
+        "optimized_full_ms": 246.454045,
+        "incremental_ingest_p95_ms": 1.2191913999999997,
+        "terminal_report_ms": 7.265206,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 595.873023,
+        "optimized_full_ms": 265.718629,
+        "incremental_ingest_p95_ms": 1.3719709,
+        "terminal_report_ms": 7.506724,
+        "max_prob_abs_error": 4.336808689942018e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3005,
+    "evidence_sha256": "34de95207d156856d54f8ec464b287f906f66a4a52b5f462120e4d0fc12407f8",
+    "stream": {
+      "healthy": {
+        "reference_ms": 656.682325,
+        "optimized_full_ms": 247.261708,
+        "incremental_ingest_p95_ms": 1.1978436999999997,
+        "terminal_report_ms": 7.379219,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 617.73698,
+        "optimized_full_ms": 279.41386,
+        "incremental_ingest_p95_ms": 2.0766804999999993,
+        "terminal_report_ms": 7.341986,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3006,
+    "evidence_sha256": "43e56d2017eb93a3a18b77a7caddfdab4420892f56ec171857a3262437059d14",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.20912,
+        "optimized_full_ms": 250.61621,
+        "incremental_ingest_p95_ms": 1.5910089999999997,
+        "terminal_report_ms": 7.13242,
+        "max_prob_abs_error": 1.734723475976807e-18
+      },
+      "injected": {
+        "reference_ms": 605.36448,
+        "optimized_full_ms": 284.819695,
+        "incremental_ingest_p95_ms": 1.417659,
+        "terminal_report_ms": 7.539033,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3007,
+    "evidence_sha256": "1bea480df87dcbae5c6d68100cbad501436b2fbbc3127cbc3abe469643babf17",
+    "stream": {
+      "healthy": {
+        "reference_ms": 579.238058,
+        "optimized_full_ms": 420.513916,
+        "incremental_ingest_p95_ms": 1.8968923,
+        "terminal_report_ms": 11.06284,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 1067.671294,
+        "optimized_full_ms": 453.307022,
+        "incremental_ingest_p95_ms": 2.2177105,
+        "terminal_report_ms": 11.288753,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3008,
+    "evidence_sha256": "3b95aa622ce2181ca7a9f5c63db35c2214f958692fc0eeb72b69d08cbe15cace",
+    "stream": {
+      "healthy": {
+        "reference_ms": 808.728706,
+        "optimized_full_ms": 258.197829,
+        "incremental_ingest_p95_ms": 1.8949268999999997,
+        "terminal_report_ms": 7.284622,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 600.553958,
+        "optimized_full_ms": 252.581123,
+        "incremental_ingest_p95_ms": 1.6408363,
+        "terminal_report_ms": 7.593837,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3009,
+    "evidence_sha256": "3b8a44d8bc787a0e61802391100f474ba47e8f0845d078d0bba197d20bfb6b4d",
+    "stream": {
+      "healthy": {
+        "reference_ms": 580.960956,
+        "optimized_full_ms": 276.171783,
+        "incremental_ingest_p95_ms": 1.2163296999999995,
+        "terminal_report_ms": 7.292493,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 596.039231,
+        "optimized_full_ms": 298.731977,
+        "incremental_ingest_p95_ms": 1.4682321999999999,
+        "terminal_report_ms": 7.514904,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3010,
+    "evidence_sha256": "f89ff109d9c148595b4e0b2e0f379930c1257876f84312017a80718ddb626ea3",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.92897,
+        "optimized_full_ms": 250.000384,
+        "incremental_ingest_p95_ms": 1.2293121999999999,
+        "terminal_report_ms": 7.149751,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 613.601359,
+        "optimized_full_ms": 261.468188,
+        "incremental_ingest_p95_ms": 1.4338475,
+        "terminal_report_ms": 7.392818,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3011,
+    "evidence_sha256": "94d9418a278f3295e2f21b42452d317953268bbcf3224394556c9a763e21544c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.640008,
+        "optimized_full_ms": 259.581135,
+        "incremental_ingest_p95_ms": 1.3451895999999988,
+        "terminal_report_ms": 7.338489,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 612.482281,
+        "optimized_full_ms": 264.524154,
+        "incremental_ingest_p95_ms": 1.9912002999999987,
+        "terminal_report_ms": 7.50496,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3012,
+    "evidence_sha256": "89956db0b2d4e4cc0a6115b54a3d5674cf9177257c115810bbb81a03a20628e3",
+    "stream": {
+      "healthy": {
+        "reference_ms": 567.252836,
+        "optimized_full_ms": 386.750607,
+        "incremental_ingest_p95_ms": 1.9128594999999997,
+        "terminal_report_ms": 10.841074,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 809.442915,
+        "optimized_full_ms": 450.00856,
+        "incremental_ingest_p95_ms": 2.4279071999999995,
+        "terminal_report_ms": 11.575156,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3013,
+    "evidence_sha256": "8f4673271eaa4d287a30924bd7263c7c323bc414b423f2527f6b581129d941fb",
+    "stream": {
+      "healthy": {
+        "reference_ms": 842.611563,
+        "optimized_full_ms": 259.073043,
+        "incremental_ingest_p95_ms": 1.1948191999999997,
+        "terminal_report_ms": 7.132747,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 607.559289,
+        "optimized_full_ms": 266.058725,
+        "incremental_ingest_p95_ms": 1.3941929,
+        "terminal_report_ms": 8.928931,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3014,
+    "evidence_sha256": "6083366932b39bdf16372d39d730610d0f90e4ee77dacb99b09991e1fe01000a",
+    "stream": {
+      "healthy": {
+        "reference_ms": 599.869816,
+        "optimized_full_ms": 252.059198,
+        "incremental_ingest_p95_ms": 1.151876,
+        "terminal_report_ms": 7.379924,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 603.166622,
+        "optimized_full_ms": 265.790782,
+        "incremental_ingest_p95_ms": 1.333573899999999,
+        "terminal_report_ms": 11.688354,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3015,
+    "evidence_sha256": "7940bdc9d23d81302734780975e186ff86d781d6b0cfaae4d5bb6abfd8d9b5b5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.220495,
+        "optimized_full_ms": 248.034956,
+        "incremental_ingest_p95_ms": 1.9410963,
+        "terminal_report_ms": 7.199406,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 616.834127,
+        "optimized_full_ms": 281.454031,
+        "incremental_ingest_p95_ms": 1.4063151999999999,
+        "terminal_report_ms": 7.512962,
+        "max_prob_abs_error": 4.336808689942018e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3016,
+    "evidence_sha256": "14ed63d5d4d7837a8c7f7c6ddbd64eb3b5a7fe48cf4550aada3e763987161900",
+    "stream": {
+      "healthy": {
+        "reference_ms": 597.748634,
+        "optimized_full_ms": 277.826641,
+        "incremental_ingest_p95_ms": 1.3556705,
+        "terminal_report_ms": 7.133905,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.970285,
+        "optimized_full_ms": 268.827614,
+        "incremental_ingest_p95_ms": 1.4034597,
+        "terminal_report_ms": 8.134056,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3017,
+    "evidence_sha256": "e327cdba7707aa9fade3142ef2d94d4b8fcda4435fa96255417ee28139923b3b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 574.678157,
+        "optimized_full_ms": 255.189815,
+        "incremental_ingest_p95_ms": 2.1974348999999997,
+        "terminal_report_ms": 9.562505,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 818.361604,
+        "optimized_full_ms": 462.323336,
+        "incremental_ingest_p95_ms": 2.0430929,
+        "terminal_report_ms": 11.27648,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3018,
+    "evidence_sha256": "83c8c16d1c7594ae0ea5e4d8d038bca9b0790502360541701211f65608ad7c32",
+    "stream": {
+      "healthy": {
+        "reference_ms": 815.320764,
+        "optimized_full_ms": 450.312107,
+        "incremental_ingest_p95_ms": 2.0454927999999994,
+        "terminal_report_ms": 7.309289,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 594.304532,
+        "optimized_full_ms": 267.771565,
+        "incremental_ingest_p95_ms": 1.6157035999999994,
+        "terminal_report_ms": 7.506088,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3019,
+    "evidence_sha256": "324a55126582d2cc46b4bf25b54a6000acde6e23b9d6d2c3c64bb8475577740f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 585.573177,
+        "optimized_full_ms": 277.570003,
+        "incremental_ingest_p95_ms": 1.1897519999999997,
+        "terminal_report_ms": 7.466352,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 603.960778,
+        "optimized_full_ms": 293.054812,
+        "incremental_ingest_p95_ms": 1.3411307,
+        "terminal_report_ms": 7.359221,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3020,
+    "evidence_sha256": "089fd3b80ffa63202b0b14f052cbe4ac4b3ff1edc10bd1377105ca458aab939c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 586.988723,
+        "optimized_full_ms": 244.947458,
+        "incremental_ingest_p95_ms": 1.1691242,
+        "terminal_report_ms": 7.031863,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 609.583222,
+        "optimized_full_ms": 253.58191,
+        "incremental_ingest_p95_ms": 1.4407720999999998,
+        "terminal_report_ms": 7.426332,
+        "max_prob_abs_error": 2.168404344971009e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3021,
+    "evidence_sha256": "7e0deb1d21e0a17b736f1bc702ef6224b24f8cdb9ad0e4172617f8e95353c20d",
+    "stream": {
+      "healthy": {
+        "reference_ms": 604.209655,
+        "optimized_full_ms": 254.391584,
+        "incremental_ingest_p95_ms": 1.3121669999999994,
+        "terminal_report_ms": 7.196113,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 633.997007,
+        "optimized_full_ms": 265.280411,
+        "incremental_ingest_p95_ms": 1.9059388,
+        "terminal_report_ms": 7.625316,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3022,
+    "evidence_sha256": "c9c4c7f6bee17bd6e008b0e17504b1c438ffa597974b86ad019d55e123305e9a",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.599866,
+        "optimized_full_ms": 251.458475,
+        "incremental_ingest_p95_ms": 1.6276774999999999,
+        "terminal_report_ms": 7.075725,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 799.49235,
+        "optimized_full_ms": 440.768853,
+        "incremental_ingest_p95_ms": 2.0751263,
+        "terminal_report_ms": 11.958019,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3023,
+    "evidence_sha256": "d7fcbf3d9ddc2981792c193bf71262f0442695530f87c7901bdc12ccf6f1b67f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 834.970967,
+        "optimized_full_ms": 428.301772,
+        "incremental_ingest_p95_ms": 2.2991077999999994,
+        "terminal_report_ms": 7.283179,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 583.685643,
+        "optimized_full_ms": 261.015754,
+        "incremental_ingest_p95_ms": 1.2369738,
+        "terminal_report_ms": 7.538797,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3024,
+    "evidence_sha256": "43774601222449ed17013d80958cc7beb5e0f91c224963f4df957b37c7f0ecd5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 603.567738,
+        "optimized_full_ms": 257.285896,
+        "incremental_ingest_p95_ms": 1.1973097,
+        "terminal_report_ms": 7.208632,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 622.894451,
+        "optimized_full_ms": 272.191075,
+        "incremental_ingest_p95_ms": 2.121792699999992,
+        "terminal_report_ms": 7.425226,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3025,
+    "evidence_sha256": "03381ebacc8dafde1d8874ef697d0330d67d5d6a7c28a08bed835cd0791a6c75",
+    "stream": {
+      "healthy": {
+        "reference_ms": 580.967762,
+        "optimized_full_ms": 251.13011,
+        "incremental_ingest_p95_ms": 1.903980999999999,
+        "terminal_report_ms": 7.095158,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 595.495026,
+        "optimized_full_ms": 276.91403,
+        "incremental_ingest_p95_ms": 1.4612644,
+        "terminal_report_ms": 7.413608,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3026,
+    "evidence_sha256": "8db0c91d4a1fa3c756bf1c5b7b62e1c797b33b7ed4b606b26c1f6fba2fc72376",
+    "stream": {
+      "healthy": {
+        "reference_ms": 571.37621,
+        "optimized_full_ms": 276.514198,
+        "incremental_ingest_p95_ms": 1.1517398999999997,
+        "terminal_report_ms": 7.098483,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 634.600475,
+        "optimized_full_ms": 268.799369,
+        "incremental_ingest_p95_ms": 1.3798842999999998,
+        "terminal_report_ms": 7.453947,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3027,
+    "evidence_sha256": "5a47775f17690ee2f6876241e52c530eb2ad97bf499ab42de8e155a38e3c8948",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.143302,
+        "optimized_full_ms": 256.686506,
+        "incremental_ingest_p95_ms": 1.2453178999999992,
+        "terminal_report_ms": 7.479162,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 622.861774,
+        "optimized_full_ms": 430.700873,
+        "incremental_ingest_p95_ms": 2.1547424999999993,
+        "terminal_report_ms": 11.888908,
+        "max_prob_abs_error": 6.938893903907228e-18
+      }
+    },
+    "rc3_counts": {
+      "tp": 0,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3028,
+    "evidence_sha256": "8d93ee9597fd53ae791a32285268fb4808604e9f5f3e74e612f4403c1b485652",
+    "stream": {
+      "healthy": {
+        "reference_ms": 796.780068,
+        "optimized_full_ms": 434.225837,
+        "incremental_ingest_p95_ms": 2.2331609999999995,
+        "terminal_report_ms": 11.162269,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 803.233788,
+        "optimized_full_ms": 279.347652,
+        "incremental_ingest_p95_ms": 1.5887240999999994,
+        "terminal_report_ms": 7.291283,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3029,
+    "evidence_sha256": "c5b43eb514786b8ada8fab2fc566b8c35de6cdf7cb9556b9f40ec431ea3bed49",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.999523,
+        "optimized_full_ms": 269.179062,
+        "incremental_ingest_p95_ms": 1.1737327000000002,
+        "terminal_report_ms": 7.205047,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 620.408774,
+        "optimized_full_ms": 264.386755,
+        "incremental_ingest_p95_ms": 1.6139820999999992,
+        "terminal_report_ms": 7.753766,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3030,
+    "evidence_sha256": "abf278adf2cd8b7e32ee81d4e6c4f31b293d3bde8c7a9cc9e4f87d9b4a4522e9",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.662139,
+        "optimized_full_ms": 247.64504,
+        "incremental_ingest_p95_ms": 1.2998257999999994,
+        "terminal_report_ms": 7.135071,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.317286,
+        "optimized_full_ms": 271.976386,
+        "incremental_ingest_p95_ms": 1.3086845,
+        "terminal_report_ms": 7.37063,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3031,
+    "evidence_sha256": "2f99289602893c2187764f4a0ca73695b9bbbd8d1d736cf2f8a684688622f869",
+    "stream": {
+      "healthy": {
+        "reference_ms": 598.71666,
+        "optimized_full_ms": 264.294401,
+        "incremental_ingest_p95_ms": 1.9154349999999998,
+        "terminal_report_ms": 7.266882,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.973237,
+        "optimized_full_ms": 268.530831,
+        "incremental_ingest_p95_ms": 1.5934873999999999,
+        "terminal_report_ms": 7.462741,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3032,
+    "evidence_sha256": "056073680dd05883a1e0390bedd442d33b9baf87cdf239c56c8ffb40752d6b3e",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.346989,
+        "optimized_full_ms": 273.014507,
+        "incremental_ingest_p95_ms": 1.4026617,
+        "terminal_report_ms": 7.783739,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 606.360188,
+        "optimized_full_ms": 527.588358,
+        "incremental_ingest_p95_ms": 2.2217776,
+        "terminal_report_ms": 15.086379,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3033,
+    "evidence_sha256": "1a507b5862ed8749a8e6c03f74bb979d4d40e342c421c4ea59d65e29c16a39b8",
+    "stream": {
+      "healthy": {
+        "reference_ms": 827.014483,
+        "optimized_full_ms": 430.855775,
+        "incremental_ingest_p95_ms": 1.912401,
+        "terminal_report_ms": 10.876553,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 855.110027,
+        "optimized_full_ms": 262.374445,
+        "incremental_ingest_p95_ms": 1.3479161,
+        "terminal_report_ms": 7.880809,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3034,
+    "evidence_sha256": "daaa86fd924482d12b25d1ca2b8605d7a0ef824c1052787019f30ad9fc51ad31",
+    "stream": {
+      "healthy": {
+        "reference_ms": 600.273044,
+        "optimized_full_ms": 249.582818,
+        "incremental_ingest_p95_ms": 1.9147613999999984,
+        "terminal_report_ms": 7.292484,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 588.215804,
+        "optimized_full_ms": 267.410381,
+        "incremental_ingest_p95_ms": 1.6215314,
+        "terminal_report_ms": 7.28067,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3035,
+    "evidence_sha256": "adca8e1f8d12450f630ceabdc977ae3bf79b2a5008ce63122af74090d4f525a2",
+    "stream": {
+      "healthy": {
+        "reference_ms": 577.476022,
+        "optimized_full_ms": 282.717489,
+        "incremental_ingest_p95_ms": 1.1934048,
+        "terminal_report_ms": 7.145726,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 619.013834,
+        "optimized_full_ms": 284.114831,
+        "incremental_ingest_p95_ms": 1.3739001,
+        "terminal_report_ms": 7.642383,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3036,
+    "evidence_sha256": "edc72806147eb4281937491874ea95cb5cbcd8239aa7f1fa93a0e8df6f88b112",
+    "stream": {
+      "healthy": {
+        "reference_ms": 616.056409,
+        "optimized_full_ms": 245.992886,
+        "incremental_ingest_p95_ms": 1.1606704999999997,
+        "terminal_report_ms": 7.294307,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 626.034711,
+        "optimized_full_ms": 266.49235,
+        "incremental_ingest_p95_ms": 1.4765868999999991,
+        "terminal_report_ms": 7.436543,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3037,
+    "evidence_sha256": "f0b7bb73bd8859a9eef9df17561fea735c8eb78cf8a9000892079a2906216f57",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.861451,
+        "optimized_full_ms": 256.036133,
+        "incremental_ingest_p95_ms": 2.0706322999999998,
+        "terminal_report_ms": 7.12106,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 596.809125,
+        "optimized_full_ms": 465.101578,
+        "incremental_ingest_p95_ms": 2.3371803999999994,
+        "terminal_report_ms": 11.646664,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3038,
+    "evidence_sha256": "5f132de00ca15dc59db955c7e9863c1e82e45f91cd3715545ed4f1491938b930",
+    "stream": {
+      "healthy": {
+        "reference_ms": 787.02098,
+        "optimized_full_ms": 438.987681,
+        "incremental_ingest_p95_ms": 2.4524660999999996,
+        "terminal_report_ms": 10.895469,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 888.416643,
+        "optimized_full_ms": 258.866329,
+        "incremental_ingest_p95_ms": 1.3898921999999994,
+        "terminal_report_ms": 7.380971,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3039,
+    "evidence_sha256": "9050233769c88dbb728be7f3fe52a5dad2ece3356c540a90e9331a5a424bdca5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 636.617336,
+        "optimized_full_ms": 258.6006,
+        "incremental_ingest_p95_ms": 1.1715473,
+        "terminal_report_ms": 7.151867,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 616.807212,
+        "optimized_full_ms": 264.271883,
+        "incremental_ingest_p95_ms": 1.529237099999991,
+        "terminal_report_ms": 9.451442,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3040,
+    "evidence_sha256": "ddf19682c253ea8b70ec1d8c098feece500cea379f86da7be2549a1b04ee76fd",
+    "stream": {
+      "healthy": {
+        "reference_ms": 593.104792,
+        "optimized_full_ms": 254.839197,
+        "incremental_ingest_p95_ms": 1.9236379,
+        "terminal_report_ms": 7.113329,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 610.568689,
+        "optimized_full_ms": 283.634125,
+        "incremental_ingest_p95_ms": 1.4400648999999992,
+        "terminal_report_ms": 7.281207,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3041,
+    "evidence_sha256": "9176308948a0a18d71aa97b5485c2a10bc8be98ed68ace77682fcd9960e40607",
+    "stream": {
+      "healthy": {
+        "reference_ms": 578.400641,
+        "optimized_full_ms": 275.528211,
+        "incremental_ingest_p95_ms": 1.1699524,
+        "terminal_report_ms": 7.185146,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 598.240371,
+        "optimized_full_ms": 270.17037,
+        "incremental_ingest_p95_ms": 1.3996380999999998,
+        "terminal_report_ms": 7.519831,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3042,
+    "evidence_sha256": "67648ec02575d27ba49ce5ce2f104b8302ecd305b95cea8b22a7c6bd2d5ab339",
+    "stream": {
+      "healthy": {
+        "reference_ms": 582.325456,
+        "optimized_full_ms": 253.663754,
+        "incremental_ingest_p95_ms": 1.1439697999999998,
+        "terminal_report_ms": 7.425551,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 628.507507,
+        "optimized_full_ms": 361.108326,
+        "incremental_ingest_p95_ms": 2.3193993999999996,
+        "terminal_report_ms": 13.879859,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3043,
+    "evidence_sha256": "16c894734996855d28d03818a4a8783e4dcb03042458b5b5d7065588c8e8d933",
+    "stream": {
+      "healthy": {
+        "reference_ms": 799.867496,
+        "optimized_full_ms": 451.182512,
+        "incremental_ingest_p95_ms": 2.086036899999999,
+        "terminal_report_ms": 11.096936,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 893.023517,
+        "optimized_full_ms": 262.466161,
+        "incremental_ingest_p95_ms": 1.9115920999999998,
+        "terminal_report_ms": 7.643328,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3044,
+    "evidence_sha256": "c460b51f6928453215db1290d8940faa5747abede7e6e5824d1af89929974c4b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 588.430587,
+        "optimized_full_ms": 270.34917,
+        "incremental_ingest_p95_ms": 1.4444346,
+        "terminal_report_ms": 7.517757,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 592.877291,
+        "optimized_full_ms": 278.823572,
+        "incremental_ingest_p95_ms": 1.3268855,
+        "terminal_report_ms": 7.678886,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3045,
+    "evidence_sha256": "a7beac1c96bd045ad685051426314755bd92d15ca21ea4fffe4065175f9c86d4",
+    "stream": {
+      "healthy": {
+        "reference_ms": 585.976792,
+        "optimized_full_ms": 251.163147,
+        "incremental_ingest_p95_ms": 1.3555716999999994,
+        "terminal_report_ms": 7.237338,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 595.984852,
+        "optimized_full_ms": 260.297936,
+        "incremental_ingest_p95_ms": 1.3462585999999999,
+        "terminal_report_ms": 7.378453,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3046,
+    "evidence_sha256": "5e617d20cd1085b1cd575e301d89401b7cafb32de0602206b8c61b7bc2d46c9d",
+    "stream": {
+      "healthy": {
+        "reference_ms": 601.24273,
+        "optimized_full_ms": 257.087208,
+        "incremental_ingest_p95_ms": 1.1852445,
+        "terminal_report_ms": 7.260503,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 597.569625,
+        "optimized_full_ms": 254.380838,
+        "incremental_ingest_p95_ms": 1.970591599999999,
+        "terminal_report_ms": 7.589217,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3047,
+    "evidence_sha256": "3a3679816a28a60b084c43717bf870df25f2b628302f99b6836ef58584726584",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.353437,
+        "optimized_full_ms": 251.954752,
+        "incremental_ingest_p95_ms": 1.9215923,
+        "terminal_report_ms": 7.607156,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 594.079733,
+        "optimized_full_ms": 263.103914,
+        "incremental_ingest_p95_ms": 2.3884254999999994,
+        "terminal_report_ms": 10.114324,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3048,
+    "evidence_sha256": "1804b0f3eec7cdcc01430f495e7fffcd27078c7c1f3d0ec785b7de8b8fb84e31",
+    "stream": {
+      "healthy": {
+        "reference_ms": 804.380735,
+        "optimized_full_ms": 437.355347,
+        "incremental_ingest_p95_ms": 2.1928158999999945,
+        "terminal_report_ms": 11.023606,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 831.317861,
+        "optimized_full_ms": 494.988816,
+        "incremental_ingest_p95_ms": 1.6365567,
+        "terminal_report_ms": 7.393586,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3049,
+    "evidence_sha256": "1742f16e4c3af8a01d3d2119e7a1b2f87bc910ac371de21b2893ed2940224e6c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 582.958952,
+        "optimized_full_ms": 248.09252,
+        "incremental_ingest_p95_ms": 1.1554111999999999,
+        "terminal_report_ms": 7.027136,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 630.038655,
+        "optimized_full_ms": 269.418913,
+        "incremental_ingest_p95_ms": 1.3690160999999998,
+        "terminal_report_ms": 7.694166,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3050,
+    "evidence_sha256": "bd89be9542cb62b80615cbfc541a0cfef7c48ea0f1a4bf1e1545d0d99f8ceadf",
+    "stream": {
+      "healthy": {
+        "reference_ms": 611.757053,
+        "optimized_full_ms": 244.073228,
+        "incremental_ingest_p95_ms": 1.9114689999999996,
+        "terminal_report_ms": 7.217316,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 610.607708,
+        "optimized_full_ms": 272.563035,
+        "incremental_ingest_p95_ms": 1.6210588999999997,
+        "terminal_report_ms": 7.491984,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3051,
+    "evidence_sha256": "d4e347952cb47db39de103b9f5c68394195d1f1c7932f15feadebd5d559b85ec",
+    "stream": {
+      "healthy": {
+        "reference_ms": 578.027039,
+        "optimized_full_ms": 273.404121,
+        "incremental_ingest_p95_ms": 1.1912022,
+        "terminal_report_ms": 7.54935,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 590.879723,
+        "optimized_full_ms": 273.580683,
+        "incremental_ingest_p95_ms": 1.2915805,
+        "terminal_report_ms": 7.454388,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3052,
+    "evidence_sha256": "652cfa7d3fbd576a42c5b2aa159bdf366083b421c02c34a6be2721b028426a16",
+    "stream": {
+      "healthy": {
+        "reference_ms": 600.320289,
+        "optimized_full_ms": 254.197485,
+        "incremental_ingest_p95_ms": 1.1709237,
+        "terminal_report_ms": 7.283189,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 626.53482,
+        "optimized_full_ms": 267.973773,
+        "incremental_ingest_p95_ms": 1.5098876999999997,
+        "terminal_report_ms": 7.471602,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3053,
+    "evidence_sha256": "482274f277a32404f273616c4424bf5a9be3ade65c39bd7b81eafdf8e9913c0c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 762.559313,
+        "optimized_full_ms": 443.084639,
+        "incremental_ingest_p95_ms": 1.9816757999999999,
+        "terminal_report_ms": 10.904636,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 858.594873,
+        "optimized_full_ms": 468.19355,
+        "incremental_ingest_p95_ms": 3.2187920999999995,
+        "terminal_report_ms": 7.680958,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3054,
+    "evidence_sha256": "33fc918d613267986ade2114108bd461abb2f177932b40430a6cf5d7f3fdf922",
+    "stream": {
+      "healthy": {
+        "reference_ms": 592.965574,
+        "optimized_full_ms": 255.13785,
+        "incremental_ingest_p95_ms": 1.512610899999999,
+        "terminal_report_ms": 7.367539,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 636.960227,
+        "optimized_full_ms": 297.250431,
+        "incremental_ingest_p95_ms": 1.4129625,
+        "terminal_report_ms": 7.436455,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3055,
+    "evidence_sha256": "fba9a97ff3d4942fad8f88b403ec251ee8bdad8cb0820f92acdd2f8a83f157bb",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.942502,
+        "optimized_full_ms": 259.479623,
+        "incremental_ingest_p95_ms": 1.2097169999999993,
+        "terminal_report_ms": 7.20819,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 623.306017,
+        "optimized_full_ms": 263.505335,
+        "incremental_ingest_p95_ms": 1.3828766,
+        "terminal_report_ms": 7.398201,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3056,
+    "evidence_sha256": "4a61b908decfa30f1d21241e3033987510bda569605e7a6911a6715489128455",
+    "stream": {
+      "healthy": {
+        "reference_ms": 592.415375,
+        "optimized_full_ms": 247.482215,
+        "incremental_ingest_p95_ms": 1.9979268,
+        "terminal_report_ms": 9.857022,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 623.914631,
+        "optimized_full_ms": 276.623655,
+        "incremental_ingest_p95_ms": 1.9533857999999997,
+        "terminal_report_ms": 7.566343,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3057,
+    "evidence_sha256": "488179676ce1cbbb5fee0227e8caca1bd986797f81acdf27ed31b5872dee33cd",
+    "stream": {
+      "healthy": {
+        "reference_ms": 574.725805,
+        "optimized_full_ms": 252.577147,
+        "incremental_ingest_p95_ms": 1.54853,
+        "terminal_report_ms": 7.225388,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 599.031614,
+        "optimized_full_ms": 292.747469,
+        "incremental_ingest_p95_ms": 1.4041157,
+        "terminal_report_ms": 7.451695,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3058,
+    "evidence_sha256": "26e14005942c27bbb92be75a4ab02b6a97a915278d894d7a2ffef48a8f2d8f89",
+    "stream": {
+      "healthy": {
+        "reference_ms": 695.184525,
+        "optimized_full_ms": 421.907721,
+        "incremental_ingest_p95_ms": 2.1003249999999998,
+        "terminal_report_ms": 11.41353,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 797.210832,
+        "optimized_full_ms": 475.930574,
+        "incremental_ingest_p95_ms": 2.4736347,
+        "terminal_report_ms": 11.783479,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3059,
+    "evidence_sha256": "876199c9323b97794d7eb8d5d4581809b9cdc18ae6301a5d3ba763126113851c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 687.713185,
+        "optimized_full_ms": 254.532652,
+        "incremental_ingest_p95_ms": 1.2620673999999998,
+        "terminal_report_ms": 7.219038,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 613.795794,
+        "optimized_full_ms": 279.854282,
+        "incremental_ingest_p95_ms": 1.9272163,
+        "terminal_report_ms": 7.560557,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3060,
+    "evidence_sha256": "7fbc7403195efd550e5c1adbbac01e4f643b07172ea4484947ddfe302666e567",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.102455,
+        "optimized_full_ms": 248.183764,
+        "incremental_ingest_p95_ms": 1.6013521999999998,
+        "terminal_report_ms": 7.158545,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 593.444085,
+        "optimized_full_ms": 280.713607,
+        "incremental_ingest_p95_ms": 1.3194524999999995,
+        "terminal_report_ms": 7.52009,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3061,
+    "evidence_sha256": "f9181eb388a61e3e21fe9c85f0b197014682fb3e583a761a218c95e91ac225cb",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.26433,
+        "optimized_full_ms": 250.560364,
+        "incremental_ingest_p95_ms": 1.2963461999999997,
+        "terminal_report_ms": 7.961898,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 599.143954,
+        "optimized_full_ms": 254.191335,
+        "incremental_ingest_p95_ms": 1.3387498999999996,
+        "terminal_report_ms": 7.387719,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3062,
+    "evidence_sha256": "3da598b2c8045ce76aea7577dcddf4e6f528c26640d70efb25dd9d2e522cd37b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 620.508404,
+        "optimized_full_ms": 254.679891,
+        "incremental_ingest_p95_ms": 1.2343175999999998,
+        "terminal_report_ms": 7.224886,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 623.998213,
+        "optimized_full_ms": 276.343051,
+        "incremental_ingest_p95_ms": 2.2667349999999997,
+        "terminal_report_ms": 7.603391,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3063,
+    "evidence_sha256": "7d59bef6b7e2be35d097d70da76b4d51721521fba419651b5ea7ea28d32cee99",
+    "stream": {
+      "healthy": {
+        "reference_ms": 608.880481,
+        "optimized_full_ms": 456.102873,
+        "incremental_ingest_p95_ms": 1.9282323,
+        "terminal_report_ms": 10.865122,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 800.562926,
+        "optimized_full_ms": 434.214586,
+        "incremental_ingest_p95_ms": 2.3716918999999996,
+        "terminal_report_ms": 11.227869,
+        "max_prob_abs_error": 3.469446951953614e-18
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3064,
+    "evidence_sha256": "405337a5bd32428deb42f2efcaee2cd81ae25205f83484fc13d9914848f0b0b6",
+    "stream": {
+      "healthy": {
+        "reference_ms": 830.315581,
+        "optimized_full_ms": 270.113658,
+        "incremental_ingest_p95_ms": 1.2307443999999998,
+        "terminal_report_ms": 7.339857,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 615.477951,
+        "optimized_full_ms": 272.381989,
+        "incremental_ingest_p95_ms": 1.4229569999999998,
+        "terminal_report_ms": 7.452134,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3065,
+    "evidence_sha256": "95dca0fbd052d55b7fae2337576091ec76f30a53c186596c1ed967b0f0d19c65",
+    "stream": {
+      "healthy": {
+        "reference_ms": 621.853435,
+        "optimized_full_ms": 263.981112,
+        "incremental_ingest_p95_ms": 1.1986198999999997,
+        "terminal_report_ms": 7.161536,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 609.918882,
+        "optimized_full_ms": 253.607454,
+        "incremental_ingest_p95_ms": 2.144164199999999,
+        "terminal_report_ms": 7.351987,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3066,
+    "evidence_sha256": "6dd1958054b72e2021101177c11539c2e3a961de6ba8dd5d8f531e5339f82513",
+    "stream": {
+      "healthy": {
+        "reference_ms": 585.583008,
+        "optimized_full_ms": 249.597506,
+        "incremental_ingest_p95_ms": 1.9422533,
+        "terminal_report_ms": 7.184337,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 588.082093,
+        "optimized_full_ms": 262.549855,
+        "incremental_ingest_p95_ms": 1.5719898999999997,
+        "terminal_report_ms": 7.532071,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3067,
+    "evidence_sha256": "12db9fd90250bcdba1e07f6f0799c2a7cf3f513d8bff1455900d0bace33054dc",
+    "stream": {
+      "healthy": {
+        "reference_ms": 584.316312,
+        "optimized_full_ms": 272.758611,
+        "incremental_ingest_p95_ms": 1.2028764999999997,
+        "terminal_report_ms": 7.325194,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 603.652272,
+        "optimized_full_ms": 262.356091,
+        "incremental_ingest_p95_ms": 1.4658403999999998,
+        "terminal_report_ms": 7.515468,
+        "max_prob_abs_error": 6.938893903907228e-18
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3068,
+    "evidence_sha256": "fb308e55add88439d194e1296a6931ea77bc34912a5e624a97e537d06b2f8f25",
+    "stream": {
+      "healthy": {
+        "reference_ms": 592.061,
+        "optimized_full_ms": 362.739899,
+        "incremental_ingest_p95_ms": 2.0313566,
+        "terminal_report_ms": 11.257013,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 812.853189,
+        "optimized_full_ms": 449.229728,
+        "incremental_ingest_p95_ms": 2.3352598999999996,
+        "terminal_report_ms": 11.388965,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3069,
+    "evidence_sha256": "7ed2b0e099b8a19e0c4da6212630ba99763a5af1c1b837a5164fbafc39b5c5fc",
+    "stream": {
+      "healthy": {
+        "reference_ms": 864.973916,
+        "optimized_full_ms": 252.327427,
+        "incremental_ingest_p95_ms": 1.9058434999999994,
+        "terminal_report_ms": 7.128203,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 587.00832,
+        "optimized_full_ms": 258.69084,
+        "incremental_ingest_p95_ms": 1.9341857999999998,
+        "terminal_report_ms": 7.369736,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3070,
+    "evidence_sha256": "b459d72bb164e913702e2de8be692f74a38bf66ffccb3e1f08187e73e32f1593",
+    "stream": {
+      "healthy": {
+        "reference_ms": 595.994049,
+        "optimized_full_ms": 254.900472,
+        "incremental_ingest_p95_ms": 1.5479567999999995,
+        "terminal_report_ms": 7.45905,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 590.479447,
+        "optimized_full_ms": 275.096182,
+        "incremental_ingest_p95_ms": 1.3606368999999998,
+        "terminal_report_ms": 7.350804,
+        "max_prob_abs_error": 6.938893903907228e-18
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3071,
+    "evidence_sha256": "79c9f1e6c616cae5c5069520637c28209af742000165459ba2233c6320c61cc2",
+    "stream": {
+      "healthy": {
+        "reference_ms": 590.019035,
+        "optimized_full_ms": 260.232173,
+        "incremental_ingest_p95_ms": 1.1719537,
+        "terminal_report_ms": 7.371711,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 587.856945,
+        "optimized_full_ms": 271.429372,
+        "incremental_ingest_p95_ms": 1.3257535999999994,
+        "terminal_report_ms": 7.39352,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3072,
+    "evidence_sha256": "7da96d044f4bcf0dae49def73f4dd79e63783105598db04e11c18cd12d5742ed",
+    "stream": {
+      "healthy": {
+        "reference_ms": 603.321944,
+        "optimized_full_ms": 247.735502,
+        "incremental_ingest_p95_ms": 1.1718820999999997,
+        "terminal_report_ms": 8.294166,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 631.501897,
+        "optimized_full_ms": 270.044965,
+        "incremental_ingest_p95_ms": 2.2804682999999986,
+        "terminal_report_ms": 7.671384,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3073,
+    "evidence_sha256": "8858c878279f4525c01f6aab04064dc3364dfde277555ec37405a261fb3c626b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 600.649266,
+        "optimized_full_ms": 251.002409,
+        "incremental_ingest_p95_ms": 2.1956900999999993,
+        "terminal_report_ms": 11.181236,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 869.420406,
+        "optimized_full_ms": 445.682593,
+        "incremental_ingest_p95_ms": 2.4145505999999948,
+        "terminal_report_ms": 12.049395,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3074,
+    "evidence_sha256": "f6f1d0a68c82470864972ad7a7c1132f84105d9419e60e77d138fd6e2994fb95",
+    "stream": {
+      "healthy": {
+        "reference_ms": 816.088648,
+        "optimized_full_ms": 460.891161,
+        "incremental_ingest_p95_ms": 1.5231411,
+        "terminal_report_ms": 7.210109,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 620.996608,
+        "optimized_full_ms": 270.359397,
+        "incremental_ingest_p95_ms": 1.3956176999999999,
+        "terminal_report_ms": 7.543131,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3075,
+    "evidence_sha256": "75db4a80d2dc389100fa2048a9604147c70fee7ade3940f51ef677c2a17e5e91",
+    "stream": {
+      "healthy": {
+        "reference_ms": 600.018168,
+        "optimized_full_ms": 251.439829,
+        "incremental_ingest_p95_ms": 1.2892044999999999,
+        "terminal_report_ms": 7.55056,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 606.618883,
+        "optimized_full_ms": 265.861205,
+        "incremental_ingest_p95_ms": 1.29203,
+        "terminal_report_ms": 7.344353,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3076,
+    "evidence_sha256": "2656cab4190d1f3b69162781dffcdfbf5907acfbd1d493817b042e05b10be699",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.75333,
+        "optimized_full_ms": 262.109653,
+        "incremental_ingest_p95_ms": 1.9185426999999995,
+        "terminal_report_ms": 8.07498,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 595.692539,
+        "optimized_full_ms": 279.718976,
+        "incremental_ingest_p95_ms": 1.5834347999999996,
+        "terminal_report_ms": 7.326968,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3077,
+    "evidence_sha256": "7c9e6da2db3fd3778103efccce3fdae299e1d78b5697f5907f243844b3356a65",
+    "stream": {
+      "healthy": {
+        "reference_ms": 583.676589,
+        "optimized_full_ms": 273.834565,
+        "incremental_ingest_p95_ms": 1.1991208999999996,
+        "terminal_report_ms": 7.32312,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 606.053649,
+        "optimized_full_ms": 278.497638,
+        "incremental_ingest_p95_ms": 1.3818523999999996,
+        "terminal_report_ms": 7.420969,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3078,
+    "evidence_sha256": "b762c96d059b37fda01299251bbfd239e97d045bb7ad8f80b654556e04c99ebd",
+    "stream": {
+      "healthy": {
+        "reference_ms": 581.712299,
+        "optimized_full_ms": 258.779083,
+        "incremental_ingest_p95_ms": 1.1710109,
+        "terminal_report_ms": 7.145893,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 773.358503,
+        "optimized_full_ms": 448.105279,
+        "incremental_ingest_p95_ms": 2.240362799999998,
+        "terminal_report_ms": 11.604812,
+        "max_prob_abs_error": 2.168404344971009e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3079,
+    "evidence_sha256": "bb9a97a5e1f8b2c03bd6ce5e2c61f39acbe5aac18cfa6d18a9e4b6d77148b168",
+    "stream": {
+      "healthy": {
+        "reference_ms": 868.739875,
+        "optimized_full_ms": 435.865525,
+        "incremental_ingest_p95_ms": 2.4261323999999944,
+        "terminal_report_ms": 7.252082,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 593.564243,
+        "optimized_full_ms": 256.385198,
+        "incremental_ingest_p95_ms": 1.855635699999999,
+        "terminal_report_ms": 7.735324,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3080,
+    "evidence_sha256": "13799e724c39ffe5e565dd7e62a899bb102fe8ac33a71939817b3a056dbac74f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 582.979161,
+        "optimized_full_ms": 271.245759,
+        "incremental_ingest_p95_ms": 1.2216891999999997,
+        "terminal_report_ms": 7.314096,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 598.445301,
+        "optimized_full_ms": 288.945952,
+        "incremental_ingest_p95_ms": 1.4034245,
+        "terminal_report_ms": 7.454521,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3081,
+    "evidence_sha256": "93573633f93ff46baddf39b5a68f2d42a886935736620b1d4c6136fdab2cd508",
+    "stream": {
+      "healthy": {
+        "reference_ms": 588.322496,
+        "optimized_full_ms": 248.940906,
+        "incremental_ingest_p95_ms": 1.1675779,
+        "terminal_report_ms": 7.189594,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 607.559622,
+        "optimized_full_ms": 260.239728,
+        "incremental_ingest_p95_ms": 1.366554,
+        "terminal_report_ms": 7.410837,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3082,
+    "evidence_sha256": "6a6e71865b4effd614bce3228aa076a67825749efe3ea7dda5cf4e3764ea8a49",
+    "stream": {
+      "healthy": {
+        "reference_ms": 602.523111,
+        "optimized_full_ms": 249.51203,
+        "incremental_ingest_p95_ms": 1.3480860999999995,
+        "terminal_report_ms": 7.419856,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 620.599543,
+        "optimized_full_ms": 265.795091,
+        "incremental_ingest_p95_ms": 1.9873392999999993,
+        "terminal_report_ms": 7.436322,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3083,
+    "evidence_sha256": "f954581e774bccf41c5cdd34126d1a89d5a40041046eb2e7c24f38efa0d26579",
+    "stream": {
+      "healthy": {
+        "reference_ms": 576.370905,
+        "optimized_full_ms": 265.680999,
+        "incremental_ingest_p95_ms": 1.59157,
+        "terminal_report_ms": 7.225649,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 630.746567,
+        "optimized_full_ms": 470.185585,
+        "incremental_ingest_p95_ms": 2.7318477999999997,
+        "terminal_report_ms": 11.436387,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3084,
+    "evidence_sha256": "178548065eefe6bcbe97825c81a7569f526d02ee84d6835fb22a41f49da2ccef",
+    "stream": {
+      "healthy": {
+        "reference_ms": 778.658826,
+        "optimized_full_ms": 434.245128,
+        "incremental_ingest_p95_ms": 2.068704099999999,
+        "terminal_report_ms": 9.803832,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 788.152401,
+        "optimized_full_ms": 258.750717,
+        "incremental_ingest_p95_ms": 1.2470972999999999,
+        "terminal_report_ms": 7.499449,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3085,
+    "evidence_sha256": "ea47ff8ba79adc111c1ae26a321aa2bd97e0e59d826670334887a889842aa655",
+    "stream": {
+      "healthy": {
+        "reference_ms": 593.27591,
+        "optimized_full_ms": 265.080922,
+        "incremental_ingest_p95_ms": 1.1794262999999998,
+        "terminal_report_ms": 7.033322,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.4722,
+        "optimized_full_ms": 256.940858,
+        "incremental_ingest_p95_ms": 1.3105552999999999,
+        "terminal_report_ms": 11.58219,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3086,
+    "evidence_sha256": "99652895d1e9cf59ede9f7c36404173430d0cdf60521eb62e67a77b3fa009e1b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 589.541756,
+        "optimized_full_ms": 249.871701,
+        "incremental_ingest_p95_ms": 1.9318973999999995,
+        "terminal_report_ms": 8.412037,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 599.880626,
+        "optimized_full_ms": 259.428939,
+        "incremental_ingest_p95_ms": 1.6379442,
+        "terminal_report_ms": 7.889614,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3087,
+    "evidence_sha256": "b1bc0eaf6cba88603735574c2cb4dbabbe65820a3f91cd9ebd2f6360af96ebcc",
+    "stream": {
+      "healthy": {
+        "reference_ms": 577.029295,
+        "optimized_full_ms": 274.345649,
+        "incremental_ingest_p95_ms": 1.1957096999999999,
+        "terminal_report_ms": 7.238078,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 605.785012,
+        "optimized_full_ms": 279.064525,
+        "incremental_ingest_p95_ms": 1.4098534999999996,
+        "terminal_report_ms": 7.271403,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3088,
+    "evidence_sha256": "9a0c8784118e7b9edee77318a4fdd0dc268d5667a1c980a3364fce562c103dd2",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.438698,
+        "optimized_full_ms": 260.873505,
+        "incremental_ingest_p95_ms": 1.2609834,
+        "terminal_report_ms": 7.11788,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 632.28562,
+        "optimized_full_ms": 418.497039,
+        "incremental_ingest_p95_ms": 2.4383396999999998,
+        "terminal_report_ms": 11.285271,
+        "max_prob_abs_error": 5.551115123125783e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3089,
+    "evidence_sha256": "4d3b9a8dad3cf519e9699f2a433996bd62eb1d2f77e0747501b9fffb129eeb9e",
+    "stream": {
+      "healthy": {
+        "reference_ms": 799.225154,
+        "optimized_full_ms": 435.353367,
+        "incremental_ingest_p95_ms": 2.0773818,
+        "terminal_report_ms": 11.218398,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 903.20824,
+        "optimized_full_ms": 304.544472,
+        "incremental_ingest_p95_ms": 1.4050234,
+        "terminal_report_ms": 7.388573,
+        "max_prob_abs_error": 2.168404344971009e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3090,
+    "evidence_sha256": "4fc71cee8ab3762e35ec0d603ca8b5cfcfdf99d37d54a05e18dba4f6a1b4c114",
+    "stream": {
+      "healthy": {
+        "reference_ms": 584.98525,
+        "optimized_full_ms": 267.779644,
+        "incremental_ingest_p95_ms": 1.1854449,
+        "terminal_report_ms": 7.392549,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 612.975952,
+        "optimized_full_ms": 259.08479,
+        "incremental_ingest_p95_ms": 1.268224,
+        "terminal_report_ms": 7.415571,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3091,
+    "evidence_sha256": "68587fd8f8ae2386943d472a735ab19e0f3dcbb9a270406a2da632ae38c1b265",
+    "stream": {
+      "healthy": {
+        "reference_ms": 585.15391,
+        "optimized_full_ms": 253.528823,
+        "incremental_ingest_p95_ms": 1.3667412999999997,
+        "terminal_report_ms": 7.467387,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 598.850843,
+        "optimized_full_ms": 254.353739,
+        "incremental_ingest_p95_ms": 1.4850737999999994,
+        "terminal_report_ms": 7.285293,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3092,
+    "evidence_sha256": "221095429d6902d4a93a8953208328efc441c6bf63287208dee30d952f856299",
+    "stream": {
+      "healthy": {
+        "reference_ms": 597.99452,
+        "optimized_full_ms": 259.922971,
+        "incremental_ingest_p95_ms": 1.9266855999999999,
+        "terminal_report_ms": 7.444397,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 587.231603,
+        "optimized_full_ms": 264.970307,
+        "incremental_ingest_p95_ms": 1.9377798,
+        "terminal_report_ms": 7.395773,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3093,
+    "evidence_sha256": "6aafe94caddbaa4af153efa57b4351412dafcdf61ef1b2cb9bbcc91f5ec04c26",
+    "stream": {
+      "healthy": {
+        "reference_ms": 576.921728,
+        "optimized_full_ms": 249.847091,
+        "incremental_ingest_p95_ms": 1.5888297999999998,
+        "terminal_report_ms": 7.315586,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 588.756993,
+        "optimized_full_ms": 296.644538,
+        "incremental_ingest_p95_ms": 2.325964899999999,
+        "terminal_report_ms": 11.269417,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3094,
+    "evidence_sha256": "c445da3c1f9125201650a0c0e508cb8aa844064bd7d2807dd642c000132d10db",
+    "stream": {
+      "healthy": {
+        "reference_ms": 806.742318,
+        "optimized_full_ms": 418.048209,
+        "incremental_ingest_p95_ms": 2.0517217999999997,
+        "terminal_report_ms": 10.964553,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 880.134106,
+        "optimized_full_ms": 345.12788,
+        "incremental_ingest_p95_ms": 1.2842958999999998,
+        "terminal_report_ms": 7.39548,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3095,
+    "evidence_sha256": "29cf54e99c11f7cdffed8cc10ad45a941873167f5a70e8e26e372ab86d711a8f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 612.412047,
+        "optimized_full_ms": 256.499147,
+        "incremental_ingest_p95_ms": 1.2476898,
+        "terminal_report_ms": 7.389877,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 619.203776,
+        "optimized_full_ms": 266.376611,
+        "incremental_ingest_p95_ms": 2.1511275,
+        "terminal_report_ms": 8.160062,
+        "max_prob_abs_error": 5.551115123125783e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3096,
+    "evidence_sha256": "dcb124bb520c4e248d89f26cbed756b08b430164126c26494943471e976401dc",
+    "stream": {
+      "healthy": {
+        "reference_ms": 585.878658,
+        "optimized_full_ms": 247.308612,
+        "incremental_ingest_p95_ms": 1.9096479999999993,
+        "terminal_report_ms": 7.436475,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 586.71125,
+        "optimized_full_ms": 284.227468,
+        "incremental_ingest_p95_ms": 1.4147339999999997,
+        "terminal_report_ms": 7.500077,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3097,
+    "evidence_sha256": "8778cd869e5c60c5705c57add52478753ced00897965d417ec7b256655a368ec",
+    "stream": {
+      "healthy": {
+        "reference_ms": 579.057301,
+        "optimized_full_ms": 274.790911,
+        "incremental_ingest_p95_ms": 1.1403496,
+        "terminal_report_ms": 7.194943,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 593.883147,
+        "optimized_full_ms": 275.689513,
+        "incremental_ingest_p95_ms": 1.3721581999999999,
+        "terminal_report_ms": 7.818076,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3098,
+    "evidence_sha256": "4dda6a1a53d357b498f0469faa3af3609a709466f68ea67c694c844f9ef22eff",
+    "stream": {
+      "healthy": {
+        "reference_ms": 587.456233,
+        "optimized_full_ms": 251.20623,
+        "incremental_ingest_p95_ms": 1.2057703999999998,
+        "terminal_report_ms": 7.171642,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.35916,
+        "optimized_full_ms": 259.682926,
+        "incremental_ingest_p95_ms": 2.3661056,
+        "terminal_report_ms": 11.967797,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3099,
+    "evidence_sha256": "dadf91eb9538ae6e077c21f915684266d3f06f8902483d67cf716a4f521a1c86",
+    "stream": {
+      "healthy": {
+        "reference_ms": 821.506369,
+        "optimized_full_ms": 445.410496,
+        "incremental_ingest_p95_ms": 1.9998071999999998,
+        "terminal_report_ms": 12.036324,
+        "max_prob_abs_error": 3.469446951953614e-18
+      },
+      "injected": {
+        "reference_ms": 869.531728,
+        "optimized_full_ms": 482.3963,
+        "incremental_ingest_p95_ms": 1.9682849,
+        "terminal_report_ms": 7.397252,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3100,
+    "evidence_sha256": "2d2928be4520a7e570f22fde386cf8a19b995c96d90c5f0c5b4d0714f25e1b90",
+    "stream": {
+      "healthy": {
+        "reference_ms": 599.211117,
+        "optimized_full_ms": 277.080637,
+        "incremental_ingest_p95_ms": 1.2212108,
+        "terminal_report_ms": 7.546898,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.406672,
+        "optimized_full_ms": 278.747849,
+        "incremental_ingest_p95_ms": 1.3194574,
+        "terminal_report_ms": 7.421217,
+        "max_prob_abs_error": 1.734723475976807e-18
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3101,
+    "evidence_sha256": "c4b5d6cdb70387c7523ff0dd33e5ff7251a2eeecd8c0bacb40ca4f2703b97ef2",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.335441,
+        "optimized_full_ms": 263.145616,
+        "incremental_ingest_p95_ms": 1.2537987999999995,
+        "terminal_report_ms": 7.296841,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 608.686617,
+        "optimized_full_ms": 267.806684,
+        "incremental_ingest_p95_ms": 1.3354104999999998,
+        "terminal_report_ms": 7.481184,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3102,
+    "evidence_sha256": "72b5333176dfecb5aaa154d9ca07f4493aa945278abc6ca7e1e6478831b55166",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.279196,
+        "optimized_full_ms": 251.847575,
+        "incremental_ingest_p95_ms": 1.1775014,
+        "terminal_report_ms": 7.113572,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 611.424609,
+        "optimized_full_ms": 259.029146,
+        "incremental_ingest_p95_ms": 2.0754753999999993,
+        "terminal_report_ms": 7.554636,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3103,
+    "evidence_sha256": "f0b8e117e5901942ad586f735dacc2bd06181adbedf5e977069600dd127d25d3",
+    "stream": {
+      "healthy": {
+        "reference_ms": 588.915818,
+        "optimized_full_ms": 249.249548,
+        "incremental_ingest_p95_ms": 1.6114114,
+        "terminal_report_ms": 7.285744,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 588.613308,
+        "optimized_full_ms": 276.205127,
+        "incremental_ingest_p95_ms": 1.3932163999999998,
+        "terminal_report_ms": 7.421219,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3104,
+    "evidence_sha256": "86e726f78237e5b19cfa497878a2ce5dcb535df75dca6df57535117120e3dc08",
+    "stream": {
+      "healthy": {
+        "reference_ms": 672.723329,
+        "optimized_full_ms": 451.946443,
+        "incremental_ingest_p95_ms": 1.9105196,
+        "terminal_report_ms": 11.095285,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 823.221653,
+        "optimized_full_ms": 476.349862,
+        "incremental_ingest_p95_ms": 2.4110699999999996,
+        "terminal_report_ms": 12.92694,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3105,
+    "evidence_sha256": "046b3bb859203404066adb28e4d9f8706d44b315156e0629269aebe41eb389d7",
+    "stream": {
+      "healthy": {
+        "reference_ms": 658.926739,
+        "optimized_full_ms": 247.56905,
+        "incremental_ingest_p95_ms": 1.3131658,
+        "terminal_report_ms": 7.170139,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 601.912426,
+        "optimized_full_ms": 259.183541,
+        "incremental_ingest_p95_ms": 1.3429054999999996,
+        "terminal_report_ms": 8.093768,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3106,
+    "evidence_sha256": "feee465ec29e45b8c2208b8b711c0dac0e0f17e3d4f63fafeede5dfbda60a0b6",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.822252,
+        "optimized_full_ms": 254.721085,
+        "incremental_ingest_p95_ms": 1.9291693999999993,
+        "terminal_report_ms": 7.143145,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.44302,
+        "optimized_full_ms": 266.223754,
+        "incremental_ingest_p95_ms": 1.6183961999999996,
+        "terminal_report_ms": 7.523166,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3107,
+    "evidence_sha256": "d258f00fd0bbef162d5414463f09a74b89f9978427fe979c32e4eea54fbdd08b",
+    "stream": {
+      "healthy": {
+        "reference_ms": 599.943312,
+        "optimized_full_ms": 282.205067,
+        "incremental_ingest_p95_ms": 1.1937069999999999,
+        "terminal_report_ms": 7.211509,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.025975,
+        "optimized_full_ms": 278.933739,
+        "incremental_ingest_p95_ms": 1.4706212999999988,
+        "terminal_report_ms": 7.52896,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3108,
+    "evidence_sha256": "57f03d42814e5b68d690f4c45e6b5eea14ecc5af69635c5fe42ba16b75cec64f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 623.470134,
+        "optimized_full_ms": 253.69982,
+        "incremental_ingest_p95_ms": 1.1630182,
+        "terminal_report_ms": 7.489686,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.738126,
+        "optimized_full_ms": 275.56176,
+        "incremental_ingest_p95_ms": 1.3929993,
+        "terminal_report_ms": 7.341451,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3109,
+    "evidence_sha256": "cbd731e742d3b3193734d2a6d179e8ad51182e15c857147d7d108eafd6bbf4f5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 626.091678,
+        "optimized_full_ms": 433.613582,
+        "incremental_ingest_p95_ms": 2.0955517,
+        "terminal_report_ms": 10.908996,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 836.386676,
+        "optimized_full_ms": 461.662992,
+        "incremental_ingest_p95_ms": 3.190250899999998,
+        "terminal_report_ms": 13.64902,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3110,
+    "evidence_sha256": "68f83f3c701093dee19ba27a2342b428d01aaebf7ce8c75efbfcb818e7c1b4a5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 737.038657,
+        "optimized_full_ms": 270.472507,
+        "incremental_ingest_p95_ms": 1.2618915,
+        "terminal_report_ms": 7.078531,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 591.320285,
+        "optimized_full_ms": 291.586566,
+        "incremental_ingest_p95_ms": 1.3189786999999997,
+        "terminal_report_ms": 7.212229,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3111,
+    "evidence_sha256": "45c0c23907503d18a28323e4bd300852c5b401e4ed90cb47c2febd912e1cc495",
+    "stream": {
+      "healthy": {
+        "reference_ms": 586.944784,
+        "optimized_full_ms": 252.915084,
+        "incremental_ingest_p95_ms": 1.1889991999999998,
+        "terminal_report_ms": 7.303561,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 624.656505,
+        "optimized_full_ms": 265.058135,
+        "incremental_ingest_p95_ms": 1.3093533999999998,
+        "terminal_report_ms": 7.464293,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3112,
+    "evidence_sha256": "8a9d2f9d4b25502e1d185724401ca7a32110cb918b693727a3daeed3628f0da6",
+    "stream": {
+      "healthy": {
+        "reference_ms": 609.955393,
+        "optimized_full_ms": 254.813833,
+        "incremental_ingest_p95_ms": 1.3118937,
+        "terminal_report_ms": 8.289801,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.958,
+        "optimized_full_ms": 258.84484,
+        "incremental_ingest_p95_ms": 1.9405982999999998,
+        "terminal_report_ms": 7.466259,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3113,
+    "evidence_sha256": "0536fd21437e7c8e67405ebcd90ee428ced4b1f2614bfa5ad0cfd69b742ea866",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.357881,
+        "optimized_full_ms": 276.468048,
+        "incremental_ingest_p95_ms": 1.5101592,
+        "terminal_report_ms": 7.269411,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 608.571886,
+        "optimized_full_ms": 298.365868,
+        "incremental_ingest_p95_ms": 1.3534008,
+        "terminal_report_ms": 7.548911,
+        "max_prob_abs_error": 4.336808689942018e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3114,
+    "evidence_sha256": "0755f155aca27a5c617c4bed5f06cc348f62d8c52269cdbef84f9dfe84250212",
+    "stream": {
+      "healthy": {
+        "reference_ms": 597.673448,
+        "optimized_full_ms": 443.073802,
+        "incremental_ingest_p95_ms": 1.9588908999999999,
+        "terminal_report_ms": 11.368279,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 812.431717,
+        "optimized_full_ms": 454.125461,
+        "incremental_ingest_p95_ms": 2.292847099999999,
+        "terminal_report_ms": 11.386684,
+        "max_prob_abs_error": 5.551115123125783e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3115,
+    "evidence_sha256": "ed627caa3e6b1c28e3abfd15bddb2ba46970e833711e274eec443b16a4eeb995",
+    "stream": {
+      "healthy": {
+        "reference_ms": 833.373307,
+        "optimized_full_ms": 249.316324,
+        "incremental_ingest_p95_ms": 1.1497406000000001,
+        "terminal_report_ms": 7.105507,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 611.796148,
+        "optimized_full_ms": 252.686445,
+        "incremental_ingest_p95_ms": 1.9514925999999997,
+        "terminal_report_ms": 7.363968,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3116,
+    "evidence_sha256": "83347d13ceadfda389be024112bd19d8575e7ea9d9638d610ccf9fd964c1560f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 587.27961,
+        "optimized_full_ms": 249.951055,
+        "incremental_ingest_p95_ms": 1.5783260999999997,
+        "terminal_report_ms": 7.122448,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 601.701169,
+        "optimized_full_ms": 279.531786,
+        "incremental_ingest_p95_ms": 1.4030310999999998,
+        "terminal_report_ms": 7.845869,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3117,
+    "evidence_sha256": "0104941e9f221bc2cd31b9fade421c1a8f31e78b6bf4cfa9312e4ed34939e8c0",
+    "stream": {
+      "healthy": {
+        "reference_ms": 581.265968,
+        "optimized_full_ms": 286.840313,
+        "incremental_ingest_p95_ms": 1.2447945,
+        "terminal_report_ms": 7.317555,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 609.015462,
+        "optimized_full_ms": 268.462726,
+        "incremental_ingest_p95_ms": 1.3213203,
+        "terminal_report_ms": 7.46333,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3118,
+    "evidence_sha256": "4d629ac5d9699caa28fa87157c7048f72e3452e9b8a2d3d28399cafb80bf0c0f",
+    "stream": {
+      "healthy": {
+        "reference_ms": 603.986019,
+        "optimized_full_ms": 250.823542,
+        "incremental_ingest_p95_ms": 1.1993836,
+        "terminal_report_ms": 7.321003,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 614.108054,
+        "optimized_full_ms": 253.282073,
+        "incremental_ingest_p95_ms": 1.2434167999999997,
+        "terminal_report_ms": 7.526437,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 0,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3119,
+    "evidence_sha256": "704c15f95ba5dd85a0dc1f1c1fd91665f6124143a71320555e24dd14173ba19e",
+    "stream": {
+      "healthy": {
+        "reference_ms": 602.997641,
+        "optimized_full_ms": 249.744038,
+        "incremental_ingest_p95_ms": 2.5969227999999984,
+        "terminal_report_ms": 9.681144,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 839.835131,
+        "optimized_full_ms": 446.249362,
+        "incremental_ingest_p95_ms": 2.545515699999998,
+        "terminal_report_ms": 17.73624,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3120,
+    "evidence_sha256": "92e313e9d22c00c7b989f21031e2531900a1253633eea2b9315ca1b023ac968a",
+    "stream": {
+      "healthy": {
+        "reference_ms": 876.091183,
+        "optimized_full_ms": 325.402707,
+        "incremental_ingest_p95_ms": 1.2056425,
+        "terminal_report_ms": 7.201615,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 594.749123,
+        "optimized_full_ms": 267.882047,
+        "incremental_ingest_p95_ms": 1.252392,
+        "terminal_report_ms": 7.321146,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3121,
+    "evidence_sha256": "464aec197d1a2a32c68335b24ddcb45732e0e697e82e6a13f589d00e106f26aa",
+    "stream": {
+      "healthy": {
+        "reference_ms": 594.415057,
+        "optimized_full_ms": 251.798626,
+        "incremental_ingest_p95_ms": 1.3742903999999998,
+        "terminal_report_ms": 7.305069,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 619.832998,
+        "optimized_full_ms": 266.206624,
+        "incremental_ingest_p95_ms": 1.4439492999999997,
+        "terminal_report_ms": 7.32413,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3122,
+    "evidence_sha256": "935c294f8b1391cf6f392efd313792da2dc6ff3720ddc6f892a02ef5e4462bd2",
+    "stream": {
+      "healthy": {
+        "reference_ms": 591.049926,
+        "optimized_full_ms": 255.318849,
+        "incremental_ingest_p95_ms": 2.0744112999999995,
+        "terminal_report_ms": 7.445243,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 597.054659,
+        "optimized_full_ms": 268.577219,
+        "incremental_ingest_p95_ms": 1.9401974999999996,
+        "terminal_report_ms": 7.384989,
+        "max_prob_abs_error": 2.7755575615628914e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3123,
+    "evidence_sha256": "2721abc4e65d05627d205c6b215d883202dc32489ae1702dfd795ae45c52b2e6",
+    "stream": {
+      "healthy": {
+        "reference_ms": 586.382935,
+        "optimized_full_ms": 273.027049,
+        "incremental_ingest_p95_ms": 1.1936905,
+        "terminal_report_ms": 7.446503,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 596.723841,
+        "optimized_full_ms": 286.265954,
+        "incremental_ingest_p95_ms": 1.4680811999999999,
+        "terminal_report_ms": 7.50405,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3124,
+    "evidence_sha256": "278fc2c199b68eea13028a2f0a9926a2f26eff5fc3ab0fc5cb16d6ce75bdca60",
+    "stream": {
+      "healthy": {
+        "reference_ms": 603.129873,
+        "optimized_full_ms": 262.956449,
+        "incremental_ingest_p95_ms": 2.080369899999998,
+        "terminal_report_ms": 11.26995,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 813.799007,
+        "optimized_full_ms": 438.682001,
+        "incremental_ingest_p95_ms": 2.1638066,
+        "terminal_report_ms": 11.403204,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3125,
+    "evidence_sha256": "c62b17b2e7ec007f16fa588842c2132fbc1557564733eb18e31b93f990abdc0c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 858.878235,
+        "optimized_full_ms": 440.700973,
+        "incremental_ingest_p95_ms": 1.7293511,
+        "terminal_report_ms": 7.604114,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 618.473042,
+        "optimized_full_ms": 262.624641,
+        "incremental_ingest_p95_ms": 2.7332830999999955,
+        "terminal_report_ms": 12.74057,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3126,
+    "evidence_sha256": "16762b63846afb960ca907e078bb5eefab09dcb5029211f59865df2b8e1efaa0",
+    "stream": {
+      "healthy": {
+        "reference_ms": 571.092651,
+        "optimized_full_ms": 270.89976,
+        "incremental_ingest_p95_ms": 1.2085186,
+        "terminal_report_ms": 7.43187,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 600.844981,
+        "optimized_full_ms": 297.330959,
+        "incremental_ingest_p95_ms": 1.3837865,
+        "terminal_report_ms": 7.384446,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3127,
+    "evidence_sha256": "5a7f7dba77f46333b851b3ecf8403cdbdeee45cd5c06eb858197fbd58235a90e",
+    "stream": {
+      "healthy": {
+        "reference_ms": 588.522024,
+        "optimized_full_ms": 253.745991,
+        "incremental_ingest_p95_ms": 1.2021983999999997,
+        "terminal_report_ms": 7.163937,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 617.586217,
+        "optimized_full_ms": 258.470087,
+        "incremental_ingest_p95_ms": 1.3806455999999985,
+        "terminal_report_ms": 7.561742,
+        "max_prob_abs_error": 2.168404344971009e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3128,
+    "evidence_sha256": "c38a48a14f2eeac44d720bf254ae1be0debc4d5adc3ef6a20d3b37db5c20d03c",
+    "stream": {
+      "healthy": {
+        "reference_ms": 613.662367,
+        "optimized_full_ms": 262.502302,
+        "incremental_ingest_p95_ms": 1.5198787,
+        "terminal_report_ms": 7.260955,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 622.590946,
+        "optimized_full_ms": 282.986406,
+        "incremental_ingest_p95_ms": 2.0907625000000003,
+        "terminal_report_ms": 7.578423,
+        "max_prob_abs_error": 2.168404344971009e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3129,
+    "evidence_sha256": "85c635c6ab93cf5adac75b3ad3ae1083d4914399b2869bf319bc7f27646f7613",
+    "stream": {
+      "healthy": {
+        "reference_ms": 587.703433,
+        "optimized_full_ms": 268.049192,
+        "incremental_ingest_p95_ms": 1.1963389,
+        "terminal_report_ms": 7.277439,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 842.017292,
+        "optimized_full_ms": 450.467345,
+        "incremental_ingest_p95_ms": 2.1862272000000003,
+        "terminal_report_ms": 11.505563,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3130,
+    "evidence_sha256": "56a093988e8ca838dd97baba3bd0d3fa89f2e76744a87b2fd7afcb2bd8266c38",
+    "stream": {
+      "healthy": {
+        "reference_ms": 812.790698,
+        "optimized_full_ms": 440.215511,
+        "incremental_ingest_p95_ms": 2.1559886999999995,
+        "terminal_report_ms": 8.218094,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 603.350784,
+        "optimized_full_ms": 258.600981,
+        "incremental_ingest_p95_ms": 1.2891379,
+        "terminal_report_ms": 7.425565,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3131,
+    "evidence_sha256": "c8bf73d904268fa7f02731e730b6baf0c7cebfd6103398bfac73ed61b9102e94",
+    "stream": {
+      "healthy": {
+        "reference_ms": 605.915518,
+        "optimized_full_ms": 263.498403,
+        "incremental_ingest_p95_ms": 1.2266173,
+        "terminal_report_ms": 7.47129,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 644.514643,
+        "optimized_full_ms": 278.607397,
+        "incremental_ingest_p95_ms": 2.2547947999999995,
+        "terminal_report_ms": 7.496073,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3132,
+    "evidence_sha256": "3b94c4ae60a377549a0f447899ef5e6a819782af61bfeba9df32484a585b8668",
+    "stream": {
+      "healthy": {
+        "reference_ms": 579.409098,
+        "optimized_full_ms": 248.741496,
+        "incremental_ingest_p95_ms": 1.5959107,
+        "terminal_report_ms": 7.357776,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 612.973564,
+        "optimized_full_ms": 289.925656,
+        "incremental_ingest_p95_ms": 1.4077560999999998,
+        "terminal_report_ms": 7.729963,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3133,
+    "evidence_sha256": "88601dadeb9fe7be05a9c94593a61238d7299ab3b8bceba15c3b4436ee9748d5",
+    "stream": {
+      "healthy": {
+        "reference_ms": 576.956916,
+        "optimized_full_ms": 286.572262,
+        "incremental_ingest_p95_ms": 1.2190542,
+        "terminal_report_ms": 7.205976,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 608.757554,
+        "optimized_full_ms": 265.198345,
+        "incremental_ingest_p95_ms": 1.3855822999999996,
+        "terminal_report_ms": 7.366677,
+        "max_prob_abs_error": 1.0842021724855044e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3134,
+    "evidence_sha256": "37452822082b5d0cfd4eb46aac8e39df3c6a00e95840914171bd654b081e0375",
+    "stream": {
+      "healthy": {
+        "reference_ms": 607.908708,
+        "optimized_full_ms": 251.041563,
+        "incremental_ingest_p95_ms": 1.2458821999999998,
+        "terminal_report_ms": 7.212491,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 704.636714,
+        "optimized_full_ms": 443.546327,
+        "incremental_ingest_p95_ms": 2.189232099999999,
+        "terminal_report_ms": 11.54909,
+        "max_prob_abs_error": 1.1102230246251565e-16
+      }
+    },
+    "rc3_counts": {
+      "tp": 1,
+      "healthy_fp": 0,
+      "neighbor_fp": 1
+    }
+  },
+  {
+    "seed": 3135,
+    "evidence_sha256": "9833e283ef8e434e34b05b53273603da4402202b9174c4eba99971bce7a911d4",
+    "stream": {
+      "healthy": {
+        "reference_ms": 799.883023,
+        "optimized_full_ms": 431.013211,
+        "incremental_ingest_p95_ms": 2.675765899999998,
+        "terminal_report_ms": 11.264455,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 710.8905,
+        "optimized_full_ms": 277.844998,
+        "incremental_ingest_p95_ms": 1.2654841,
+        "terminal_report_ms": 7.28732,
+        "max_prob_abs_error": 1.3877787807814457e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3136,
+    "evidence_sha256": "0184efe457f3aa447af0b98abacd7580bc9aaa9da96d89ce5859e405e79ff092",
+    "stream": {
+      "healthy": {
+        "reference_ms": 578.736873,
+        "optimized_full_ms": 268.249662,
+        "incremental_ingest_p95_ms": 1.2121118,
+        "terminal_report_ms": 7.181588,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 604.498246,
+        "optimized_full_ms": 276.563506,
+        "incremental_ingest_p95_ms": 1.5602544999999994,
+        "terminal_report_ms": 8.22904,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3137,
+    "evidence_sha256": "966a7c9fc5024982c2fe690ac41fdb7858668ba94eb929571a77facce4ddf1bb",
+    "stream": {
+      "healthy": {
+        "reference_ms": 600.003263,
+        "optimized_full_ms": 257.569407,
+        "incremental_ingest_p95_ms": 1.3163238999999995,
+        "terminal_report_ms": 8.776523,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 612.198535,
+        "optimized_full_ms": 281.774893,
+        "incremental_ingest_p95_ms": 1.4153746999999999,
+        "terminal_report_ms": 7.466386,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3138,
+    "evidence_sha256": "aee8fa0109dcee732ebe0f19ebed3c54dc2166de4610279b36289c4f90df3577",
+    "stream": {
+      "healthy": {
+        "reference_ms": 618.920857,
+        "optimized_full_ms": 249.979488,
+        "incremental_ingest_p95_ms": 2.0072442999999995,
+        "terminal_report_ms": 7.134999,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 613.325781,
+        "optimized_full_ms": 261.100823,
+        "incremental_ingest_p95_ms": 1.5854899999999998,
+        "terminal_report_ms": 7.469441,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3139,
+    "evidence_sha256": "8d27ba4c8891ba1951312429a75e0780a31fad744f715c343e5ba97222c7eca9",
+    "stream": {
+      "healthy": {
+        "reference_ms": 596.226987,
+        "optimized_full_ms": 271.364771,
+        "incremental_ingest_p95_ms": 1.3493538999999999,
+        "terminal_report_ms": 7.248605,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 628.735769,
+        "optimized_full_ms": 466.982481,
+        "incremental_ingest_p95_ms": 2.1270613999999997,
+        "terminal_report_ms": 14.782992,
+        "max_prob_abs_error": 8.673617379884035e-19
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3140,
+    "evidence_sha256": "78c9ac582f524225c68df0755fa258c1525573fa81e791bce9e18de5c3827f1e",
+    "stream": {
+      "healthy": {
+        "reference_ms": 794.730327,
+        "optimized_full_ms": 433.565633,
+        "incremental_ingest_p95_ms": 1.9633968999999998,
+        "terminal_report_ms": 11.078454,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 846.869875,
+        "optimized_full_ms": 256.030108,
+        "incremental_ingest_p95_ms": 1.2921384999999999,
+        "terminal_report_ms": 7.488934,
+        "max_prob_abs_error": 2.7755575615628914e-17
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3141,
+    "evidence_sha256": "9117d610b607810d5254ce3710250eb18c0895482c576ad187870755e796cec9",
+    "stream": {
+      "healthy": {
+        "reference_ms": 604.037419,
+        "optimized_full_ms": 248.010632,
+        "incremental_ingest_p95_ms": 1.9718150999999995,
+        "terminal_report_ms": 7.272925,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 586.593718,
+        "optimized_full_ms": 260.517227,
+        "incremental_ingest_p95_ms": 1.7335924999999996,
+        "terminal_report_ms": 8.297519,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3142,
+    "evidence_sha256": "ece867057812a78d3f4e78c4a05a488138520de5d5f621bea3aef941a2ea1c46",
+    "stream": {
+      "healthy": {
+        "reference_ms": 615.303528,
+        "optimized_full_ms": 275.604827,
+        "incremental_ingest_p95_ms": 1.4710611,
+        "terminal_report_ms": 7.234964,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 605.280728,
+        "optimized_full_ms": 264.933666,
+        "incremental_ingest_p95_ms": 1.2923893,
+        "terminal_report_ms": 7.551021,
+        "max_prob_abs_error": 0.0
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  },
+  {
+    "seed": 3143,
+    "evidence_sha256": "14918529f935bda0e7f5e7d6e4d79d5880cbaff83ab3cb85d59f51ac468b3614",
+    "stream": {
+      "healthy": {
+        "reference_ms": 592.426429,
+        "optimized_full_ms": 247.429516,
+        "incremental_ingest_p95_ms": 1.1367218,
+        "terminal_report_ms": 7.277742,
+        "max_prob_abs_error": 0.0
+      },
+      "injected": {
+        "reference_ms": 621.336245,
+        "optimized_full_ms": 262.737795,
+        "incremental_ingest_p95_ms": 1.4281032999999996,
+        "terminal_report_ms": 7.4771,
+        "max_prob_abs_error": 5.421010862427522e-20
+      }
+    },
+    "rc3_counts": {
+      "tp": 2,
+      "healthy_fp": 0,
+      "neighbor_fp": 0
+    }
+  }
+]
