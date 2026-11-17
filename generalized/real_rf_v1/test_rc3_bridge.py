@@ -24,7 +24,7 @@ def measured_covariance_fixture(t=300,n=7,m=8):
             gains=np.exp(0.015*np.sin(k/20.+a+np.arange(m)*.8))
             phases=0.04*np.sin(k/32.+a/4.+np.arange(m)*.5)
             d=gains*np.exp(1j*phases)
-            data[k,a]=(d[:,None]*base)*d[None,:]
+            data[k,a]=(d[:,None]*base)*d[None,:].conj()
     return data
 
 def make_report_fixture(cov):
