@@ -45,22 +45,22 @@ Other branches contain **experimental research**, not new certified releases. Th
 
 Clone the repository and run:
 
-\`\`\`bash
+```bash
 git clone https://github.com/majdishokri/SANAD-Network-RC3.git
 cd SANAD-Network-RC3
 python -m pip install -r requirements.txt
 python verify_freeze.py
 python qualification/verify_qualification.py
 python accelerated_v1/verify_frozen_release.py
-\`\`\`
+```
 
 These commands check unchanged original model/runtime hashes, the frozen simulation results and the accelerated artifact's recorded parity. The accelerator verifier **does not rerun 144 Sionna seeds**. The original raw per-seed simulator evidence is referenced by provenance in the qualification report, not included here.
 
 For local use of the accelerated code, see its [installation and extraction steps](accelerated_v1/README.md). To invoke the original model on a compatible 300-report Sionna evidence trace:
 
-\`\`\`bash
+```bash
 python rc3.py /path/to/compatible_sionna_evidence.npz --stream injected
-\`\`\`
+```
 
 Python joblib models must **never** be loaded from untrusted sources: the distributed trained model is hash-verified. Generalizing array sizes or testing new RF data does **not** itself qualify them for the original 7×8 performance claim.
 
