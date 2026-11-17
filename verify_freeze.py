@@ -15,7 +15,7 @@ from pathlib import Path
 import gzip,hashlib,json
 
 ROOT=Path(__file__).resolve().parent
-MUTABLE_PUBLIC_PRESENTATION={".gitignore","README.md"}
+MUTABLE_PUBLIC_PRESENTATION={".gitignore","README.md","verify_freeze.py"}
 PROTECTED_PREFIXES=("model/","internal/","prospective/","qualification/","reports/")
 PROTECTED_INDIVIDUAL={"rc3.py","requirements.txt","docs/FREEZE_POLICY.md"}
 
