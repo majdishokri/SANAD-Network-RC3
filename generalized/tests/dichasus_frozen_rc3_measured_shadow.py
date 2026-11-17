@@ -57,25 +57,74 @@ SCENARIOS={
 }
 
 def download_source(path,info,session):
+    """Reliable strict-byte-range download; require full original source hashes.
+
+    Short 16MB ranges prevent long-lived dead connections. After a recoverable
+    network error the next request starts at the exact previously written
+    byte offset. No samples are generated, cached, or faked.
+    """
+    import re
+    import time
     if info.get("md5")!=MD5 or int(info.get("filesize",-1))!=SOURCE_BYTES:
         raise ValueError("Original DaRUS metadata/source hash changed")
-    md5=hashlib.md5();sha=hashlib.sha256();count=0
-    uri=f"https://darus.uni-stuttgart.de/api/access/datafile/{info['id']}"
-    with session.get(uri,stream=True,timeout=(40,210),
-        headers={"User-Agent":"SANAD-RC3-DICHASUS-FROZEN-SHADOW/1.0"}) as r:
-        r.raise_for_status()
-        if urlsplit(r.url).hostname!="darus.uni-stuttgart.de" and not (urlsplit(r.url).hostname or "").endswith(".uni-stuttgart.de"):
-            raise ValueError("Publisher original source redirect not verified")
-        with open(path,"wb") as out:
-            for chunk in r.iter_content(1<<20):
-                if not chunk:continue
-                count+=len(chunk)
-                if count>SOURCE_BYTES:raise ValueError("Source exceeds pinned size")
-                md5.update(chunk);sha.update(chunk);out.write(chunk)
-    if count!=SOURCE_BYTES or md5.hexdigest()!=MD5 or sha.hexdigest()!=SHA256:
-        raise ValueError("Full original RF source hash verification failed")
-    return {"downloaded_bytes":count,"full_MD5_verified":True,"full_SHA256_verified":True,
-            "sha256":sha.hexdigest()}
+    source=f"https://darus.uni-stuttgart.de/api/access/datafile/{info['id']}"
+    step=16*1024*1024
+    offset=0
+    md5=hashlib.md5()
+    sha=hashlib.sha256()
+    recoveries=0
+    retries_without_progress=0
+    with open(path,"wb") as dest:
+        while offset<SOURCE_BYTES:
+            before=offset
+            end=min(SOURCE_BYTES-1,offset+step-1)
+            req_headers={
+                "Range":f"bytes={offset}-{end}",
+                "User-Agent":"SANAD-RC3-DICHASUS-FROZEN-SHADOW-RESUMABLE/1.0"
+            }
+            try:
+                with session.get(source,stream=True,timeout=(30,50),
+                                 headers=req_headers,allow_redirects=True) as r:
+                    r.raise_for_status()
+                    host=urlsplit(r.url).hostname or ""
+                    if host!="darus.uni-stuttgart.de" and not host.endswith(".uni-stuttgart.de"):
+                        raise ValueError("Unverified DaRUS data host")
+                    if r.status_code!=206:
+                        raise ValueError(f"Publisher did not honor source range at offset {offset}: HTTP {r.status_code}")
+                    header=r.headers.get("Content-Range","")
+                    m=re.fullmatch(r"bytes\s+(\d+)-(\d+)/(\d+)",header)
+                    if not m or (int(m[1]),int(m[2]),int(m[3]))!=(offset,end,SOURCE_BYTES):
+                        raise ValueError(f"Unverified HTTP Content-Range: {header!r}")
+                    for piece in r.iter_content(chunk_size=1<<20):
+                        if not piece:continue
+                        if offset+len(piece)>end+1:
+                            raise ValueError("Publisher response exceeds requested exact source range")
+                        dest.write(piece)
+                        md5.update(piece)
+                        sha.update(piece)
+                        offset+=len(piece)
+                    if offset!=end+1:
+                        raise requests.exceptions.ChunkedEncodingError(
+                           f"Partial original range ended {offset}, expected {end+1}")
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.Timeout,
+                    requests.exceptions.ChunkedEncodingError) as exc:
+                recoveries+=1
+                retries_without_progress=0 if offset>before else retries_without_progress+1
+                print(f"RETRY_ORIGINAL_DARUS_SOURCE offset={offset} error={type(exc).__name__} recovered={recoveries}",flush=True)
+                if retries_without_progress>=6 or recoveries>24:
+                    raise RuntimeError("Original DaRUS source repeatedly disconnected") from exc
+                time.sleep(min(2.0,.25*retries_without_progress))
+            if offset==before and retries_without_progress>=6:
+                raise RuntimeError("Original source never made progress")
+    if offset!=SOURCE_BYTES or md5.hexdigest()!=MD5 or sha.hexdigest()!=SHA256:
+        raise ValueError("Full original RF source SHA256/MD5 verification failed")
+    return {
+        "downloaded_bytes":offset,"publisher_MD5_whole_file_verified":True,
+        "full_SHA256_verified":True,"source_sha256":sha.hexdigest(),
+        "publisher_original_http_range_recoveries":recoveries,
+        "source_is_complete_without_synthetic_bytes":True,
+    }
 
 def measure_covariances(path,spec):
     indices=[]
