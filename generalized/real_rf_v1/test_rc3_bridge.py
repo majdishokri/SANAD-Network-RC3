@@ -78,7 +78,8 @@ def test_75_hour_fixture_converts_to_exact_legacy_schema_and_read_only_inference
     assert data["healthy_v11_named"].shape==(300,7)
     assert len(data)==4 and all("expected" not in k and "onset" not in k for k in data)
     assert manifest["duration_hours"]==75
-    assert manifest["qualified"] if "qualified" in manifest else not manifest["legacy_7x8_geometry"] is False
+    assert manifest["legacy_7x8_geometry"] is True
+    assert manifest["qualification"] == "NOT_FIELD_QUALIFIED"
     assert manifest["field_recall_far_localization"].startswith("NOT_ESTIMABLE")
     predictions=infer_read_only(data,manifest)
     assert len(predictions["probabilities"])==7
