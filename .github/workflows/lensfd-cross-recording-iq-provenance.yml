@@ -1,0 +1,21 @@
+name: LensFD original 80-port raw IQ cross-recording provenance
+on:
+  push:
+    branches: [feature/lensfd-failure-origin-audit]
+    paths:
+      - generalized/tests/lensfd_cross_capture_raw_iq_provenance.py
+      - .github/workflows/lensfd-cross-recording-iq-provenance.yml
+  workflow_dispatch:
+jobs:
+  source-hash-crosscheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install numerical HDF5 dependencies
+        run: python -m pip install numpy==2.3.5 h5py==3.15.1
+      - name: Compare complete native RF receiver-port stream identity across two original Rice captures
+        run: python -m generalized.tests.lensfd_cross_capture_raw_iq_provenance
