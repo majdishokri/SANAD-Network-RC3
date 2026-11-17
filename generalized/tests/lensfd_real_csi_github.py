@@ -105,7 +105,7 @@ def examine_native_mat(path,meta):
     if a.shape!=want_full or s.shape!=want_sci or not np.iscomplexobj(s):
         raise ValueError(f"Publisher CSI shape/types differ: {a.shape}, {s.shape}")
     if not np.isfinite(a).all() or not np.isfinite(s).all():
-        raise ValueError("Nonfinite publisher CSI")
+        raise ValueError(f"Nonfinite publisher CSI {meta['path']}: full={int(np.size(a)-np.isfinite(a).sum())} sci={int(np.size(s)-np.isfinite(s).sum())}")
     row={k:meta[k] for k in meta}
     row["values_scanned"]=int(a.size+s.size)
     if meta["family"]=="a2c-static":
