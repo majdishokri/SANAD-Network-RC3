@@ -69,6 +69,19 @@ def get_meta(f):
         for fld in FIELDS:
             if fld in node.attrs:
                 fields[fld]=norm_meta(node.attrs[fld])
+        if "BS_SDR_ID" in node.attrs and "BS_CH_PER_RADIO" in node.attrs:
+            # These are recorder metadata declarations of SDR hardware IDs.
+            # The mapping from antenna acquisition index to SDR board is
+            # provisional until independently corroborated with wiring.
+            radios=np.asarray(node.attrs["BS_SDR_ID"]).reshape(-1)
+            channels=int(np.asarray(node.attrs["BS_CH_PER_RADIO"]).reshape(-1)[0])
+            fields["SDR_board_count"]=int(radios.size)
+            fields["candidate_radio_for_ports67_68_one_based"]={
+                "hardware_id_list_index_zero_based":(67-1)//channels,
+                "nominal_radio_one_based":1+(67-1)//channels,
+                "candidate_SDR_id":norm_meta(radios[(67-1)//channels]),
+                "mapping_attested_by_wiring":False,
+            }
         result[key or "file_attrs"]=fields
     return result
 
@@ -131,7 +144,16 @@ def main():
        "source":"Rice University LensFD published originals",
        "kind":"EIGHT_AUTHENTIC_ARRAY_TO_CLIENT_RAW_RF_CAPTURES",
        "real_data":True,
-       "physically_distinct_sites":1,
+       "distinct_raw_HDF5_reported_BS_HUB_IDs":sorted(set(
+           (r["metadata"]["Data"].get("BS_HUB_ID") or ["UNSPECIFIED"])[0]
+           for r in result
+       )),
+       "distinct_raw_HDF5_BS_HUB_ID_count":len(set(
+           (r["metadata"]["Data"].get("BS_HUB_ID") or ["UNSPECIFIED"])[0]
+           for r in result
+       )),
+       "simultaneous_physical_site_timestamps_verified":False,
+       "different_recording_hubs_not_equal_5_independent_rc3_sites":True,
        "frozen_RC3_model_unchanged":True,
        "frozen_RC3_field_predictions":0,
        "hardware_fault_labels_verified":False,
