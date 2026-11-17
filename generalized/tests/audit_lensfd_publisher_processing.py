@@ -68,3 +68,15 @@ if __name__=="__main__":
                 "path":name,"start":start,"end":end,
                 "lines":[f"{idx+1}: {lines[idx]}" for idx in range(start-1,min(end,len(lines)))]
             }),flush=True)
+
+    for name,ranges in {
+      "code_LensFD/hdf5_lib.py":[(120,135),(200,255)],
+      "code_LensFD/extract_pilots_data.py":[(1,68)]
+    }.items():
+        if name not in z.namelist():continue
+        lines=z.read(name).decode("utf-8","replace").splitlines()
+        for start,end in ranges:
+            print("PILOT_CODE_SECTION="+json.dumps({
+                "path":name,"start":start,"end":end,
+                "lines":[f"{idx+1}: {lines[idx]}" for idx in range(start-1,min(end,len(lines)))]
+            }),flush=True)
