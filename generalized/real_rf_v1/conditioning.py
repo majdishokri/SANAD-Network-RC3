@@ -272,7 +272,7 @@ class ObservationFilter:
         candidate = np.abs(smooth) >= self.threshold
         self.hits = np.where(candidate,np.minimum(self.hits+1,self.persistence),0)
         confirmed = self.hits>=self.persistence
-        transient = (np.abs(scores)>=self.threshold)&~candidate
+        transient = (np.abs(scores)>=self.threshold)&~confirmed  # review until persistent
         return {"smoothed_change":smooth.copy(),
                 "persistent_change":confirmed.copy(),
                 "transient_review":transient.copy(),
