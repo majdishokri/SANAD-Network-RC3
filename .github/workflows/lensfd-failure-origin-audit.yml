@@ -1,0 +1,20 @@
+name: Rice LensFD failure origin - original processing code audit
+on:
+  push:
+    branches:
+      - feature/lensfd-failure-origin-audit
+    paths:
+      - "generalized/tests/audit_lensfd_publisher_processing.py"
+      - ".github/workflows/lensfd-failure-origin-audit.yml"
+  workflow_dispatch:
+jobs:
+  processing-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download publisher ZIP and audit without executing code
+        run: python -m generalized.tests.audit_lensfd_publisher_processing
