@@ -1,7 +1,66 @@
+# Python / notebooks
 __pycache__/
 *.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .ipynb_checkpoints/
-.env
 .venv/
-*.log
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# System / IDE
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+
+# Secrets and local auth
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+token.json
+service-account*.json
+*service_account*.json
+.gcloud/
+secrets/
+private/
+
+# RF / external raw datasets and generated experiment outputs
+data/
+datasets/
+raw_data/
+raw_rf/
+scratch/
+cache/
+tmp/
+temp/
+outputs/
+out/
+artifacts/
+results/
+runs/
+wandb/
+mlruns/
+*.hdf5
+*.h5
+*.mat
+*.npy
+*.npz
+*.tfrecord
+*.tfrecords
+
+# Prevent accidental commit of arbitrary archives, keep tracked
+# hash-verified research reference ZIP in accelerated_v1/ intact.
+*.zip
+!accelerated_v1/SANAD_RC3_Accelerated_Stateful_CPU_V1.zip
