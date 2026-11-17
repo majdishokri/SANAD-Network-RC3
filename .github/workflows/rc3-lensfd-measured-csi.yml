@@ -1,0 +1,60 @@
+name: SANAD RC3 LensFD real measured CSI source benchmark
+on:
+  push:
+    branches:
+      - feature/rc3-lensfd-real-measured-v1
+    paths:
+      - "generalized/tests/lensfd_real_csi_github.py"
+      - "generalized/tests/test_lensfd_real_csi.py"
+      - ".github/workflows/rc3-lensfd-measured-csi.yml"
+  workflow_dispatch:
+jobs:
+  rice-measured-native-csi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencies (no GPU)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 scipy==1.17.1 pytest
+      - name: Unit test shapes, provenance and field-claim blocking
+        run: python -m pytest -q generalized/tests/test_lensfd_real_csi.py
+      - name: Fetch ten publisher-native MAT files with prior SHA-256 pins
+        run: python -m generalized.tests.lensfd_real_csi_github --mode smoke --out results/lensfd_smoke
+      - name: Reanalyze complete 192 original publisher MAT files, not stored descriptors
+        run: python -m generalized.tests.lensfd_real_csi_github --mode full --out results/lensfd_full
+      - name: Publisher-source comparison against preregistered historical descriptive checks
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('results/lensfd_full/research_summary.json'))
+          assert a['native_mat_files_passed']==192
+          assert a['native_csi_values_scanned']>0
+          assert a['static_port68_exact_zero']==91,a
+          assert a['static_port67_exact_zero']==20,a
+          assert a['si_chain5_axis1_index19_below20db']==32,a
+          assert a['si_otherchain_axis1_index19_below20db']==0,a
+          assert a['frozen_rc3_real_field_inferences']==0
+          assert a['rc3_hardware_fault_recall'] is None
+          print('PASS: 192 native MAT files independently remeasured; research checks match.')
+          PY
+      - name: Publish source hashes and derived diagnostics, never raw Rice CSI
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rice-lensfd-measured-192-native-csi-research
+          path: |
+            results/lensfd_smoke/*.json
+            results/lensfd_smoke/*.jsonl
+            results/lensfd_full/*.json
+            results/lensfd_full/*.jsonl
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Frozen RC3 bit-for-bit original 7x8 compatibility
+        run: |
+          python -m pip install scikit-learn==1.8.0 joblib==1.5.3
+          python generalized/tests/test_dimensions.py
