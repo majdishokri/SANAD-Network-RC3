@@ -49,6 +49,7 @@ class PhysicalArray:
     stationary_ula_verified: bool
     half_wavelength_geometry_verified: bool
     verified_healthy_first_120: bool
+    is_measured_rf_capture: bool = False
 
     def validate(self, m):
         if (not self.site_id or not self.physical_station_id or
@@ -110,6 +111,7 @@ def generate_rc3_evidence(
     arrays: Mapping[str,PhysicalArray],
     *,
     policy: AlignmentPolicy=AlignmentPolicy(),
+    allow_synthetic_test_fixture: bool = False,
 ):
     """Turn 300 GOOD real 15-min windows/site into the original *observation-only* schema.
 
@@ -130,6 +132,8 @@ def generate_rc3_evidence(
     for name in sites:
         meta=arrays[name]
         meta.validate(m)
+        if not meta.is_measured_rf_capture and not allow_synthetic_test_fixture:
+            raise ValueError("Synthetic/code-fixture covariance cannot be represented as measured RF")
         if meta.site_id!=name or meta.physical_station_id!=by_site[name][0].physical_station_id:
             raise ValueError("Station identity disagrees with acquisition manifest")
     cov=np.empty((300,len(sites),m,m),dtype=np.complex128)
@@ -157,7 +161,9 @@ def generate_rc3_evidence(
     )).hexdigest()
     metadata={
         **contract,
-        "source_kind":"MEASURED_RF_OPERATOR_ATTESTED_NOT_INDEPENDENTLY_CERTIFIED",
+        "source_kind":("MEASURED_RF_OPERATOR_ATTESTED_NOT_INDEPENDENTLY_CERTIFIED"
+            if all(arrays[name].is_measured_rf_capture for name in sites)
+            else "SYNTHETIC_CODE_FIXTURE_ONLY_NOT_MEASURED"),
         "feature_extractor":"LEGACY_RC3_v11_v29_v33_v35_OBSERVATION_ONLY",
         "original_rc3_weights_modified":False,
         "original_threshold":0.50,
