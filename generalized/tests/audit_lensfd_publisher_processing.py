@@ -40,3 +40,18 @@ if __name__=="__main__":
     result={"source":URL,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),
             "files":inspect_zip(raw)}
     print("PUBLISHER_CODE_AUDIT="+json.dumps(result,ensure_ascii=True),flush=True)
+
+    z=zipfile.ZipFile(io.BytesIO(raw))
+    targets={
+      "code_LensFD/hdf5process.py":[(105,160),(190,255)],
+      "code_LensFD/hdf5analysis.py":[(68,105),(150,182)],
+      "code_LensFD/channel_analysis.py":[(240,315)]
+    }
+    for name,ranges in targets.items():
+        if name not in z.namelist():continue
+        lines=z.read(name).decode("utf-8","replace").splitlines()
+        for start,end in ranges:
+            print("ORIGINAL_CODE_SECTION="+json.dumps({
+                "path":name,"start":start,"end":end,
+                "lines":[f"{idx+1}: {lines[idx]}" for idx in range(start-1,min(end,len(lines)))]
+            }),flush=True)
