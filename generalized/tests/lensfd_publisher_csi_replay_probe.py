@@ -44,7 +44,9 @@ def main():
         import scipy.io
         rawhash=get(ROOT+RAW,raw,600_000_000)
         mathash=get(ROOT+MAT,mat,5_000_000)
-        radio=hdf5_lib(str(raw),n_frames_to_inspect=24,n_fr_insp_st=0,sub_sample=1)
+        frames=int(os.environ.get("SANAD_REPLAY_FRAMES","24"))
+        if frames not in (24,300):raise ValueError("Only 24/300 frames audited")
+        radio=hdf5_lib(str(raw),n_frames_to_inspect=frames,n_fr_insp_st=0,sub_sample=1)
         data_pilot,data_noise=process_hdf5(radio)
         recomputed=np.asarray(data_pilot["chan_full"])
         pub=np.asarray(scipy.io.loadmat(mat)["chan_full"])
@@ -54,7 +56,11 @@ def main():
           "publisher_source_code_sha256":codehash["sha256"],
           "raw_hdf5":rawhash,
           "published_mat":mathash,
-          "raw_frames_used_for_partial_replay":24,
+          "raw_frames_used_for_partial_replay":frames,
+          "same_frame_count_as_publisher_default":frames==300,
+          "reconstruction_finite_fraction":float(np.isfinite(recomputed).mean()),
+          "published_finite_fraction":float(np.isfinite(pub).mean()),
+          "reconstruction_vs_published_complex_rmse":float(np.sqrt(np.nanmean(np.abs(recomputed-pub)**2))),
           "publisher_original_pipeline_unmodified":True,
           "port_info":{},
           "hardware_failure_label":"UNVERIFIED",
