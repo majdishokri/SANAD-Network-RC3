@@ -1,0 +1,25 @@
+name: Rice LensFD true pilot-synchronization evidence, two captures
+on:
+  push:
+    branches: [feature/lensfd-failure-origin-audit]
+    paths:
+      - generalized/tests/lensfd_pilot_pathology_forensics.py
+      - .github/workflows/lensfd-pilot-pathology-both.yml
+  workflow_dispatch:
+jobs:
+  source-pilot-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Original-compatible signal-processing dependencies
+        run: python -m pip install "numpy==1.26.4" "scipy==1.12.0" "h5py==3.11.0" "matplotlib==3.8.4"
+      - name: Measure native raw IQ, pilot detection, CSI before/after averaging and published MAT 
+        env:
+          MPLBACKEND: Agg
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.lensfd_pilot_pathology_forensics --case both
