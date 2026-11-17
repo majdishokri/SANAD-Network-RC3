@@ -1,0 +1,23 @@
+name: LensFD v3 isolated RC3 original 7x8 parity proof
+on:
+  push:
+    branches: [feature/lensfd-rx-chain-metadata-v3]
+    paths:
+      - generalized/real_rf_v1/quality_gated_bridge.py
+      - .github/workflows/lensfd-v3-frozen-rc3-geometry-regression.yml
+  workflow_dispatch:
+jobs:
+  frozen-fidelity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Exact original parity prerequisites
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 pytest
+      - name: Frozen 7x8 bit-for-bit original feature/meta/prediction equality plus generalized shapes
+        run: python generalized/tests/test_dimensions.py
+      - name: Optional quality wrapper regression, no alteration to original RC3
+        run: python -m pytest -q generalized/real_rf_v1/test_quality_gated_bridge.py generalized/real_rf_v1/test_raw_iq_quality.py
