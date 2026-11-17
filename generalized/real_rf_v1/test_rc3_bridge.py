@@ -71,13 +71,14 @@ def test_original_calibration_vectors_exact_parity_without_random_corruptions(co
 
 def test_75_hour_fixture_converts_to_exact_legacy_schema_and_read_only_inference(covariance):
     reports,meta=make_report_fixture(covariance)
-    data,manifest=generate_rc3_evidence(reports,meta)
+    data,manifest=generate_rc3_evidence(reports,meta,allow_synthetic_test_fixture=True)
     assert data["healthy_feats"].shape==(2,300,7,3)
     assert data["healthy_delta"].shape==(300,7,3)
     assert data["healthy_v11"].shape==(300,7)
     assert data["healthy_v11_named"].shape==(300,7)
     assert len(data)==4 and all("expected" not in k and "onset" not in k for k in data)
     assert manifest["duration_hours"]==75
+    assert manifest["source_kind"]=="SYNTHETIC_CODE_FIXTURE_ONLY_NOT_MEASURED"
     assert manifest["legacy_7x8_geometry"] is True
     assert manifest["qualification"] == "NOT_FIELD_QUALIFIED"
     assert manifest["field_recall_far_localization"].startswith("NOT_ESTIMABLE")
@@ -116,3 +117,8 @@ def test_no_7x8_claim_when_4_site_data_masquerade_as_7(covariance):
     four_meta={k:v for k,v in meta.items() if k in {"site-00","site-01","site-02","site-03"}}
     with pytest.raises(ValueError,match="at least 5"):
         generate_rc3_evidence(four,four_meta)
+
+def test_synthetic_fixture_not_accepted_as_real_measurement(covariance):
+    reports,meta=make_report_fixture(covariance)
+    with pytest.raises(ValueError,match="cannot be represented as measured RF"):
+        generate_rc3_evidence(reports,meta)
