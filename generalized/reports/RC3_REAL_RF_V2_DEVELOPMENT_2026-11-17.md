@@ -19,7 +19,7 @@
 
 | Source | Actual measured data | What prior tests established | Why NOT RC3 field qualification |
 |---|---|---|---|
-| DICHASUS ad25/ad21 (DaRUS 10.18419/DARUS-4062) | Native measured 64-port CSI; four real distributed sites; ~48ms CSI reporting | RC3 with 7 selected ULA rows detected 7/8 digitally injected faults, but 26/28 unlabeled controls also alerted. **These are separate rows of only four physical sites.** | 300 frames span ~14.4s, not 75h; no independently certified physical fault labels; 7 selected rows ≠ 7 sites |
+| DICHASUS ad25/ad21 (DaRUS 10.18419/DARUS-4062) | Native measured 64-port CSI; four real distributed sites; ~48ms CSI reporting | RC3 with 7 selected ULA rows detected 7/8 digitally injected faults, but 26/28 unlabeled controls also alerted. **These are separate rows of only four physical sites.** | actual first-300-file-record spans confirmed by new source timestamp audit: ad21 14.3984375s, ad25 17.8515625s, not 75h; no independently certified physical fault labels; 7 selected rows ≠ 7 sites |
 | Niigata/Yokohama Zenodo 10.5281/zenodo.21213882 | Measured multipath angles/complex weights on drive routes | Legacy RC3 detected 16/16 digital faults on modeled 7x8 covariance, 0/56 model controls, 8 synthetic draws | Antenna covariance is modeled from measured MPCs; pseudo-stations are disjoint routes, not simultaneous physical base stations |
 | Rice LensFD (Chen et al. 2023) | 392 source files: 192 processed complex-CSI MAT + 200 raw IQ HDF5 | Measured 192 source CSI descriptors analyzed; native configuration-shift AUC 0.556 / 0.630; suspected zero/suppressed channels explored | 0/392 valid frozen RC3 300-report field inferences; missing verified per-port fault truth/port map and timing |
 | Rice RENEW cluster2/3 | Measured CSI from same platform, separate acquisition clusters | **PhaseGraph**, not RC3, scored 0/8 digitally injected faults and 0/56 healthy control alerts | Different experimental algorithm; frames are not 15-min reports; no verified hardware failures |
@@ -52,3 +52,8 @@ python generalized/tests/test_dimensions.py
 The bridge test compares its 300-report 7x8 calibration vectors **element-for-element** to the original \`glr_compare.pipeline\` with only synthetic faults/dropouts/glitches disabled. The other tests exercise rejection of missing windows, physically repeated towers, invalid port/array attestations, synthetic-as-real mislabeling, and the unchanged 7x8 inference.
 
 **Not a test on independently measured hardware faults.**
+
+
+## Native timestamp follow-up: completed after this plan
+
+2026-11-17, source-verified \`ad21\` and \`ad25\` 180 MB TFRecord prefixes were read with the genuine embedded \`time\` field and matching SHA-256. Both passed checksum/decoder audits. The actual first-300-record spans were **14.3984375 seconds** and **17.8515625 seconds**, respectively. In these prefixes, the measured times were monotonically ordered; the original dataset does not generally guarantee file-order monotonicity. Thus no compatible 75-hour 300-report campaign exists **within those audited prefixes**. See [native time audit](./DICHASUS_NATIVE_TIME_AUDIT_2026-11-17.md) and [successful CI run](https://github.com/majdishokri/SANAD-Network-RC3/actions/runs/44022619055). This source-audit conclusion does not assert that every capture in the complete DICHASUS collection was tested.
