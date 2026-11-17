@@ -1,0 +1,24 @@
+name: SANAD full original measured DICHASUS ad25 entire source CSI and checksum
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/dichasus_full_measured_ad25.py
+      - .github/workflows/rc3-dichasus-full-original-ad25.yml
+  workflow_dispatch:
+jobs:
+  source-native-full-measured-CSI:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install minimal original-source TFRecord TensorProto and numerical dependencies
+        run: python -m pip install numpy==2.3.5 requests google-crc32c tfrecord protobuf tensorboard
+      - name: Verify whole 596950014-byte file MD5, native record CRC32C, original 64x1024 CSI and four physical-array covariance
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.dichasus_full_measured_ad25
