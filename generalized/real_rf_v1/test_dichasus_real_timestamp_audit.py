@@ -34,7 +34,7 @@ def test_corrupted_feature_without_time_is_rejected():
 
 def test_order_not_implied_from_file_sequence():
     out=audit_times([40.0,10.0,60.0,20.0],"fixture")
-    assert out["out_of_order_transitions_in_file"]==1
+    assert out["out_of_order_transitions_in_file"]==2
     assert out["observed_time_span_s"]==50.0
     assert out["RC3_REAL_FIELD_QUALIFICATION"]=="BLOCKED"
 
