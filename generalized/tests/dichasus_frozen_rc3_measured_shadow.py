@@ -95,8 +95,8 @@ def measure_covariances(path,spec):
             if not np.isfinite(H).all():raise ValueError("Nonfinite real CSI; do not impute")
             site=[]
             for ids in indices:
-                v=H[ids,:]  # 8 real measured antenna channels x 1024 subcarriers
-                R=np.asarray(v@v.conj().T/1024.,dtype=np.complex128)
+                v=np.asarray(H[ids,:],dtype=np.complex128)  # losslessly promote source float32 I/Q before complex covariance accumulation
+                R=(v@v.conj().T)/1024.0
                 if not np.isfinite(R).all():raise ValueError("Invalid covariance")
                 er=np.linalg.norm(R-R.conj().T)
                 if er>1e-5*max(np.linalg.norm(R),1e-20):
