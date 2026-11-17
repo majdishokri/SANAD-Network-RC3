@@ -26,7 +26,7 @@ def test_realistic_multilevel_code_fixture_does_not_trip_one_specific_quality_ga
     assert not r.physical_hardware_fault_verified
 
 def test_reject_float_as_unverified_native_iq():
-    with pytest.raises(RFInputNotQualified,match="signed native int16"):
+    with pytest.raises(RFInputNotQualified,match="signed native int16/int32"):
         analyze_receiver_iq(np.zeros((10,3000),dtype=float))
 
 def test_reject_unpaired_iq_stream():
@@ -43,3 +43,11 @@ def test_sha_provenance_and_repeated_quality_result():
     assert a.source_slice_sha256==b.source_slice_sha256
     assert a.modal_fraction==1.0
     assert a.as_json()["decision_kind"]=="INPUT_QUALITY_GATE_NOT_HARDWARE_FAULT_CLASSIFIER"
+
+def test_signed_int32_source_storage_supported_without_dtype_coercion():
+    p=np.full((8,4000),-16,dtype=np.int32)
+    p.reshape(-1)[::1800]=0
+    quality=analyze_receiver_iq(p)
+    assert quality.status.startswith("ABSTAIN_")
+    assert quality.source_integer_storage_dtype=="int32"
+    assert quality.modal_integer_level==-16
