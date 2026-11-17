@@ -1,0 +1,31 @@
+name: SANAD frozen 7x8 on real DICHASUS CSI - nonqualified digital fault shadow
+on:
+  push:
+    branches: [feature/rc3-independent-measured-rf-ood-v1]
+    paths:
+      - generalized/tests/dichasus_frozen_rc3_measured_shadow.py
+      - .github/workflows/rc3-frozen-measured-csi-digital-fault-shadow.yml
+  workflow_dispatch:
+jobs:
+  measured-CSI-actual-frozen-RC3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install frozen model original dependencies and publisher TFRecord decoder
+        run: python -m pip install numpy==2.3.5 scipy==1.17.1 scikit-learn==1.8.0 joblib==1.5.3 requests google-crc32c tfrecord protobuf tensorboard
+      - name: Verify publisher MD5+SHA256 and run frozen RC3 with 21 digitally injected fault cases on real CSI
+        env:
+          OPENBLAS_NUM_THREADS: "2"
+          OMP_NUM_THREADS: "2"
+        run: python -m generalized.tests.dichasus_frozen_rc3_measured_shadow --blocks 1 --out-dir out/sanad_rc3_real_csi_shadow
+      - name: Upload only derived performance summaries (not copyrighted original RF)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanad-rc3-independent-dichasus-digital-shadow
+          path: out/sanad_rc3_real_csi_shadow
+          if-no-files-found: error
