@@ -64,7 +64,7 @@ def download_source(path,info,session):
     with session.get(uri,stream=True,timeout=(40,210),
         headers={"User-Agent":"SANAD-RC3-DICHASUS-FROZEN-SHADOW/1.0"}) as r:
         r.raise_for_status()
-        if urlsplit(r.url).hostname!="darus.uni-stuttgart.de":
+        if urlsplit(r.url).hostname!="darus.uni-stuttgart.de" and not (urlsplit(r.url).hostname or "").endswith(".uni-stuttgart.de"):
             raise ValueError("Publisher original source redirect not verified")
         with open(path,"wb") as out:
             for chunk in r.iter_content(1<<20):
