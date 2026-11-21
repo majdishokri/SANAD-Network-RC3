@@ -1,210 +1,250 @@
-# SANAD-X: Physics-Constrained Navigation Integrity — Formal Research Specification v1
+# SANAD-X — Physics-Constrained Navigation Integrity: Formal Mathematical Specification
 
-> **Status: mathematical research proposal, not an operational release, an anti-spoofing certificate, or flight-control software.** This is an adjacent SANAD-X design note. It does **not** modify or qualify the frozen SANAD Network RC3 model, SANAD-X v10.26 stable baseline, or SANAD-X v10.36 research implementation. No tests, simulations, flight trials, or physical measurements are claimed here.
+**Research proposal only (21 November 2026).** This document proves conditional mathematical statements, not operational GNSS authentication, universal spoofing immunity, or aircraft safety. It is adjacent research, not a modification to the frozen RC3 algorithm, SANAD-X v10.26 stable baseline, or v10.36 executable research monitor. No tests, simulations, or flights were performed for this document.
 
-## 0. Scope and relation to existing SANAD components
+## 1. Correct starting point: what SANAD-X actually measures
 
-The archived SANAD-X v10.36 implements three causal timing comparisons (`RAW=G-A`, `REFERENCE=G-B`, `CORRECTED=G-A-W`), online CUSUM scores and the `ANY_CHANNEL` / `NEW_CROSS` decision hierarchy. Its trust flags are external assertions, not evidence of physical independence. This is a useful **anomaly monitor**, not an authenticated GNSS receiver and not a certified independent navigation solution.
+The project archive contains a v10.33 three-latent-clock research model, a v10.35 causal fusion-policy comparison, and a v10.36 causal monitor. The v10.36 inputs are three quantities: **RAW** \(G-A\), **REFERENCE** \(G-B\), and **CORRECTED** \(G-A-W\), where \(W\) is a nuisance witness. The results are an early warning from any channel, a cross-comparison warning from RAW/CORRECTED with REFERENCE, or abstention on a declared trust/provenance defect.
 
-The original RC3 repository is a **7 arrays x 8 antennas / 300 reports / 15-minute-report calibration-integrity classifier** trained on Sionna evidence. The associated CGPE/MFR work performs independent-reference RF-chain estimation and constrained beam recovery. None of these capabilities directly authenticate satellite signal origin, grant usable real-time UAV position accuracy, or prove the vehicle safe to fly. This document defines a separately deployable, advisory-only **physical integrity certificate** with explicit assumptions.
+The separate SANAD Network RC3 system processes 300 reports at 15-minute intervals for seven receiver arrays of eight antennas each; it detects *calibration anomalies* in a frozen Sionna setting. It is not a GNSS spoofing receiver or a flight-critical 1 Hz/10 Hz/100 Hz monitor. The independent-reference CGPE and constrained MFR work concern *RF-chain estimation and beam recovery*, not satellite source authentication. No RC3, CGPE or MFR output may silently be promoted to a trusted UAV position or time witness.
 
-**Claim structure:** deterministic implications conditional on calibrated sensor/error bounds; not claims of universal spoofing detection or attacker identification.
+## 2. Physics assumptions and state equations
 
-## 1. State, physics, and assumptions
+Define a local navigation state \(x=(p,v,R,b_a,b_\omega,b_c,d_c)\), with position \(p\in\mathbb R^3\), velocity \(v\in\mathbb R^3\), attitude \(R\in SO(3)\), inertial biases \(b_a,b_\omega\), receiver clock bias \(b_c\) in seconds and clock drift \(d_c\). Strapdown kinematics in a properly corrected navigation frame are
 
-For an Earth-fixed/local navigation model, use state
-[
-x(t)=(p(t),v(t),R(t),b_a(t),b_omega(t),b_c(t),d_c(t)),
-]
-where (p,vinmathbb R^3), (Rin SO(3)), (b_a,b_omega) are inertial biases, (b_c) is receiver-clock offset in seconds, and (d_c) is receiver-clock drift. Use properly modeled local gravity, Earth rotation, lever-arm correction and sensor timestamps.
+$$
+\dot p=v,\quad
+\dot v=R(f_m-b_a-n_a)+g(p)+e_{\rm nav},\quad
+\dot R=R[\omega_m-b_\omega-n_\omega]_\times,\quad
+\dot b_c=d_c.
+$$
 
-The strapdown equations, before bounded errors, are
-[
-dot p=v,quad
-dot v=R(f_m-b_a-n_a)+g(p),quad
-dot R=R[omega_m-b_omega-n_omega]_	imes,quad
-dot b_c=d_c.
-]
-These describe actual **proper acceleration and angular rate**, not absolute location. Without an independent absolute reference, the inertial position uncertainty grows.
+Earth rotation, local gravity, lever arms, timing latency, temperature and vibration must be included in a complete physical model or covered by verified bounded errors. An IMU measures specific force and angular rate; it does not independently provide an absolute position.
 
-For satellite (i) with ephemeris (s_i(t)), a corrected code pseudorange model is
-[
-ho_i=|p-s_i(t_i^{tx})|
-+c(b_c-delta t_i)+I_i+T_i+S_i+H_i+M_i+eta_i+a_i.
-]
-(c) is light speed; (I,T,S,H,M) represent ionosphere, troposphere, Earth-rotation/Sagnac or relativistic modeling corrections as applicable, receiver/satellite hardware group delays, and multipath; (eta) is measurement error; (a_i) is an **unspecified disturbance or adversarial input**. Doppler/pseudorange rate has a corresponding relative line-of-sight velocity and clock-drift term. An RF transmitter's true location is **not** determined solely by the apparent satellite ephemeris.
+A GNSS code pseudorange from satellite \(i\) obeys
 
-Necessary assumptions for a deterministic certificate:
+$$
+P_i=\|p-s_i(t_i^{\rm tx})\|+
+c(b_c-\delta t_i)+I_i+T_i+S_i+H_i+M_i+\eta_i+a_i,
+$$
 
-- **A1. Clean anchor:** at (t_0), an independently established position and velocity satisfy (|p_0-hat p_0|le e_{p0}), (|v_0-hat v_0|le e_{v0}). A potentially spoofed GNSS solution is not a clean anchor.
-- **A2. Bounded inertial errors:** over a finite horizon, effective accelerometer/gravity residual (le e_a+e_g), orientation error (le e_{	heta0}+e_omega t), and specific-force magnitude (le F_{max}); all are **physical upper bounds**, not mere sample standard deviations.
-- **A3. Clock independence:** a separately trusted monotonic oscillator or other timing anchor provides a finite bound (|b_c-hat b_c|le E_c(t)). A clock re-disciplined from the suspect GNSS stream fails this assumption.
-- **A4. Measurement envelopes:** ephemeris, atmosphere, multipath, lever-arm, hardware, latency and sensing errors have declared finite bounds; stale/missing calibration voids the certificate.
-- **A5. Trust/provenance:** timestamps, origin and integrity of each independent measurement are established by an actual trust root. A Boolean `trusted=True`, checksum, or MAC alone cannot prove physical sensor truth.
-- **A6. Separation:** the proposed independent anchor is not secretly computed from the same untrusted GNSS inputs or shared clock. Common-mode dependencies must be modeled.
+where \(s_i\) is satellite ephemeris, \(I_i,T_i\) are ionosphere/troposphere, \(S_i\) is the appropriate propagation/relativity/Earth-rotation correction, \(H_i\) instrument group delay, \(M_i\) multipath, \(\eta_i\) noise, and \(a_i\) an unknown disturbance. Corrections must not be double-counted if already incorporated in \(s_i\), \(\delta t_i\), or another term. Doppler adds line-of-sight relative velocity and receiver-clock drift, not source authentication.
 
-If any necessary assumption fails, the mathematical conclusion is **INSUFFICIENT_EVIDENCE / ABSTAIN**, not `SAFE`.
+A nanosecond of timing error corresponds to
 
-## 2. Theorem I — Why SANAD-X timing differences cannot prove satellite authenticity
+$$
+c(10^{-9}\ {\rm s})=0.299792458\ {\rm m}.
+$$
 
-Let latent clocks be (z=[G,A,B]^T). The two raw comparisons are
-[
-y=Hz,qquad H=egin{bmatrix}1&-1&0\\1&0&-1end{bmatrix}.
-]
-(H) has rank 2, and
-[
-H,[1,1,1]^T=0.
-]
+**A1 — Independent clean anchor.** At \(t_0\), independently established pose and velocity satisfy \(\|p_0-\hat p_0\|\le e_{p0}\), \(\|v_0-\hat v_0\|\le e_{v0}\). A GNSS position already controlled by an attacker is not independent.
 
-**Proof.** The two rows are linearly independent, so (operatorname{rank}H=2). Their common null vector is ((1,1,1)^T). Hence for any scalar time function (q(t)), (H(z+q(t)mathbf1)=Hz). Arbitrary common-mode variation of all three clocks is information-theoretically invisible to these comparisons. □
+**A2 — Bounded inertial uncertainty.** Within the stated horizon, effective accelerometer error is at most \(e_a\), gravity/model error at most \(e_g\), angular misalignment is at most \(e_{\theta0}+e_\omega T\) radians, and measured specific force magnitude is at most \(F_{\max}\), all as *deterministic physical bounds*, not covariance-only assumptions.
 
-The archived corrected comparison is (y_C=(G-A)-W=y_R-W). It is algebraically derived from the raw comparison plus a nuisance witness; it is **not an additional independent GNSS-orbit observation**. A multichannel alarm can be stronger evidence of *inconsistency* under a chosen model, but a `NEW_CROSS` vote cannot make the nullspace disappear.
+**A3 — Independent clock.** A trusted time source gives \(|b_c-\hat b_c|\le E_c(T)\) in seconds, independently of suspect GNSS. Re-disciplined GNSS-derived clocks do not satisfy this claim.
 
-**Design consequence:** retain `ANY_CHANNEL` as advisory early warning, `NEW_CROSS` as correlated cross-check, and use **physically independent** absolute/time/motion evidence for a separate integrity certificate. A third channel helps only if its measurement model adds independent rank and its independence is established.
+**A4 — Complete error envelopes.** Ephemeris, propagation, instrument, multipath, hardware, synchronization, sampling and latency errors have justified upper bounds, with unit consistency.
 
-## 3. Theorem II — Satellite-orbit plausibility is not origin authentication
+**A5 — Trust separation.** Data provenance, calibration validity and physical independence are actually established. An asserted Boolean flag, cryptographic hash or MAC does not establish sensor truth.
 
-For any candidate position (p') and clock bias (b'), one may form mathematically self-consistent pseudoranges (ho_i'=|p'-s_i|+cb'+d_i), with admissible modeled corrections (d_i). A standard navigation solution can then satisfy the orbital equations even when the measurements were not emitted by those satellites.
+**A6 — Certified evidence horizon.** The model is used only while A1–A5 still hold. Else the integrity result must be **INSUFFICIENT_EVIDENCE**, not **SAFE**.
 
-**Proof.** Substitution of ((p',b')) into the pseudorange model yields the same set of algebraic constraints the receiver solves. The equations describe apparent delays, not a cryptographic or geometrically independently measured transmitter-origin witness. Therefore orbital ellipses, virtual tangent points, nominal time-of-flight or PRN consistency alone do not logically imply authentic satellite origin. □
+## 3. Theorem 1 — Common-mode impossibility of the original three comparisons
 
-Adding real independent angle-of-arrival, authenticated signal features, independent motion or trusted local time can shrink admissible alternatives; none is assumed available without hardware evidence. A GNSS-only mathematical consistency proof cannot provide an unconditional anti-spoofing proof.
+Let \(z=(G,A,B)^T\). The two raw timing differences are \(y=Hz\), with
 
-**Dimensional check:** a (1 mathrm{ns}) time bias produces (c	imes10^{-9}approx0.299792458 mathrm m) apparent range bias. Timing error envelopes must therefore be specified before claiming metre-level integrity.
+$$
+H=\begin{bmatrix}1&-1&0\\1&0&-1\end{bmatrix},\qquad
+H\begin{bmatrix}1\\1\\1\end{bmatrix}=0.
+$$
 
-## 4. Theorem III — Bounded inertial dead-reckoning tube
+The rows are linearly independent, so \(\operatorname{rank}(H)=2\), and \(\ker H=\operatorname{span}\{(1,1,1)^T\}\).
 
-Define elapsed time (T=t-t_0). Under A1–A2 and a bound on unmodeled inertial/gravity acceleration, the acceleration prediction error satisfies
-[
-|delta a(T)|le A_0+A_1 T,quad
-A_0=e_a+e_g+F_{max}e_{	heta0},quad
-A_1=F_{max}e_omega.
-]
-The rotation contribution follows from (|R-hat R|_2=2sin(	heta/2)le	heta), for relative rotation angle (	hetage0) in its principal range. Thus
-[
-E_v(T)=e_{v0}+A_0 T+	frac12 A_1T^2
-]
-and
-[
-oxed{E_p(T)=e_{p0}+e_{v0}T+	frac12 A_0T^2+	frac16 A_1T^3.}
-]
+**Proof.** For any time-varying scalar \(q(t)\),
 
-**Proof.** With (dot e_v=delta a), the integral triangle inequality gives (|e_v(T)|le e_{v0}+int_0^T(A_0+A_1u),du=E_v(T)). Integrating (dot e_p=e_v) once more gives the displayed (E_p(T)). □
+$$
+H(z+q(t)\mathbf 1)=Hz+q(t)H\mathbf1=Hz.
+$$
 
-The **physically guaranteed** position set (only under A1–A2) is
-[
-mathcal X_I(T)={p:|p-hat p_I(T)|le E_p(T)}.
-]
-Because (E_p) grows quadratically/cubically, bounded IMU data do **not** justify unlimited GNSS-denied navigation. If any bound or anchor is untrusted, use (mathcal X_I=mathbb R^3), not an unjustified small tube.
+Thus all three clocks can change together without affecting either comparison. The corrected channel \(G-A-W=(G-A)-W\) is derived from the first comparison and a witness. It does not independently measure the missing common-mode degree of freedom. Therefore neither the three comparison channels nor any voting rule based solely on them can detect every shared clock perturbation. **QED.**
 
-## 5. Theorem IV — Physics-consistency gate with a deterministic detection condition
+**Implication:** ANY_CHANNEL and NEW_CROSS are useful *anomaly indicators*, not signal-origin proofs. Each can also be triggered by nonadversarial faults. Adding more algebraic transforms of the same clocks does not add missing information; a physically independent measurement with a different observation equation is required.
 
-Let (hatho_i(T)) be the correctly modeled pseudorange predicted from independently propagated ((hat p_I,hat b_c)). Geometric range obeys the reverse triangle inequality:
-[
-ig||p-s_i|-|hat p_I-s_i|ig|le|p-hat p_I|le E_p(T).
-]
-Let (U_i(T)) upper-bound *all remaining* benign errors in metres, including independent clock (cE_c(T)), satellite/orbit, atmosphere, multipath, hardware and latency. Set
-[
-B_i(T)=E_p(T)+U_i(T),qquad r_i(T)=ho_i^{obs}(T)-hatho_i(T).
-]
-Define (	extsf{CONSISTENT}) only when every required measurement has valid provenance and (|r_i|le B_i).
+## 4. Theorem 2 — Orbital geometry and time of flight do not authenticate GNSS
 
-**Soundness under assumptions.** If the observation is benign and A1–A6 and the (U_i) envelopes hold, then (|r_i|le B_i). Thus this deterministic gate cannot falsely reject a genuinely benign sample *within its complete verified model*.
+For any arbitrary hypothetical position \(p^\star\) and receiver clock bias \(b^\star\), the apparent ranges
 
-**Guaranteed inconsistency condition.** Suppose (ho_i^{obs}=ho_i^{benign}+a_i) and the benign residual obeys (|ho_i^{benign}-hatho_i|le B_i). Then
-[
-|r_i|ge |a_i|-B_i.
-]
-Therefore
-[
-oxed{|a_i(T)|>2B_i(T) Longrightarrow |r_i(T)|>B_i(T),}
-]
-so the gate **must** report physical inconsistency for that channel at that accepted observation. □
+$$
+P_i^\star=\|p^\star-s_i(t_i^{\rm tx})\|+cb^\star+d_i
+$$
 
-The certificate is **not** a proof that every attack is caught: disturbances (|a_i|le2B_i), coordinated sensor compromise, common clock corruption, or violated envelopes may remain invisible. Nor does the contradiction identify whether the cause was spoofing, hardware fault, unknown multipath or an inaccurate bound.
+can satisfy ordinary GNSS navigation equations for admissible model corrections \(d_i\).
 
-An alternative stricter set-based formulation is
-[
-mathcal F(T)={(p,b):pinmathcal X_I(T),, |b-hat b_c|le E_c(T),,
-|ho_i^{obs}-h_i(p,b)|le U_i^{nonclock} orall i}.
-]
-If (mathcal F(T)=arnothing), no **single** state satisfies all assumed physics; the verdict is `PHYSICAL_INCONSISTENCY_UNATTRIBUTED`. Nonempty (mathcal F) means only `CONSISTENT_UNDER_MODEL_NOT_AUTHENTICATED`. Do not replace emptiness proof with an unconverged nonlinear solver's `false`.
+**Proof.** Substitution of \(p^\star,b^\star\) produces the same equations used by a navigation solver. Those equations constrain *apparent propagation delays and satellite ephemeris*, but do not on their own prove the RF waveform was actually radiated from each satellite. Therefore even perfectly consistent orbital-ellipse, arc, tangent or common-view pseudorange geometry cannot unconditionally authenticate origin. **QED.**
 
-## 6. Theorem V — Exact role of fixed-point mathematics (MFR/HOK conceptual bridge)
+A real external trusted position/time anchor, independently measured RF direction, securely authenticated navigation data where available, or independent physical sensing can supply additional evidence, each subject to its own threat model. None can be inferred from the existing v10.36 timing channels alone.
 
-For a **local convex surrogate**, not the original nonconvex GNSS measurement manifold, let
-[
-J(z)=rac12|W(Az-y)|_2^2+rac{lambda}{2}|z-z_I|_2^2,quad lambda>0,
-]
-on nonempty closed convex (mathcal C). Write (Q=A^TW^TWA+lambda I), whose eigenvalues satisfy (0<mulelambda_i(Q)le L). Define
-[
-mathcal T(z)=P_{mathcal C}(z-eta
-abla J(z)),qquad 0<eta<2/L.
-]
-Then
-[
-|mathcal T(x)-mathcal T(y)|
-lemax_i|1-etalambda_i(Q)|,|x-y|
-=q|x-y|,quad q<1.
-]
+## 5. Theorem 3 — Certified inertial position-error tube
 
-**Proof.** The metric projection onto a nonempty closed convex set is nonexpansive. The gradient difference equals (Q(x-y)), and the spectral norm of (I-eta Q) is (q<1) for the specified step. By the Banach fixed-point theorem, (mathcal T) has a unique fixed point and its iterations converge geometrically to the unique constrained minimizer. □
+Let \(T=t-t_0\ge0\). From \(\|R-\hat R\|_2=2\sin(\theta/2)\le\theta\), we have the conservative effective acceleration-error envelope
 
-**Critical boundary:** solver convergence proves that a **mathematical optimization problem was solved**, not that the measurements represent genuine satellites. If the physical measurement map (h(z)) is linearized, the Taylor remainder must have an independently certified bound and be included in (U_i); otherwise the guarantee does not transfer to the actual nonlinear system. RC3 probabilities, CGPE gain estimates and MFR beam proposals must not be substituted as authenticated position/time witnesses.
+$$
+\|\delta a(T)\|\le A_0+A_1T,\quad
+A_0=e_a+e_g+F_{\max}e_{\theta0},\quad
+A_1=F_{\max}e_\omega.
+$$
 
-## 7. Theorem VI — Finite guaranteed navigation-information horizon
+Then define
 
-Suppose a civil mission has a justified position uncertainty tolerance (m>0) (e.g., distance to a known and independently validated unsafe-region boundary, after accounting for obstacle-map and control uncertainties). If the state tube is used as evidence, a **necessary information condition** for continuing to claim the entire position set lies within that tolerance is
-[
-E_p(T)le m.
-]
-Define (T_{mathrm{cert}}=sup{Tge0:E_p(T)le m}); when (A_0>0), (A_1>0), or (e_{v0}>0), this horizon is finite for finite (m).
+$$
+E_v(T)=e_{v0}+A_0T+\frac12 A_1T^2,
+$$
 
-**Proof.** Every physically consistent true position may lie anywhere in (mathcal X_I(T)). If the whole tube no longer fits within the certified tolerance, the evidence does not imply safety. Growth of (E_p(T)) follows from Theorem III. □
+$$
+\boxed{E_p(T)=e_{p0}+e_{v0}T+\frac12A_0T^2+\frac16A_1T^3.}
+$$
 
-This is a **loss-of-guarantee rule**, not a guarantee of a safe maneuver or landing. A robust reachability/safety supervisor needs independent maps, wind/disturbance bounds, vehicle constraints, health monitoring and separately certified control; SANAD-X itself should have no direct actuator authority.
+**Proof.** Apply the triangle inequality to \(\dot e_v=\delta a\): \(\|e_v(T)\|\le e_{v0}+\int_0^T(A_0+A_1u)\,du=E_v(T)\). Then integrate \(\dot e_p=e_v\) to obtain the displayed \(E_p(T)\). **QED.**
 
-## 8. Latency and the impossibility of universal protection
+Consequently the conditional inertial position set is
 
-If trustworthy samples arrive with inter-arrival gap at most (Delta), a disturbance remains above (2B_i(T)) after a time (T_*), and decision computation/communication has bounded delay (L_d), the next accepted sample will report inconsistency by (T_*+Delta+L_d). This is conditional on continued sensing and bounded delays. No such bound exists after total RF/clock/provenance loss.
+$$
+\mathcal X_I(T)=\{p:\|p-\hat p_I(T)\|_2\le E_p(T)\}.
+$$
 
-Conversely, a slowly evolving disturbance can remain inside the expanding inertial/clock tube; mathematical consistency alone cannot guarantee eventual detection. Likewise a full common-mode perturbation of (G,A,B) is invisible to their differences (Theorem I). **No universal “protected UAV against all spoofing” theorem is possible from the v10.36 inputs.**
+This does **not** guarantee that the inertial estimate remains accurate indefinitely. The tube expands quadratically or cubically when acceleration/orientation error terms are nonzero. Unverified calibration means the certified set is unknown, not a convenient small sphere.
 
-## 9. Proposed SANAD-X advisory-only interface
+## 6. Theorem 4 — Conditional, deterministic GNSS inconsistency detection
 
-Keep archived v10.36 timing logic intact. Add a *separate* `PHYSICS_CERTIFICATE` record containing:
+Compute a GNSS code observation predicted from the independently anchored inertial state and independent clock:
 
-1. `anchor_provenance`: time, independent position/velocity origin, physical trust root, expiry and dependency graph.
-2. `inertial_envelope`: (e_{p0},e_{v0},e_a,e_g,e_{	heta0},e_omega,F_{max}), calibration validity, and (E_p(T)) with units.
-3. `clock_envelope`: independent timebase identity, (E_c(T)), drift and tamper/staleness status.
-4. `gnss_envelope`: per-satellite corrected observation, synchronized epoch, orbital/atmospheric/receiver uncertainty budget and (B_i(T)).
-5. `observability`: measurement rank/dependency report; never count `RAW`, `CORRECTED`, `REFERENCE` as three independent anchors.
-6. `integrity_verdict`: `PHYSICAL_INCONSISTENCY_UNATTRIBUTED`, `CONSISTENT_UNDER_MODEL_NOT_AUTHENTICATED` or `INSUFFICIENT_EVIDENCE`, with earliest causal timestamp and the exact assumptions supporting the decision.
-7. `position_set` and `certificate_expiry`: finite set only under verified assumptions; otherwise `unknown`.
-8. `advisory_only=true`, `navigation_authority=false`, and `actuator_authority=false`.
+$$
+\hat P_i=h_i(\hat p_I,\hat b_c).
+$$
 
-**Causal composition:** missing, stale, replayed, nonmonotonic or compromised provenance has precedence over comparison scores. `ANY_CHANNEL` and `NEW_CROSS` remain attributable only to the archived timing monitor. Physical certificate failures do not label an attacker; they indicate conditional infeasibility. Never silently reset, use future samples, or promote an advisory into an autonomous flight command.
+Geometric range is 1-Lipschitz in receiver position:
 
-## 10. Mathematical proof obligations not yet discharged by existing hardware
+$$
+\left|\|p-s_i\|-\|\hat p_I-s_i\|\right|\le\|p-\hat p_I\|\le E_p(T).
+$$
 
-| Obligation | Why existing files do not prove it |
-|---|---|
-| Independent clean pose and time anchor | v10.36 receives timing differences and asserted trust flags only |
-| Uniform finite IMU angular/acceleration error bounds | Must be certified for actual temperature, vibration, ageing, sensor saturation and fault modes |
-| Full GNSS uncertainty budget including independent oscillator | Satellite geometry alone is not a trustworthy clock or RF origin check |
-| Physically independent witness | Three algebraically related timing channels do not establish independent truth |
-| Correlated failures and common-mode effects | Unobservable under the two-difference clock model |
-| End-to-end latency and fail-safe civil-UAV behavior | Not established by a symbolic proof of a residual inequality |
-| Real-world integrity-risk probability | Cannot be inferred from deterministic inequalities or past synthetic detection percentages |
+Let \(U_i(T)\) be a physically justified bound in **metres** on all remaining benign errors, including \(cE_c(T)\), satellite ephemeris/time, propagation, multipath, radio hardware and synchronization errors. Set
 
-**Conclusion.** The theorems *prove conditional bounded-error inconsistency detection and numerical fixed-point convergence*. They do **not** prove GNSS signal authenticity, adversary attribution, universal attack detection, continuity of accurate navigation after indefinite outage, or aircraft safety. Those claims require additional independent physical instruments and their separate qualification. No experiment or flight test has been run as part of this mathematical document.
+$$
+B_i(T)=E_p(T)+U_i(T),\qquad r_i(T)=P_i^{\rm obs}(T)-\hat P_i(T).
+$$
 
-## References and provenance
+**Soundness proof.** Under A1–A6 and a benign measurement, the triangle inequality gives \(|r_i|\le B_i\). A rule that flags \(|r_i|>B_i\) therefore cannot reject a benign measurement *as long as the verified bounds actually hold*. **QED.**
 
-- Project baseline: archived SANAD-X v10.33 causal observer, v10.35 fusion policy and v10.36 causal research monitor (project Drive research registry, reviewed 21 Nov 2026).
-- SANAD Network RC3 [README](../../README.md): RF calibration classifier and explicit research boundaries.
-- SANAD MFR/CGPE: independent-reference complex gain/phase estimation and constrained projection; distinct from GNSS position integrity.
-- ESA Navipedia: [GNSS Basic Observables](https://gssc.esa.int/navipedia/index.php/GNSS_Basic_Observables) and [GNSS Measurements Modelling](https://gssc.esa.int/navipedia/index.php?title=GNSS_Measurements_Modelling).
-- Prior literature motivation, not an assertion of our hardware qualification: [Providing Continuity and Integrity in the Presence of GNSS Spoofing](https://web.stanford.edu/group/scpnt/gpslab/pubs/papers/Rothmaier_IONGNSS_2021_SpoofingIntegrity.pdf).
+**Detectability proof.** Suppose an additive perturbation \(a_i\) alters a benign measurement, so \(P_i^{\rm obs}=P_i^{\rm benign}+a_i\). By the reverse triangle inequality,
 
-**Review rule:** keep the entire proposal in an isolated research branch; do not merge into the frozen calibrated RC3 inference path or claim a SANAD-X new released version.
+$$
+|r_i|\ge |a_i|-|P_i^{\rm benign}-\hat P_i|
+\ge|a_i|-B_i.
+$$
+
+It follows that
+
+$$
+\boxed{|a_i(T)|>2B_i(T)\ \Longrightarrow\ |r_i(T)|>B_i(T).}
+$$
+
+Thus at a valid sample, a perturbation exceeding **twice the complete benign error envelope** on at least one covered channel is guaranteed to produce **PHYSICAL_INCONSISTENCY_UNATTRIBUTED**. **QED.**
+
+This theorem proves neither that all spoofing is detectable nor that any detected discrepancy was an attack: hardware failure, model error, wrong input calibration and other disturbances remain alternative explanations. If \(a_i\) stays inside the envelope or corrupts the independent anchor, detection is not guaranteed.
+
+A more powerful set-membership certificate defines
+
+$$
+\mathcal F(T)=\{(p,b):p\in\mathcal X_I(T),\ |b-\hat b_c|\le E_c(T),\
+|P_i^{\rm obs}-h_i(p,b)|\le U_i^{\rm other}(T)\ \forall i\}.
+$$
+
+If \(\mathcal F(T)=\varnothing\), the sensors have **no jointly feasible physical state within the assumed bounds**. If nonempty, the conclusion is **CONSISTENT_UNDER_MODEL_NOT_AUTHENTICATED**. A solver's failure to converge is not proof of emptiness. For nonconvex \(h_i\), a globally valid infeasibility certificate or verified enclosure is required.
+
+## 7. Theorem 5 — Legitimate use of SANAD fixed-point mathematics
+
+To connect the HOK/MFR mathematical idea without falsely claiming GNSS authenticity, consider a *local convex surrogate* with constrained state \(z\in\mathcal C\), \(\mathcal C\) a nonempty closed convex set:
+
+$$
+J(z)=\tfrac12\|W(Az-y)\|_2^2+\tfrac{\lambda}{2}\|z-z_I\|_2^2,\qquad\lambda>0.
+$$
+
+Let \(Q=A^TW^TWA+\lambda I\) be symmetric positive definite with spectrum \(0<\mu\le\lambda_i(Q)\le L\). Define the projected-gradient map
+
+$$
+\mathcal T(z)=P_{\mathcal C}(z-\eta\nabla J(z)),\qquad0<\eta<2/L.
+$$
+
+Because Euclidean convex projection is nonexpansive,
+
+$$
+\|\mathcal T(x)-\mathcal T(y)\|_2
+\le\|(I-\eta Q)(x-y)\|_2
+\le q\|x-y\|_2,
+$$
+
+where \(q=\max_i|1-\eta\lambda_i(Q)|<1\).
+
+**Proof.** The first inequality is nonexpansivity of projection. The second is the spectral norm of a symmetric matrix. The contraction mapping theorem yields a unique fixed point and geometric convergence to the unique constrained minimizer. **QED.**
+
+**Boundary of the proof:** obtaining a unique numerical fixed point proves only numerical optimization, not signal truth. If nonlinear GNSS range equations are linearized, their Taylor remainder must be bounded and included in the physical envelope; otherwise this proof cannot be transferred to real measurements. CGPE/MFR's complex RF gain/beam constraints cannot substitute for a trusted GNSS position/time reference.
+
+## 8. Theorem 6 — Finite certified horizon during GNSS loss or jamming
+
+Let \(m>0\) be a justified safe **uncertainty margin** (after separately accounting for maps, obstacles, winds, vehicle dynamics and control errors). Only if
+
+$$
+E_p(T)\le m
+$$
+
+can the inertial position tube fit inside that margin. Define
+
+$$
+T_{\rm cert}=\sup\{T\ge0:E_p(T)\le m\}.
+$$
+
+When a nonzero error-growth coefficient exists, \(E_p(T)\) grows without bound, so \(T_{\rm cert}\) is finite for finite \(m\).
+
+**Proof.** By Theorem 3, any point in the radius-\(E_p\) ball is consistent with the assumptions. Once that ball exceeds the predeclared margin, the information no longer proves all possible states lie in the certified region. Polynomial growth yields finite \(T_{\rm cert}\) for nonzero positive growth coefficient. **QED.**
+
+This is a **loss-of-guarantee condition** only. It does not establish that a particular UAV maneuver, return route or landing procedure is safe, or authorize control of a vehicle.
+
+## 9. Alert timing: the strongest valid conditional statement
+
+Suppose a perturbation remains outside \(2B_i(T)\) from time \(T_\star\), accepted sensor reports arrive with gap at most \(\Delta\), and measurement/decision delay is bounded by \(L_d\). Then the first valid subsequent report must flag physical inconsistency no later than \(T_\star+\Delta+L_d\).
+
+Without bounded sampling gaps, continued sensor availability, trustworthy clocks or finite error envelopes, **there is no guaranteed time-to-alert**. A sufficiently gradual perturbation can stay inside an expanding error tube indefinitely. Full common-mode movement is unobservable under the original clock-comparison model (Theorem 1).
+
+## 10. Additional formal hazard: repeated values are not replay proof
+
+The current v10.36 research monitor marks a witness as replayed after repeated identical numeric values. Equal consecutive readings can also arise honestly from finite quantization or a steady physical quantity. Thus identical samples alone cannot logically prove an adversarial replay. Verified sequence counters and timestamps bound to a trusted sensor identity are needed for replay **provenance**; even these do not prove that a sensor's underlying physics is uncompromised.
+
+## 11. Proposed advisory-only mathematical interface
+
+The formal extension should be a distinct **PHYSICS_CERTIFICATE**, not an extension of the existing alarm vote. It needs:
+
+1. **Anchor certificate:** independent initial position/velocity source, acquisition time, confidence *bounds* and dependencies.
+2. **Inertial envelope:** \(e_{p0},e_{v0},e_a,e_g,e_{\theta0},e_\omega,F_{\max}\), time validity, \(E_p(T)\).
+3. **Clock envelope:** independent time source, expiry and \(E_c(T)\); explicitly detect GNSS-disciplined-clock dependency.
+4. **GNSS envelope:** per-satellite synchronized code/rate observations and all corrected measurement-error bounds.
+5. **Rank/dependency certificate:** expose that RAW and REFERENCE have one common GNSS clock, and CORRECTED is not an independent third anchor.
+6. **Decision certificate:** **PHYSICAL_INCONSISTENCY_UNATTRIBUTED**, **CONSISTENT_UNDER_MODEL_NOT_AUTHENTICATED**, or **INSUFFICIENT_EVIDENCE**, with assumptions, timestamp and residual witness.
+7. **Position uncertainty set and expiry:** finite only when every physical assumption is valid.
+8. **Authority separation:** advisory-only, no automatic GNSS authentication, no actuator or navigation-control authority.
+
+Precedence: a failed independent trust/clock/anchor condition produces **INSUFFICIENT_EVIDENCE** regardless of CUSUM votes. Retain existing ANY_CHANNEL as early warning and NEW_CROSS as a correlated comparison. Neither should promote a safety certificate.
+
+## 12. What mathematics cannot replace
+
+Theorems 1–2 are unconditional **limitations of the specified measurement models**. Theorems 3–6 are mathematically correct **only if their explicitly stated physical error, anchor, clock and model assumptions hold**. A mathematical derivation cannot by itself establish real sensor independence, true deterministic temperature/vibration bounds, correct antennas and timebase, worst-case environmental errors, aviation integrity risk, or safe flight-control outcomes. No deployment, field validation or flight safety claim is made.
+
+**Status:** mathematical research specification complete; standalone advisory proposal. Frozen v10.26, v10.36 and RC3 inference paths remain unchanged.
+
+## References
+
+- Project-owned archives reviewed for design: SANAD-X v10.33 causal observer, v10.35 fusion policy, v10.36 causal monitor; SANAD Network RC3 README; SANAD CGPE/MFR mathematical model.
+- European Space Agency, [GNSS Basic Observables](https://gssc.esa.int/navipedia/index.php/GNSS_Basic_Observables).
+- European Space Agency, [GNSS Measurements Modelling](https://gssc.esa.int/navipedia/index.php?title=GNSS_Measurements_Modelling).
+- Rothmaier et al., [Providing Continuity and Integrity in the Presence of GNSS Spoofing](https://web.stanford.edu/group/scpnt/gpslab/pubs/papers/Rothmaier_IONGNSS_2021_SpoofingIntegrity.pdf) — threat-model-specific prior work, not validation of SANAD-X.
+
+**Repository rule:** Keep the note in an isolated research branch. Do not merge it into frozen RC3's qualified inference, or market it as verified UAV spoofing protection.
